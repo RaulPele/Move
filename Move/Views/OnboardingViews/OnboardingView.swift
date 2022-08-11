@@ -13,8 +13,23 @@ struct OnboardingData {
     let description: String
 }
 
+class OnboardingViewModel: ObservableObject {
+    let onboardingData: OnboardingData
+    let pageIndex: Int
+    let numberOfPages: Int
+    
+    init(onboardingData: OnboardingData, pageIndex: Int, numberOfPages: Int) {
+        self.onboardingData = onboardingData
+        self.pageIndex = pageIndex
+        self.numberOfPages = numberOfPages
+    }
+}
+
 struct OnboardingView: View {
     let onboardingData: OnboardingData
+    let pageIndex: Int
+    let numberOfPages: Int
+    
     let onNextButtonClicked: () -> Void
     
     var body: some View {
@@ -53,7 +68,10 @@ struct OnboardingView: View {
                 Spacer()
                 
                 HStack(spacing: 0) {
+                    generatePageIndicator()
+
                     Spacer()
+                    
                     Button {
                         onNextButtonClicked()
                     } label: {
@@ -68,17 +86,33 @@ struct OnboardingView: View {
                     .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
-                .padding(.trailing, 24)
+                .padding([.leading, .trailing], 24)
             }
             .padding(.bottom, 74)
             .ignoresSafeArea()
+        }
+    }
+    
+    func generatePageIndicator() -> some View {
+        HStack(spacing: 12) {
+            ForEach(0..<numberOfPages, id: \.self) {i in
+                if i == pageIndex {
+                    RoundedRectangle(cornerRadius: 1.5)
+                        .frame(width: 16, height: 4)
+                        .foregroundColor(.primaryDark)
+                } else {
+                    RoundedRectangle(cornerRadius: 1.5)
+                        .frame(width: 4, height: 4)
+                        .foregroundColor(.neutralGray)
+                }
+            }
         }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingData: .safety()) {
+        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {
             
         }
     }

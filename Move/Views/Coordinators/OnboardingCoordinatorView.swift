@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum OnboardingCoordinatorState {
+enum OnboardingCoordinatorState: CaseIterable {
     case safety
     case scan
     case ride
@@ -17,6 +17,9 @@ enum OnboardingCoordinatorState {
 
 class OnboardingCoordinatorViewModel: ObservableObject {
     @Published var state: OnboardingCoordinatorState
+    var numberOfPages: Int {
+        return OnboardingCoordinatorState.allCases.count
+    }
     
     init(state: OnboardingCoordinatorState) {
         self.state = state
@@ -31,29 +34,39 @@ struct OnboardingCoordinatorView: View {
             
             switch coordinatorViewModel.state {
             case .safety:
-                OnboardingView(onboardingData: .safety()) {
+                OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: coordinatorViewModel.numberOfPages) {
                     coordinatorViewModel.state = .scan
+                   
                 }
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                
             case .scan:
-                OnboardingView(onboardingData: .scan()) {
+                OnboardingView(onboardingData: .scan(), pageIndex: 1, numberOfPages: coordinatorViewModel.numberOfPages) {
                     coordinatorViewModel.state = .ride
                 }
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                
             case .ride:
-                OnboardingView(onboardingData: .ride()) {
+                OnboardingView(onboardingData: .ride(), pageIndex: 2, numberOfPages: coordinatorViewModel.numberOfPages) {
                     coordinatorViewModel.state = .parking
                 }
-
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                
             case .parking:
-                OnboardingView(onboardingData: .parking()) {
+                OnboardingView(onboardingData: .parking(), pageIndex: 3, numberOfPages: coordinatorViewModel.numberOfPages) {
                     coordinatorViewModel.state = .rules
                 }
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 
             case .rules:
-                OnboardingView(onboardingData: .rules()) {
-                    coordinatorViewModel.state = .scan //modify
+                OnboardingView(onboardingData: .rules(), pageIndex: 4, numberOfPages: coordinatorViewModel.numberOfPages) {
+                    coordinatorViewModel.state = .safety //modify
                 }
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
             }
         }
+        .animation(.easeInOut, value: coordinatorViewModel.state)
+
     }
 }
 
