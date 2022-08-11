@@ -28,6 +28,7 @@ struct OnboardingCoordinatorView: View {
     
     var body: some View {
         ZStack {
+            
             switch coordinatorViewModel.state {
             case .safety:
                 OnboardingView(onboardingData: .safety()) {

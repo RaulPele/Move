@@ -18,7 +18,6 @@ struct OnboardingView: View {
     let onNextButtonClicked: () -> Void
     
     var body: some View {
-        
         ZStack {
             Color.neutralWhite
                 .ignoresSafeArea()
@@ -29,8 +28,8 @@ struct OnboardingView: View {
                 
                 HStack(spacing: 0) {
                     Text(onboardingData.title)
-                        .foregroundColor(.primaryLight)
-                        .font(.system(size: 32).bold())
+                        .foregroundColor(.primaryDark)
+                        .font(.baiJamjureeBold(size: 32))
                     
                     Spacer()
                     
@@ -38,15 +37,16 @@ struct OnboardingView: View {
                         
                     }
                     .foregroundColor(.neutralGray)
+                    .font(.baiJamjureeSemiBold(size: 14))
                 }
                 .padding([.top, .leading, .trailing], 24)
                 .padding(.bottom, 12)
                 
                 HStack {
                     Text(onboardingData.description)
-                        .font(.system(size: 16))
-                        .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
                         .foregroundColor(.primaryDark)
+                        .font(.baiJamjureeMedium(size: 16))
+                        .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
                 }
                 .padding(.leading, 24)
                 
@@ -62,6 +62,7 @@ struct OnboardingView: View {
                             Image(systemName: "arrow.right")
                         }
                     }
+                    .font(.baiJamjureeBold(size: 16))
                     .padding(16)
                     .foregroundColor(.neutralWhite)
                     .background(Color.accentColor)
