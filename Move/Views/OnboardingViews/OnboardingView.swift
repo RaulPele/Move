@@ -1,0 +1,84 @@
+//
+//  OnboardingSafetyView.swift
+//  Move
+//
+//  Created by Raul Pele on 10.08.2022.
+//
+
+import SwiftUI
+
+struct OnboardingData {
+    let imageName: String
+    let title: String
+    let description: String
+}
+
+struct OnboardingView: View {
+    let onboardingData: OnboardingData
+    let onNextButtonClicked: () -> Void
+    
+    var body: some View {
+        
+        ZStack {
+            Color.neutralWhite
+                .ignoresSafeArea()
+            VStack(alignment: .leading, spacing: 0) {
+                Image(onboardingData.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                HStack(spacing: 0) {
+                    Text(onboardingData.title)
+                        .foregroundColor(.primaryLight)
+                        .font(.system(size: 32).bold())
+                    
+                    Spacer()
+                    
+                    Button("Skip") {
+                        
+                    }
+                    .foregroundColor(.neutralGray)
+                }
+                .padding([.top, .leading, .trailing], 24)
+                .padding(.bottom, 12)
+                
+                HStack {
+                    Text(onboardingData.description)
+                        .font(.system(size: 16))
+                        .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
+                        .foregroundColor(.primaryDark)
+                }
+                .padding(.leading, 24)
+                
+                Spacer()
+                
+                HStack(spacing: 0) {
+                    Spacer()
+                    Button {
+                        onNextButtonClicked()
+                    } label: {
+                        HStack {
+                            Text("Next")
+                            Image(systemName: "arrow.right")
+                        }
+                    }
+                    .padding(16)
+                    .foregroundColor(.neutralWhite)
+                    .background(Color.accentColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                }
+                .padding(.trailing, 24)
+            }
+            .padding(.bottom, 74)
+            .ignoresSafeArea()
+        }
+    }
+}
+
+struct OnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        OnboardingView(onboardingData: .safety()) {
+            
+        }
+    }
+}
