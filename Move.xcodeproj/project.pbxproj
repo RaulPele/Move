@@ -29,6 +29,7 @@
 		DE2B22A428A50CFC00BAE7F5 /* BaiJamjuree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229728A50CFC00BAE7F5 /* BaiJamjuree-SemiBold.ttf */; };
 		DE2B22A528A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229828A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf */; };
 		DE2B22A628A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */; };
+		DE2F523528A63574007762BA /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* AppCoordinatorView.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		DE2B229828A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BaiJamjuree-BoldItalic.ttf"; sourceTree = "<group>"; };
 		DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BaiJamjuree-Medium.ttf"; sourceTree = "<group>"; };
 		DE2B22A728A5108F00BAE7F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DE2F523428A63574007762BA /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */,
+				DE2F523428A63574007762BA /* AppCoordinatorView.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
+				DE2F523528A63574007762BA /* AppCoordinatorView.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* Colors.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,

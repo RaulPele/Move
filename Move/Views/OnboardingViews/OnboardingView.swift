@@ -76,7 +76,7 @@ struct OnboardingView: View {
                         onNextButtonClicked()
                     } label: {
                         HStack {
-                            Text("Next")
+                            Text(pageIndex != numberOfPages - 1 ? "Next" : "Get started")
                             Image(systemName: "arrow.right")
                         }
                     }
