@@ -7,31 +7,11 @@
 
 import SwiftUI
 
-enum OnboardingCoordinatorState: CaseIterable {
-    case safety
-    case scan
-    case ride
-    case parking
-    case rules
-}
-
-class OnboardingCoordinatorViewModel: ObservableObject {
-    @Published var state: OnboardingCoordinatorState
-    var numberOfPages: Int {
-        return OnboardingCoordinatorState.allCases.count
-    }
-    
-    init(state: OnboardingCoordinatorState) {
-        self.state = state
-    }
-}
-
 struct OnboardingCoordinatorView: View {
     @StateObject var coordinatorViewModel = OnboardingCoordinatorViewModel(state: .safety)
     
     var body: some View {
         ZStack {
-            
             switch coordinatorViewModel.state {
             case .safety:
                 OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: coordinatorViewModel.numberOfPages) {

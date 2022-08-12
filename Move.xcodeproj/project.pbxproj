@@ -30,6 +30,8 @@
 		DE2B22A528A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229828A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf */; };
 		DE2B22A628A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */; };
 		DE2F523528A63574007762BA /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* AppCoordinatorView.swift */; };
+		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
+		DE2F523B28A64541007762BA /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* AppCoordinatorViewModel.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BaiJamjuree-Medium.ttf"; sourceTree = "<group>"; };
 		DE2B22A728A5108F00BAE7F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE2F523428A63574007762BA /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
+		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		DE2F523A28A64541007762BA /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +96,7 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE2F523628A644F1007762BA /* ViewModels */,
 				DE2B22A728A5108F00BAE7F5 /* Info.plist */,
 				DE2B228928A50B6E00BAE7F5 /* Fonts */,
 				DE0ACF0B28A39BB300F32C36 /* Views */,
@@ -115,7 +120,8 @@
 		DE0ACF0B28A39BB300F32C36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE2B228628A4F37400BAE7F5 /* Coordinators */,
+				DE2F523C28A645DC007762BA /* AuthenticationViews */,
+				DE2B228628A4F37400BAE7F5 /* CoordinatorViews */,
 				DE0ACF1028A3B21200F32C36 /* OnboardingViews */,
 				DE0ACF0E28A3B19B00F32C36 /* SplashViews */,
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
@@ -139,13 +145,13 @@
 			path = OnboardingViews;
 			sourceTree = "<group>";
 		};
-		DE2B228628A4F37400BAE7F5 /* Coordinators */ = {
+		DE2B228628A4F37400BAE7F5 /* CoordinatorViews */ = {
 			isa = PBXGroup;
 			children = (
 				DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */,
 				DE2F523428A63574007762BA /* AppCoordinatorView.swift */,
 			);
-			path = Coordinators;
+			path = CoordinatorViews;
 			sourceTree = "<group>";
 		};
 		DE2B228928A50B6E00BAE7F5 /* Fonts */ = {
@@ -175,6 +181,30 @@
 				DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */,
 			);
 			path = "Bai-Jamjuree-Fonts";
+			sourceTree = "<group>";
+		};
+		DE2F523628A644F1007762BA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DE2F523928A64529007762BA /* CoordinatorViewModels */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DE2F523928A64529007762BA /* CoordinatorViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */,
+				DE2F523A28A64541007762BA /* AppCoordinatorViewModel.swift */,
+			);
+			path = CoordinatorViewModels;
+			sourceTree = "<group>";
+		};
+		DE2F523C28A645DC007762BA /* AuthenticationViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AuthenticationViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +292,12 @@
 			files = (
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
+				DE2F523B28A64541007762BA /* AppCoordinatorViewModel.swift in Sources */,
 				DE2F523528A63574007762BA /* AppCoordinatorView.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* Colors.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,
+				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
 				DE8388C628A5143400A0908D /* FontExtension.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
