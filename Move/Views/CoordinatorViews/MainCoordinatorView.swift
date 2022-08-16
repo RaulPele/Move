@@ -21,7 +21,6 @@ struct MainCoordinatorView: View {
                 NavigationLink(
                     destination: getSplashView()
                         .navigationBarHidden(true),
-
                     tag: .start,
                     selection: $state) {
                         EmptyView()

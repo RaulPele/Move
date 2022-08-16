@@ -18,7 +18,8 @@ struct BackgroundView: View {
                     .foregroundColor(.neutralWhite)
                     .opacity(0.05)
                     .frame(width: 327, height: 327)
-                    .rotationEffect(.degrees(45))
+                    .rotationEffect(.degrees(60))
+                    .offset(x: 130)
                 
                 Spacer()
                 
@@ -26,9 +27,11 @@ struct BackgroundView: View {
                     .foregroundColor(.neutralWhite)
                     .opacity(0.05)
                     .frame(width: 423, height: 423)
-                    .rotationEffect(.degrees(45))
+                    .rotationEffect(.degrees(10))
+                    .offset(x: -150, y: 60)
                     
             }
+            .ignoresSafeArea()
         }
     }
 }
