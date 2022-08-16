@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SplashView: View {
+    let onFinishLoading: () -> Void
+    
     var body: some View {
         ZStack {
             Color.primaryLight
@@ -17,11 +19,17 @@ struct SplashView: View {
                 .offset(x: -116)
             Image("SplashScreenMoveText")
         }
+        .onAppear() {
+            print("onfinishloading")
+            onFinishLoading()
+        }
     }
 }
 
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
-        SplashView()
+        SplashView {
+            EmptyView()
+        }
     }
 }

@@ -11,41 +11,69 @@ struct OnboardingCoordinatorView: View {
     @StateObject var coordinatorViewModel = OnboardingCoordinatorViewModel(state: .safety)
     
     var body: some View {
-        ZStack {
-            switch coordinatorViewModel.state {
-            case .safety:
-                OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: coordinatorViewModel.numberOfPages) {
-                    coordinatorViewModel.state = .scan
-                   
+        NavigationView {
+            ZStack {
+                NavigationLink(tag: .safety, selection: $coordinatorViewModel.state) {
+                    OnboardingView(onboardingData: .safety(),
+                                   pageIndex: 0,
+                                   numberOfPages: coordinatorViewModel.numberOfPages) {
+                        coordinatorViewModel.state = .scan
+                    }
+                    .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+//                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                 
-            case .scan:
-                OnboardingView(onboardingData: .scan(), pageIndex: 1, numberOfPages: coordinatorViewModel.numberOfPages) {
-                    coordinatorViewModel.state = .ride
+                NavigationLink(tag: .scan, selection: $coordinatorViewModel.state) {
+                    OnboardingView(onboardingData: .scan(),
+                                   pageIndex: 1,
+                                   numberOfPages: coordinatorViewModel.numberOfPages) {
+                        coordinatorViewModel.state = .ride
+                    }
+                    .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                
-            case .ride:
-                OnboardingView(onboardingData: .ride(), pageIndex: 2, numberOfPages: coordinatorViewModel.numberOfPages) {
-                    coordinatorViewModel.state = .parking
-                }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                
-            case .parking:
-                OnboardingView(onboardingData: .parking(), pageIndex: 3, numberOfPages: coordinatorViewModel.numberOfPages) {
-                    coordinatorViewModel.state = .rules
-                }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
 
-            case .rules:
-                OnboardingView(onboardingData: .rules(), pageIndex: 4, numberOfPages: coordinatorViewModel.numberOfPages) {
-                    coordinatorViewModel.state = .safety //modify
+                NavigationLink(tag: .ride, selection: $coordinatorViewModel.state) {
+                    OnboardingView(onboardingData: .ride(),
+                                   pageIndex: 2,
+                                   numberOfPages: coordinatorViewModel.numberOfPages) {
+                        coordinatorViewModel.state = .parking
+                    }
+                    .navigationBarBackButtonHidden(true)
+                    
+                } label: {
+                    EmptyView()
                 }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                
+                NavigationLink(tag: .parking, selection: $coordinatorViewModel.state) {
+                    OnboardingView(onboardingData: .parking(),
+                                   pageIndex: 3,
+                                   numberOfPages: coordinatorViewModel.numberOfPages) {
+                        coordinatorViewModel.state = .rules
+                    }
+                    .navigationBarBackButtonHidden(true)
+                    
+                } label: {
+                    EmptyView()
+                }
+
+                NavigationLink(tag: .rules, selection: $coordinatorViewModel.state) {
+                    OnboardingView(onboardingData: .rules(),
+                                   pageIndex: 4,
+                                   numberOfPages: coordinatorViewModel.numberOfPages) {
+                        coordinatorViewModel.state = .safety
+                    }
+                    .navigationBarBackButtonHidden(true)
+                    
+                } label: {
+                    EmptyView()
+                }
             }
+            .animation(.easeInOut, value: coordinatorViewModel.state)
         }
-        .animation(.easeInOut, value: coordinatorViewModel.state)
 
     }
 }

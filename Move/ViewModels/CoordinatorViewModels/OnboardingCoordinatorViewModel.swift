@@ -16,7 +16,8 @@ enum OnboardingCoordinatorState: CaseIterable {
 }
 
 class OnboardingCoordinatorViewModel: ObservableObject {
-    @Published var state: OnboardingCoordinatorState
+    @Published var state: OnboardingCoordinatorState?
+    
     var numberOfPages: Int {
         return OnboardingCoordinatorState.allCases.count
     }

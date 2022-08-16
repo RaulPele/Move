@@ -13,18 +13,6 @@ struct OnboardingData {
     let description: String
 }
 
-class OnboardingViewModel: ObservableObject {
-    let onboardingData: OnboardingData
-    let pageIndex: Int
-    let numberOfPages: Int
-    
-    init(onboardingData: OnboardingData, pageIndex: Int, numberOfPages: Int) {
-        self.onboardingData = onboardingData
-        self.pageIndex = pageIndex
-        self.numberOfPages = numberOfPages
-    }
-}
-
 struct OnboardingView: View {
     let onboardingData: OnboardingData
     let pageIndex: Int
