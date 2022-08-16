@@ -16,4 +16,5 @@ extension Color {
     static let neutralWhite = Color("neutralWhiteColor")
     static let primaryDark = Color("primaryDarkColor")
     static let primaryLight = Color("primaryLightColor")
+    static let accentColor = Color("AccentColor")
 }

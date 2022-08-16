@@ -15,6 +15,7 @@ struct FilledButton: ButtonStyle {
         configuration.label
             .font(isEnabled ? .baiJamjureeBold(size: 16) : .baiJamjureeMedium(size: 16))
             .padding(16)
+            
             .background(isEnabled ?
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)
@@ -22,7 +23,7 @@ struct FilledButton: ButtonStyle {
                         ) :
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.neutralLightPink, lineWidth: 1)
+                                .stroke(Color.accentColor, lineWidth: 1)
                                 .foregroundColor(.clear)
                         ))
             .foregroundColor(isEnabled ? .neutralWhite : .neutralLightPurple)

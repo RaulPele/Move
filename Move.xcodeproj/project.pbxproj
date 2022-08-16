@@ -14,6 +14,8 @@
 		DE0ACF0A28A2737E00F32C36 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0928A2737E00F32C36 /* Colors.swift */; };
 		DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0C28A39BC900F32C36 /* SplashView.swift */; };
 		DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5728AB9C840019CE5A /* Buttons.swift */; };
+		DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5928ABB2380019CE5A /* SignUpView.swift */; };
+		DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */; };
 		DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228228A3B27000BAE7F5 /* OnboardingView.swift */; };
 		DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228428A4EDB500BAE7F5 /* Constants.swift */; };
 		DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */; };
@@ -46,6 +48,8 @@
 		DE0ACF0928A2737E00F32C36 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		DE0ACF0C28A39BC900F32C36 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		DE1FEB5728AB9C840019CE5A /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		DE1FEB5928ABB2380019CE5A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		DE2B228228A3B27000BAE7F5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE2B228428A4EDB500BAE7F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
 				DE2F523D28A6462E007762BA /* BackgroundView.swift */,
 				DE1FEB5728AB9C840019CE5A /* Buttons.swift */,
+				DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 		DE2F523C28A645DC007762BA /* AuthenticationViews */ = {
 			isa = PBXGroup;
 			children = (
+				DE1FEB5928ABB2380019CE5A /* SignUpView.swift */,
 			);
 			path = AuthenticationViews;
 			sourceTree = "<group>";
@@ -306,8 +312,10 @@
 				DE2F523E28A6462E007762BA /* BackgroundView.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
+				DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */,
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
 				DE8388C628A5143400A0908D /* FontExtension.swift in Sources */,
+				DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

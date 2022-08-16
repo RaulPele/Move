@@ -11,28 +11,28 @@ struct BackgroundView: View {
     var body: some View {
         ZStack {
             Color.primaryLight
-                .ignoresSafeArea()
-            
+                
             VStack {
                 RoundedRectangle(cornerRadius: 94)
                     .foregroundColor(.neutralWhite)
                     .opacity(0.05)
-                    .frame(width: 327, height: 327)
+                    .frame(maxWidth: 327, maxHeight: 327)
                     .rotationEffect(.degrees(60))
                     .offset(x: 130)
                 
                 Spacer()
-                
+
                 RoundedRectangle(cornerRadius: 164)
                     .foregroundColor(.neutralWhite)
                     .opacity(0.05)
-                    .frame(width: 423, height: 423)
+                    .frame(maxWidth: 423, maxHeight: 423)
                     .rotationEffect(.degrees(10))
                     .offset(x: -150, y: 60)
                     
             }
-            .ignoresSafeArea()
         }
+//        .frame(maxWidth: UIScreen.main.bounds.width)
+        .ignoresSafeArea()
     }
 }
 
