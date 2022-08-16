@@ -13,7 +13,6 @@ enum MainCoordinatorState {
 }
 
 struct MainCoordinatorView: View {
-    //@StateObject var coordinatorViewModel = MainCoordinatorViewModel(state: .start)
     @State var state: MainCoordinatorState? = MainCoordinatorState.start
     
     var body: some View {
@@ -21,24 +20,23 @@ struct MainCoordinatorView: View {
             ZStack {
                 NavigationLink(
                     destination: getSplashView()
-                        .navigationBarBackButtonHidden(true),
+                        .navigationBarHidden(true),
+
                     tag: .start,
                     selection: $state) {
                         EmptyView()
                 }
-                .navigationBarHidden(true)
 
                 NavigationLink(
                     destination: OnboardingCoordinatorView()
-                        .navigationBarBackButtonHidden(true),
+                        .navigationBarHidden(true),
                     tag: .onboarding,
                     selection: $state) {
                         EmptyView()
                 }
-                .navigationBarHidden(true)
             }
         }
-        .animation(.easeInOut, value: state)
+//        .animation(.easeInOut, value: state)
         
     }
     

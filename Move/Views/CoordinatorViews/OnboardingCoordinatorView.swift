@@ -19,7 +19,7 @@ struct OnboardingCoordinatorView: View {
                                    numberOfPages: coordinatorViewModel.numberOfPages) {
                         coordinatorViewModel.state = .scan
                     }
-                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                 } label: {
                     EmptyView()
                 }
@@ -31,7 +31,7 @@ struct OnboardingCoordinatorView: View {
                                    numberOfPages: coordinatorViewModel.numberOfPages) {
                         coordinatorViewModel.state = .ride
                     }
-                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                 } label: {
                     EmptyView()
                 }
@@ -42,7 +42,7 @@ struct OnboardingCoordinatorView: View {
                                    numberOfPages: coordinatorViewModel.numberOfPages) {
                         coordinatorViewModel.state = .parking
                     }
-                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                     
                 } label: {
                     EmptyView()
@@ -54,7 +54,7 @@ struct OnboardingCoordinatorView: View {
                                    numberOfPages: coordinatorViewModel.numberOfPages) {
                         coordinatorViewModel.state = .rules
                     }
-                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                     
                 } label: {
                     EmptyView()
@@ -66,7 +66,7 @@ struct OnboardingCoordinatorView: View {
                                    numberOfPages: coordinatorViewModel.numberOfPages) {
                         coordinatorViewModel.state = .safety
                     }
-                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                     
                 } label: {
                     EmptyView()
