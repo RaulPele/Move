@@ -79,8 +79,6 @@ struct OnboardingCoordinatorView: View {
                     .navigationBarHidden(true)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                     .animation(.default)
-                    
-                    
                 } label: {
                     EmptyView()
                 }

@@ -24,6 +24,7 @@ struct OnboardingView: View {
         ZStack {
             Color.neutralWhite
                 .ignoresSafeArea()
+            
             VStack(alignment: .leading, spacing: 0) {
                 Image(onboardingData.imageName)
                     .resizable()
@@ -68,11 +69,7 @@ struct OnboardingView: View {
                             Image(systemName: "arrow.right")
                         }
                     }
-                    .font(.baiJamjureeBold(size: 16))
-                    .padding(16)
-                    .foregroundColor(.neutralWhite)
-                    .background(Color.accentColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .buttonStyle(.filledButton)
                 }
                 .padding([.leading, .trailing], 24)
             }
