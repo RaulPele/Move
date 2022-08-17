@@ -20,14 +20,12 @@ struct OnboardingCoordinatorView: View {
                         coordinatorViewModel.state = .scan
                     }
                     .navigationBarHidden(true)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    .animation(.default)
+                    .transition(.opacity.animation(.default))
 
                 } label: {
                     EmptyView()
                 }
 
-                
                 NavigationLink(tag: .scan, selection: $coordinatorViewModel.state) {
                     OnboardingView(onboardingData: .scan(),
                                    pageIndex: 1,
@@ -35,8 +33,8 @@ struct OnboardingCoordinatorView: View {
                         coordinatorViewModel.state = .ride
                     }
                     .navigationBarHidden(true)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    .animation(.default)
+                    .transition(.opacity.animation(.default))
+
 
                 } label: {
                     EmptyView()
@@ -49,8 +47,8 @@ struct OnboardingCoordinatorView: View {
                         coordinatorViewModel.state = .parking
                     }
                     .navigationBarHidden(true)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    .animation(.default)
+                    .transition(.opacity.animation(.default))
+
                     
                 } label: {
                     EmptyView()
@@ -63,8 +61,8 @@ struct OnboardingCoordinatorView: View {
                         coordinatorViewModel.state = .rules
                     }
                     .navigationBarHidden(true)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    .animation(.default)
+                    .transition(.opacity.animation(.default))
+
                     
                 } label: {
                     EmptyView()
@@ -77,15 +75,13 @@ struct OnboardingCoordinatorView: View {
                         coordinatorViewModel.state = .safety
                     }
                     .navigationBarHidden(true)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                    .animation(.default)
+                    .transition(.opacity.animation(.default))
+
                 } label: {
                     EmptyView()
                 }
             }
         }
-        
-
     }
 }
 

@@ -28,7 +28,10 @@ struct OnboardingView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Image(onboardingData.imageName)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 3/5)
+                    .clipped()
+
                 
                 HStack(spacing: 0) {
                     Text(onboardingData.title)
@@ -73,8 +76,8 @@ struct OnboardingView: View {
                 }
                 .padding([.leading, .trailing], 24)
             }
-            .padding(.bottom, 74)
-            .ignoresSafeArea()
+            .padding(.bottom, 24)
+            .edgesIgnoringSafeArea(.top)
         }
     }
     

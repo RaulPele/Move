@@ -31,10 +31,10 @@ struct FloatingTextField: View {
                         
                     } else {
                         TextField("", text: text)
-                        
                     }
                 }
                 .foregroundColor(text.wrappedValue.isEmpty ? .neutralGray : .neutralWhite)
+                .disableAutocorrection(true)
                 .font(.baiJamjureeMedium(size: 16))
                 .focused($isFocused)
                 

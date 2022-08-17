@@ -12,7 +12,7 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            BackgroundView()
+            PurpleBackgroundView()
             
             VStack(alignment: .leading, spacing: 32) {
                 Image("SmallLogoWhite")
@@ -52,8 +52,8 @@ struct SignUpView: View {
                 
             }
             .padding(.horizontal, 24)
+        
 //            .padding(.top, 20)
-
         }
     }
 }

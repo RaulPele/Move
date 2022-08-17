@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BackgroundView: View {
+struct PurpleBackgroundView: View {
     var body: some View {
         ZStack {
             Color.primaryLight
@@ -36,8 +36,8 @@ struct BackgroundView: View {
     }
 }
 
-struct BackgroundView_Previews: PreviewProvider {
+struct PurpleBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundView()
+        PurpleBackgroundView()
     }
 }
