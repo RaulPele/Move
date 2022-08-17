@@ -13,6 +13,7 @@ struct OnboardingView: View {
     let numberOfPages: Int
     
     let onNextButtonClicked: () -> Void
+    let onSkipButtonClicked: () -> Void
     
     var body: some View {
         ZStack {
@@ -34,7 +35,7 @@ struct OnboardingView: View {
                     Spacer()
                     
                     Button("Skip") {
-                        
+                        onSkipButtonClicked()
                     }
                     .foregroundColor(.neutralGray)
                     .font(.baiJamjureeSemiBold(size: 14))
@@ -93,6 +94,8 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {}
+        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {} onSkipButtonClicked: {
+            
+        }
     }
 }

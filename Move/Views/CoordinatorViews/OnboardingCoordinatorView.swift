@@ -22,6 +22,8 @@ struct OnboardingCoordinatorView: View {
                                        numberOfPages: coordinatorViewModel.numberOfPages,
                                        onNextButtonClicked: index == coordinatorViewModel.numberOfPages - 1 ? onFinished : {
                             coordinatorViewModel.state = coordinatorViewModel.getNextState(currentState: state)
+                        }, onSkipButtonClicked: {
+                            onFinished()
                         })
                         .navigationBarHidden(true)
                         .transition(.opacity.animation(.default))
