@@ -11,8 +11,8 @@ import SwiftUI
 struct MoveApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-//            SignUpView()
+//            ContentView()
+            SignUpView(signUpViewModel: SignUpViewModel())
         }
     }
 }

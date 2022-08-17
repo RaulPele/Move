@@ -10,8 +10,13 @@ import SwiftUI
 struct FloatingTextField: View {
     let title: String
     let text: Binding<String>
+    var isSecured = false
+    
+    //    @State var isFocused: Bool = false
+    @FocusState var isFocused: Bool
     
     var body: some View {
+        
         VStack(spacing: 0) {
             ZStack(alignment: .leading) {
                 Text(title)
@@ -20,16 +25,25 @@ struct FloatingTextField: View {
                     .offset(y: text.wrappedValue.isEmpty ? 0 : -25)
                     .scaleEffect(text.wrappedValue.isEmpty ? 1 : 0.8, anchor: .leading)
                 
-                TextField("", text: text)
-                    .foregroundColor(text.wrappedValue.isEmpty ? .neutralGray : .neutralWhite)
-                    .font(.baiJamjureeMedium(size: 16))
-                
+                Group {
+                    if isSecured {
+                        SecureField("", text: text)
+                        
+                    } else {
+                        TextField("", text: text)
+                        
+                    }
+                }
+                .foregroundColor(text.wrappedValue.isEmpty ? .neutralGray : .neutralWhite)
+                .font(.baiJamjureeMedium(size: 16))
+                .focused($isFocused)
                 
             }
             .animation(.spring(response: 0.2, dampingFraction: 0.5))
+            
             Divider()
-                .frame(height: text.wrappedValue.isEmpty ? 1 : 2)
-                .background(text.wrappedValue.isEmpty ? Color.neutralGray : Color.neutralWhite)
+                .frame(height: isFocused ? 2 : 1)
+                .background(isFocused ? Color.neutralWhite : Color.neutralGray)
                 .padding(.top, 10)
             
         }

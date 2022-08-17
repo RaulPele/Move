@@ -37,6 +37,7 @@
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
 		DE2F523E28A6462E007762BA /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523D28A6462E007762BA /* BackgroundView.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
+		DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523D28A6462E007762BA /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				DE2F523928A64529007762BA /* CoordinatorViewModels */,
+				DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			files = (
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
+				DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */,
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,

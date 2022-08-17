@@ -15,15 +15,14 @@ struct FilledButton: ButtonStyle {
         configuration.label
             .font(isEnabled ? .baiJamjureeBold(size: 16) : .baiJamjureeMedium(size: 16))
             .padding(16)
-            
             .background(isEnabled ?
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(Color.accentColor)
+                                .foregroundColor(Color.accent)
                         ) :
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.accentColor, lineWidth: 1)
+                                .stroke(Color.accent, lineWidth: 1)
                                 .foregroundColor(.clear)
                         ))
             .foregroundColor(isEnabled ? .neutralWhite : .neutralLightPurple)
@@ -40,7 +39,7 @@ struct TransparentButton: ButtonStyle {
             .background(isEnabled ?
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.accentColor, lineWidth: 1)
+                                .stroke(Color.accent, lineWidth: 1)
                                 .foregroundColor(.clear)
                         ) :
                         AnyView(
@@ -48,7 +47,7 @@ struct TransparentButton: ButtonStyle {
                                 .stroke(Color.neutralLightPurple, lineWidth: 1)
                                 .foregroundColor(.clear)
                         ))
-            .foregroundColor(isEnabled ? Color.accentColor : .neutralLightPurple)
+            .foregroundColor(isEnabled ? Color.accent : .neutralLightPurple)
     }
 }
 
@@ -69,7 +68,7 @@ struct Buttons_Previews: PreviewProvider {
         Button("QweqwE") {
             
         }
-        .buttonStyle(.transparentButton)
+        .buttonStyle(.filledButton)
         .disabled(true)
     }
 }

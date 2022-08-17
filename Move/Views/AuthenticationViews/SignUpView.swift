@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State var email: String = ""
-    @State var username: String = ""
-    @State var password: String = ""
+    @StateObject var signUpViewModel: SignUpViewModel
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             BackgroundView()
             
-            VStack(alignment: .leading, spacing: 30) {
+            VStack(alignment: .leading, spacing: 32) {
                 Image("SmallLogoWhite")
                     .renderingMode(.original)
                     .aspectRatio(contentMode: .fit)
@@ -29,20 +27,32 @@ struct SignUpView: View {
                     .font(.baiJamjureeMedium(size: 20))
                     .foregroundColor(.neutralGray)
                 
-                FloatingTextField(title: "Email address", text: $email)
-                FloatingTextField(title: "Username", text: $username)
-                FloatingTextField(title: "Password", text: $password)
+                FloatingTextField(title: "Email address", text: $signUpViewModel.email)
+                FloatingTextField(title: "Username", text: $signUpViewModel.username)
+                FloatingTextField(title: "Password", text: $signUpViewModel.password, isSecured: true)
                 
-                Button("Get started") {
+                Text("By continuing you agree to Move’s Terms and Conditions and Privacy Policy")
+                    .foregroundColor(.neutralWhite)
+                    .font(.baiJamjureeRegular(size: 12))
+                
+                Button() {
                     print("on get started click")
+                } label: {
+                    Text("Get started!")
+                        .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
                 .buttonStyle(.filledButton)
-//                .disabled(false)
+                .disabled(signUpViewModel.fieldsCompleted ? false : true)
+                .animation(.default, value: signUpViewModel.fieldsCompleted)
                 
+                Text("You already have an account? You can log in here")
+                    .foregroundColor(.neutralWhite)
+                    .font(.baiJamjureeRegular(size: 12))
+                    .padding(.horizontal, 35)
                 
             }
             .padding(.horizontal, 24)
+//            .padding(.top, 20)
 
         }
     }
@@ -50,6 +60,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(signUpViewModel: SignUpViewModel())
     }
 }
