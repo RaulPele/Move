@@ -12,7 +12,6 @@ struct FloatingTextField: View {
     let text: Binding<String>
     var isSecured = false
     
-    //    @State var isFocused: Bool = false
     @FocusState var isFocused: Bool
     
     var body: some View {

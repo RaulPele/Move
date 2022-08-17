@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct OnboardingData {
-    let imageName: String
-    let title: String
-    let description: String
-}
-
 struct OnboardingView: View {
     let onboardingData: OnboardingData
     let pageIndex: Int
@@ -31,7 +25,6 @@ struct OnboardingView: View {
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 3/5)
                     .clipped()
-
                 
                 HStack(spacing: 0) {
                     Text(onboardingData.title)
@@ -100,8 +93,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {
-            
-        }
+        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {}
     }
 }

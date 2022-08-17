@@ -13,72 +13,20 @@ struct OnboardingCoordinatorView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(tag: .safety, selection: $coordinatorViewModel.state) {
-                    OnboardingView(onboardingData: .safety(),
-                                   pageIndex: 0,
-                                   numberOfPages: coordinatorViewModel.numberOfPages) {
-                        coordinatorViewModel.state = .scan
+                ForEach(Array(OnboardingCoordinatorState.allCases.enumerated()), id: \.offset) { index, state in
+                    NavigationLink(tag: state, selection: $coordinatorViewModel.state) {
+                        OnboardingView(onboardingData:
+                                        coordinatorViewModel.getDataForCurrentState(state),
+                                       pageIndex: index,
+                                       numberOfPages: coordinatorViewModel.numberOfPages) {
+                            coordinatorViewModel.state = coordinatorViewModel.getNextState(currentState: state)
+                        }
+                        .navigationBarHidden(true)
+                        .transition(.opacity.animation(.default))
+
+                    } label: {
+                        EmptyView()
                     }
-                    .navigationBarHidden(true)
-                    .transition(.opacity.animation(.default))
-
-                } label: {
-                    EmptyView()
-                }
-
-                NavigationLink(tag: .scan, selection: $coordinatorViewModel.state) {
-                    OnboardingView(onboardingData: .scan(),
-                                   pageIndex: 1,
-                                   numberOfPages: coordinatorViewModel.numberOfPages) {
-                        coordinatorViewModel.state = .ride
-                    }
-                    .navigationBarHidden(true)
-                    .transition(.opacity.animation(.default))
-
-
-                } label: {
-                    EmptyView()
-                }
-
-                NavigationLink(tag: .ride, selection: $coordinatorViewModel.state) {
-                    OnboardingView(onboardingData: .ride(),
-                                   pageIndex: 2,
-                                   numberOfPages: coordinatorViewModel.numberOfPages) {
-                        coordinatorViewModel.state = .parking
-                    }
-                    .navigationBarHidden(true)
-                    .transition(.opacity.animation(.default))
-
-                    
-                } label: {
-                    EmptyView()
-                }
-                
-                NavigationLink(tag: .parking, selection: $coordinatorViewModel.state) {
-                    OnboardingView(onboardingData: .parking(),
-                                   pageIndex: 3,
-                                   numberOfPages: coordinatorViewModel.numberOfPages) {
-                        coordinatorViewModel.state = .rules
-                    }
-                    .navigationBarHidden(true)
-                    .transition(.opacity.animation(.default))
-
-                    
-                } label: {
-                    EmptyView()
-                }
-
-                NavigationLink(tag: .rules, selection: $coordinatorViewModel.state) {
-                    OnboardingView(onboardingData: .rules(),
-                                   pageIndex: 4,
-                                   numberOfPages: coordinatorViewModel.numberOfPages) {
-                        coordinatorViewModel.state = .safety
-                    }
-                    .navigationBarHidden(true)
-                    .transition(.opacity.animation(.default))
-
-                } label: {
-                    EmptyView()
                 }
             }
         }

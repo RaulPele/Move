@@ -25,4 +25,34 @@ class OnboardingCoordinatorViewModel: ObservableObject {
     init(state: OnboardingCoordinatorState) {
         self.state = state
     }
+    
+    func getDataForCurrentState(_ state: OnboardingCoordinatorState) -> OnboardingData {
+        switch state {
+        case .safety:
+            return .safety()
+        case .scan:
+            return .scan()
+        case .ride:
+            return .ride()
+        case .parking:
+            return .parking()
+        case .rules:
+            return .rules()
+        }
+    }
+    
+    func getNextState(currentState: OnboardingCoordinatorState) -> OnboardingCoordinatorState {
+        switch currentState {
+        case .safety:
+            return .scan
+        case .scan:
+            return .ride
+        case .ride:
+            return .parking
+        case .parking:
+            return .rules
+        case .rules:
+            return .scan
+        }
+    }
 }
