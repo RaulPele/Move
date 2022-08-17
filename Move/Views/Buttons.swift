@@ -13,7 +13,7 @@ struct FilledButton: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(isEnabled ? .baiJamjureeBold(size: 16) : .baiJamjureeMedium(size: 16))
+            .font(isEnabled ? .button1() : .baiJamjureeMedium(size: 16))
             .padding(16)
             .background(isEnabled ?
                         AnyView(
@@ -34,7 +34,7 @@ struct TransparentButton: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(isEnabled ? .baiJamjureeBold(size: 16) : .baiJamjureeMedium(size: 16))
+            .font(isEnabled ? .button1() : .baiJamjureeMedium(size: 16))
             .padding(16)
             .background(isEnabled ?
                         AnyView(

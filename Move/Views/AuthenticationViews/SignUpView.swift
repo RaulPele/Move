@@ -20,11 +20,11 @@ struct SignUpView: View {
                     .aspectRatio(contentMode: .fit)
                 
                 Text("Let's get started")
-                    .font(.baiJamjureeBold(size: 32))
+                    .font(.heading1())
                     .foregroundColor(.neutralWhite)
                 
                 Text("Sign up or login and start riding right away")
-                    .font(.baiJamjureeMedium(size: 20))
+                    .font(.heading2())
                     .foregroundColor(.neutralGray)
                 
                 FloatingTextField(title: "Email address", text: $signUpViewModel.email)
@@ -33,7 +33,7 @@ struct SignUpView: View {
                 
                 Text("By continuing you agree to Move’s Terms and Conditions and Privacy Policy")
                     .foregroundColor(.neutralWhite)
-                    .font(.baiJamjureeRegular(size: 12))
+                    .font(.smallText())
                 
                 Button() {
                     print("on get started click")
@@ -47,7 +47,7 @@ struct SignUpView: View {
                 
                 Text("You already have an account? You can log in here")
                     .foregroundColor(.neutralWhite)
-                    .font(.baiJamjureeRegular(size: 12))
+                    .font(.smallText())
                     .padding(.horizontal, 35)
                 
             }

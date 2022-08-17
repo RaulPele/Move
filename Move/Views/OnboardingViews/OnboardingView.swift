@@ -29,7 +29,7 @@ struct OnboardingView: View {
                 HStack(spacing: 0) {
                     Text(onboardingData.title)
                         .foregroundColor(.primaryDark)
-                        .font(.baiJamjureeBold(size: 32))
+                        .font(.heading1())
                     
                     Spacer()
                     
@@ -45,7 +45,7 @@ struct OnboardingView: View {
                 HStack {
                     Text(onboardingData.description)
                         .foregroundColor(.primaryDark)
-                        .font(.baiJamjureeMedium(size: 16))
+                        .font(.body1())
                         .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
                 }
                 .padding(.leading, 24)

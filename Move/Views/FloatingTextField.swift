@@ -20,7 +20,7 @@ struct FloatingTextField: View {
             ZStack(alignment: .leading) {
                 Text(title)
                     .foregroundColor(.neutralGray)
-                    .font(text.wrappedValue.isEmpty ? .baiJamjureeMedium(size: 16) : .baiJamjureeRegular(size: 12))
+                    .font(text.wrappedValue.isEmpty ? .body1() : .smallText())
                     .offset(y: text.wrappedValue.isEmpty ? 0 : -25)
                     .scaleEffect(text.wrappedValue.isEmpty ? 1 : 0.8, anchor: .leading)
                 
@@ -34,7 +34,7 @@ struct FloatingTextField: View {
                 }
                 .foregroundColor(text.wrappedValue.isEmpty ? .neutralGray : .neutralWhite)
                 .disableAutocorrection(true)
-                .font(.baiJamjureeMedium(size: 16))
+                .font(.body1())
                 .focused($isFocused)
                 
             }
