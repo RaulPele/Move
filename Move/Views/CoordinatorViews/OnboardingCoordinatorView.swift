@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnboardingCoordinatorView: View {
     @StateObject var coordinatorViewModel = OnboardingCoordinatorViewModel(state: .safety)
+    let onFinished : () -> Void
     
     var body: some View {
         NavigationView {
@@ -18,9 +19,10 @@ struct OnboardingCoordinatorView: View {
                         OnboardingView(onboardingData:
                                         coordinatorViewModel.getDataForCurrentState(state),
                                        pageIndex: index,
-                                       numberOfPages: coordinatorViewModel.numberOfPages) {
+                                       numberOfPages: coordinatorViewModel.numberOfPages,
+                                       onNextButtonClicked: index == coordinatorViewModel.numberOfPages - 1 ? onFinished : {
                             coordinatorViewModel.state = coordinatorViewModel.getNextState(currentState: state)
-                        }
+                        })
                         .navigationBarHidden(true)
                         .transition(.opacity.animation(.default))
 
@@ -35,6 +37,6 @@ struct OnboardingCoordinatorView: View {
 
 struct OnboardingCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingCoordinatorView(coordinatorViewModel: .init(state: .safety))
+        OnboardingCoordinatorView(coordinatorViewModel: .init(state: .safety)) {}
     }
 }

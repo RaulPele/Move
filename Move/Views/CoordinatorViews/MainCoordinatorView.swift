@@ -10,6 +10,7 @@ import SwiftUI
 enum MainCoordinatorState {
     case start
     case onboarding
+    case authentication
 }
 
 struct MainCoordinatorView: View {
@@ -18,31 +19,32 @@ struct MainCoordinatorView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(
-                    destination: getSplashView()
-                        .navigationBarHidden(true),
-                    tag: .start,
-                    selection: $state) {
-                        EmptyView()
+                NavigationLink(tag: .start, selection: $state) {
+                    SplashView() {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            state = .onboarding
+                        }
+                    }
+                    .navigationBarHidden(true)
+                } label: {
+                    EmptyView()
                 }
 
-                NavigationLink(
-                    destination: OnboardingCoordinatorView()
-                        .navigationBarHidden(true),
-                    tag: .onboarding,
-                    selection: $state) {
-                        EmptyView()
+                NavigationLink(tag: .onboarding, selection: $state) {
+                    OnboardingCoordinatorView() {
+                        state = .authentication
+                    }
+                    .navigationBarHidden(true)
+                } label: {
+                    EmptyView()
                 }
-            }
-        }
-//        .animation(.easeInOut, value: state)
-        
-    }
-    
-    func getSplashView() -> some View {
-        return SplashView() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                state = .onboarding
+                
+                NavigationLink(tag: .authentication, selection: $state) {
+                    AuthenticationCoordinatorView()
+                        .navigationBarHidden(true)
+                } label: {
+                    EmptyView()
+                }
             }
         }
     }
