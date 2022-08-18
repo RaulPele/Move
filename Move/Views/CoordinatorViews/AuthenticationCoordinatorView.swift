@@ -33,5 +33,6 @@ struct AuthenticationCoordinatorView: View {
 struct AuthenticationCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationCoordinatorView()
+            
     }
 }

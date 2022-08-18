@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @StateObject var signUpViewModel: SignUpViewModel
+    @ObservedObject var signUpViewModel: SignUpViewModel
     
     var body: some View {
         ZStack(alignment: .topLeading) {
