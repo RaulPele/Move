@@ -20,7 +20,6 @@ struct SplashView: View {
             Image("SplashScreenMoveText")
         }
         .onAppear() {
-            print("onfinishloading")
             onFinishLoading()
         }
     }
