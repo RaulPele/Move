@@ -20,11 +20,13 @@ struct AuthenticationCoordinatorView: View {
                 NavigationLink(tag: .signUp, selection: $state) {
                     SignUpView(signUpViewModel: SignUpViewModel())
                         .navigationBarHidden(true)
+                       
                 } label: {
                     EmptyView()
                 }
             }
         }
+        .preferredColorScheme(.dark)
     }
 }
 

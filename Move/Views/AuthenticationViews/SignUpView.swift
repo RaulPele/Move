@@ -11,7 +11,6 @@ struct SignUpView: View {
     @StateObject var signUpViewModel: SignUpViewModel
     
     var body: some View {
-        
         ZStack(alignment: .topLeading) {
             PurpleBackgroundView()
             
@@ -21,7 +20,7 @@ struct SignUpView: View {
                     Image("SmallLogoWhite")
                         .renderingMode(.original)
                         .aspectRatio(contentMode: .fit)
-                        .padding(.vertical, 4)
+                        .padding(.bottom, 4)
                     
                     Text("Let's get started")
                         .font(.heading1())
@@ -91,8 +90,7 @@ struct SignUpView: View {
                 .padding(.horizontal, 25) //35
             }
             .padding(.horizontal, 24)
-//            .frame(maxHeight: .infinity)
-        
+            .padding(.vertical)
         }
     }
 }
