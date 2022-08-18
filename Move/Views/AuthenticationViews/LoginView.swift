@@ -79,13 +79,10 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(loginViewModel: .init())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
-            .previewDisplayName("iPhone 13 Pro")
-            
-        LoginView(loginViewModel: .init())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-            .previewDisplayName("iPhone 8")
+        ForEach(devices) {device in
+            LoginView(loginViewModel: .init())
+                .previewDevice(device)
+        }
     }
 }
     

@@ -11,7 +11,7 @@
 		DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACEFD28A266EF00F32C36 /* ContentView.swift */; };
 		DE0ACF0028A266F000F32C36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0ACEFF28A266F000F32C36 /* Assets.xcassets */; };
 		DE0ACF0328A266F000F32C36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0ACF0228A266F000F32C36 /* Preview Assets.xcassets */; };
-		DE0ACF0A28A2737E00F32C36 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0928A2737E00F32C36 /* Colors.swift */; };
+		DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0928A2737E00F32C36 /* ColorExtension.swift */; };
 		DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0C28A39BC900F32C36 /* SplashView.swift */; };
 		DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5728AB9C840019CE5A /* Buttons.swift */; };
 		DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5928ABB2380019CE5A /* SignUpView.swift */; };
@@ -42,6 +42,7 @@
 		DE882D5628AD14E000C8DA17 /* AuthenticationCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5528AD14E000C8DA17 /* AuthenticationCoordinatorView.swift */; };
 		DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5828AE613300C8DA17 /* LoginView.swift */; };
 		DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5B28AE659B00C8DA17 /* LoginViewModel.swift */; };
+		DE882D6028AE6B1A00C8DA17 /* PreviewDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +51,7 @@
 		DE0ACEFD28A266EF00F32C36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE0ACEFF28A266F000F32C36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE0ACF0228A266F000F32C36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DE0ACF0928A2737E00F32C36 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DE0ACF0928A2737E00F32C36 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		DE0ACF0C28A39BC900F32C36 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		DE1FEB5728AB9C840019CE5A /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		DE1FEB5928ABB2380019CE5A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		DE882D5528AD14E000C8DA17 /* AuthenticationCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinatorView.swift; sourceTree = "<group>"; };
 		DE882D5828AE613300C8DA17 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE882D5B28AE659B00C8DA17 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDevices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,8 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE882D5E28AE6A8D00C8DA17 /* Utils */,
+				DE882D5D28AE6A6500C8DA17 /* Extensions */,
 				DE882D5228AD039E00C8DA17 /* DataModels */,
 				DE2F523628A644F1007762BA /* ViewModels */,
 				DE2B22A728A5108F00BAE7F5 /* Info.plist */,
@@ -122,8 +126,6 @@
 				DE0ACEFB28A266EF00F32C36 /* MoveApp.swift */,
 				DE0ACEFF28A266F000F32C36 /* Assets.xcassets */,
 				DE0ACF0128A266F000F32C36 /* Preview Content */,
-				DE0ACF0928A2737E00F32C36 /* Colors.swift */,
-				DE2B228428A4EDB500BAE7F5 /* Constants.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -181,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				DE2B228C28A50CFC00BAE7F5 /* Bai-Jamjuree-Fonts */,
-				DE8388C528A5143400A0908D /* FontExtension.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -248,6 +249,24 @@
 				DE882D5B28AE659B00C8DA17 /* LoginViewModel.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DE882D5D28AE6A6500C8DA17 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DE0ACF0928A2737E00F32C36 /* ColorExtension.swift */,
+				DE8388C528A5143400A0908D /* FontExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DE882D5E28AE6A8D00C8DA17 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DE2B228428A4EDB500BAE7F5 /* Constants.swift */,
+				DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE882D6028AE6B1A00C8DA17 /* PreviewDevices.swift in Sources */,
 				DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */,
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
@@ -340,7 +360,7 @@
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
-				DE0ACF0A28A2737E00F32C36 /* Colors.swift in Sources */,
+				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
