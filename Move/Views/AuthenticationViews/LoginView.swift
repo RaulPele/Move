@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var loginViewModel: LoginViewModel
+    let onSignUpClicked: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -60,7 +61,7 @@ struct LoginView: View {
                         .font(.smallText())
                     
                     Button {
-                        
+                        onSignUpClicked()
                     } label: {
                         Text("start with one here")
                             .foregroundColor(.neutralWhite)
@@ -80,7 +81,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) {device in
-            LoginView(loginViewModel: .init())
+            LoginView(loginViewModel: .init()) {}
                 .previewDevice(device)
         }
     }

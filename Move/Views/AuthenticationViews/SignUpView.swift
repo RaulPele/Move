@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @ObservedObject var signUpViewModel: SignUpViewModel
+    let onLoginClicked: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -78,7 +79,7 @@ struct SignUpView: View {
                         .font(.smallText())
                     
                     Button {
-                        
+                        onLoginClicked()
                     } label: {
                         Text("log in here")
                             .foregroundColor(.neutralWhite)
@@ -97,6 +98,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(signUpViewModel: SignUpViewModel())
+        SignUpView(signUpViewModel: SignUpViewModel()) {}
     }
 }
