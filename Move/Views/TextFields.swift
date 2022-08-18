@@ -56,7 +56,7 @@ struct FloatingSecureField: View {
     let title: String
     @Binding var text: String
     
-    @State var isSecured = false
+    @State var isSecured = true
     @FocusState var isFocused: Bool
     
     var body: some View {
