@@ -107,10 +107,14 @@ struct FloatingSecureField: View {
 
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTextField(title: "Title", text: .init(get: {
-            "raul.pele2001@gmail.com"
-        }, set: { value in
-            
-        }))
+        ForEach(devices) { device in
+            FloatingTextField(title: "Title", text: .init(get: {
+                "raul.pele2001@gmail.com"
+            }, set: { value in
+                
+            }))
+            .previewDevice(device)
+        }
+        
     }
 }

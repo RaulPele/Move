@@ -15,65 +15,67 @@ struct LoginView: View {
         ZStack(alignment: .topLeading) {
             PurpleBackgroundView()
             
-            VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading, spacing: 20) {
-                    Image("SmallLogoWhite")
-                        .renderingMode(.original)
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.bottom, 4)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Image("SmallLogoWhite")
+                            .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.bottom, 4)
+                        
+                        Text("Login")
+                            .font(.heading1())
+                            .foregroundColor(.neutralWhite)
+                        
+                        Text("Enter your account credentials and start riding away")
+                            .font(.heading2())
+                            .foregroundColor(.neutralGray)
+                    }
                     
-                    Text("Login")
-                        .font(.heading1())
-                        .foregroundColor(.neutralWhite)
-                    
-                    Text("Enter your account credentials and start riding away")
-                        .font(.heading2())
-                        .foregroundColor(.neutralGray)
-                }
-                
-                VStack(spacing: 26) {
-                    FloatingTextField(title: "Email address", text: $loginViewModel.email)
-                    FloatingSecureField(title: "Password", text: $loginViewModel.password)
-                }
-                .padding(.bottom, 3)
-                
-                Button {
-                    
-                } label: {
-                    Text("Forgot your password?")
-                        .underline()
-                        .font(.smallText())
-                        .foregroundColor(.neutralWhite)
-                }
-                
-                Button{
-                    
-                } label: {
-                    Text("Login")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.filledButton)
-                .disabled(loginViewModel.fieldsCompleted ? false : true)
-                
-                HStack(spacing: 0) {
-                    Text("Don't have an account? You can ")
-                        .foregroundColor(.neutralWhite)
-                        .font(.smallText())
+                    VStack(spacing: 26) {
+                        FloatingTextField(title: "Email address", text: $loginViewModel.email)
+                        FloatingSecureField(title: "Password", text: $loginViewModel.password)
+                    }
+                    .padding(.bottom, 3)
                     
                     Button {
-                        onSignUpClicked()
-                    } label: {
-                        Text("start with one here")
-                            .foregroundColor(.neutralWhite)
-                            .underline()
-                            .font(.smallText().bold())
                         
+                    } label: {
+                        Text("Forgot your password?")
+                            .underline()
+                            .font(.smallText())
+                            .foregroundColor(.neutralWhite)
                     }
+                    
+                    Button{
+                        
+                    } label: {
+                        Text("Login")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.filledButton)
+                    .disabled(loginViewModel.fieldsCompleted ? false : true)
+                    
+                    HStack(spacing: 0) {
+                        Text("Don't have an account? You can ")
+                            .foregroundColor(.neutralWhite)
+                            .font(.smallText())
+                        
+                        Button {
+                            onSignUpClicked()
+                        } label: {
+                            Text("start with one here")
+                                .foregroundColor(.neutralWhite)
+                                .underline()
+                                .font(.smallText().bold())
+                            
+                        }
+                    }
+                    .padding(.horizontal, 19)
                 }
-                .padding(.horizontal, 19)
+                .padding(.horizontal, 24)
+                .padding(.vertical)
             }
-            .padding(.horizontal, 24)
-            .padding(.vertical)
         }
     }
 }
@@ -86,4 +88,4 @@ struct LoginView_Previews: PreviewProvider {
         }
     }
 }
-    
+
