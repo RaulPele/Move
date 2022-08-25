@@ -47,7 +47,7 @@ struct LoginView: View {
                             .foregroundColor(.neutralWhite)
                     }
                     
-                    Button{
+                    Button {
                         
                     } label: {
                         Text("Login")
@@ -57,7 +57,7 @@ struct LoginView: View {
                     .disabled(loginViewModel.fieldsCompleted ? false : true)
                     
                     HStack(spacing: 0) {
-                        Text("Don't have an account? You can ")
+                        Text("Don't have an account? You can")
                             .foregroundColor(.neutralWhite)
                             .font(.smallText())
                         
@@ -68,7 +68,8 @@ struct LoginView: View {
                                 .foregroundColor(.neutralWhite)
                                 .underline()
                                 .font(.smallText().bold())
-                            
+                                .padding(.leading, 3)
+
                         }
                     }
                     .padding(.horizontal, 19)

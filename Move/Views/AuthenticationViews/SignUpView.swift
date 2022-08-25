@@ -95,7 +95,6 @@ struct SignUpView: View {
                 .padding(.vertical)
             }
         }
-        .frame(height: .infinity)
     }
 }
 
