@@ -78,6 +78,9 @@ struct LoginView: View {
                 .padding(.vertical)
             }
         }
+        .task {
+            await AuthenticationAPIService().login(email: "tony@gmail.com", password: "tony123")
+        }
     }
 }
 
