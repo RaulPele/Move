@@ -9,7 +9,7 @@ import Foundation
 
 struct User {
     let email: String
-    let username: String? = nil
+    var username: String? = nil
     let password: String
     
     enum CodingKeys: String, CodingKey {
@@ -27,4 +27,21 @@ extension User: Codable {
         try container.encode(email, forKey: .email)
         try container.encode(password, forKey: .password)
     }
+    
+//    init(from decoder: Decoder) throws {
+//        var body = try decoder.unkeyedContainer()
+//        var values = try body.nestedContainer(keyedBy: CodingKeys.self)
+//        print("In decoder: ")
+//        print(valu)
+//        email = try values.decode(String.self, forKey: .email)
+//        password = try values.decode(String.self, forKey: .password)
+//        username = try values.decode(String.self, forKey: .username)
+//    }
+}
+
+struct LoginResponse: Codable {
+    var user: User
+    var token: String
+    
+    
 }

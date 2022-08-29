@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+
 struct LoginView: View {
     @ObservedObject var loginViewModel: LoginViewModel
+    let authenticationService: AuthenticationService
     let onSignUpClicked: () -> Void
     
     var body: some View {
@@ -48,7 +50,7 @@ struct LoginView: View {
                     }
                     
                     Button {
-                        
+                       login()
                     } label: {
                         Text("Login")
                             .frame(maxWidth: .infinity)
@@ -78,9 +80,11 @@ struct LoginView: View {
                 .padding(.vertical)
             }
         }
-        .task {
-            await AuthenticationAPIService().login(email: "tony@gmail.com", password: "tony123")
-        }
+        
+    }
+    
+    func login() {
+        
     }
 }
 

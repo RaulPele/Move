@@ -6,43 +6,33 @@
 //
 
 import Foundation
+import Alamofire
+
 
 protocol AuthenticationService {
-    func login(email: String, password: String) async
+    func login(email: String, password: String, onLogin: @escaping () -> Void)
     
 }
 
 class AuthenticationAPIService: AuthenticationService {
     var loggedUser: User? = nil
+    var token: String? = nil
     var url = URL(string: "https://move-scooters.herokuapp.com/users/login")!
     
-    func login(email: String, password: String) async {
-//        let url = URL(string: "https://move-scooters.herokuapp.com/users/login")
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let uploadData = try? JSONEncoder().encode(User(email: email, password: password))
-        request.httpBody = uploadData!
-        
-        print(String(data: uploadData!, encoding: .utf8))
-        do {
-            let  response = try await URLSession.shared.data(for: request)
-            print(response)
-            
-//            guard let response = response as? HTTPURLResponse,
-//                    (200...299).contains(response.statusCode) else {
-//                print ("server error")
-//                    return
-//                }
-
-            print(response)
-//            self.loggedUser = try JSONDecoder().decode(User.self, from: response)
-//            print("Username: \(loggedUser?.username), Email: \(loggedUser?.email), Password: \(loggedUser?.password)")
-        } catch  {
-            print("Login API Call error")
+    func login(email: String, password: String, onLogin: @escaping () -> Void) {
+        let request = AF.request(url, method: .post, parameters: ["mail": email, "password": password], encoding: JSONEncoding.default)
+        request
+            .validate()
+            .responseDecodable(of: LoginResponse.self) { response in
+                switch response.result {
+                    case .success(let loginResponse):
+                        print("success")
+                        self.loggedUser = loginResponse.user
+                        self.token = loginResponse.token
+                        onLogin()
+                    case .failure(let error):
+                        print("Error: \(error.localizedDescription)")
+                }
         }
-        
     }
 }
