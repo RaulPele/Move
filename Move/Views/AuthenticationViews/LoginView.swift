@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-
 struct LoginView: View {
     @ObservedObject var loginViewModel: LoginViewModel
-    let authenticationService: AuthenticationService
     let onSignUpClicked: () -> Void
+    let onLoginCompleted: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -50,7 +49,9 @@ struct LoginView: View {
                     }
                     
                     Button {
-                       login()
+                        loginViewModel.login {
+                            onLoginCompleted()
+                        }
                     } label: {
                         Text("Login")
                             .frame(maxWidth: .infinity)
@@ -83,15 +84,16 @@ struct LoginView: View {
         
     }
     
-    func login() {
-        
-    }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) {device in
-            LoginView(loginViewModel: .init()) {}
+            LoginView(loginViewModel: .init(authenticationService: AuthenticationAPIService(url: "")), onSignUpClicked: {
+                
+            }, onLoginCompleted: {
+                
+            })
                 .previewDevice(device)
         }
     }

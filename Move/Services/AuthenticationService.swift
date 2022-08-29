@@ -10,17 +10,27 @@ import Alamofire
 
 
 protocol AuthenticationService {
-    func login(email: String, password: String, onLogin: @escaping () -> Void)
+    func login(email: String, password: String, onLoginCompleted: @escaping () -> Void)
     
 }
 
 class AuthenticationAPIService: AuthenticationService {
     var loggedUser: User? = nil
     var token: String? = nil
-    var url = URL(string: "https://move-scooters.herokuapp.com/users/login")!
+    var url: URL
     
-    func login(email: String, password: String, onLogin: @escaping () -> Void) {
-        let request = AF.request(url, method: .post, parameters: ["mail": email, "password": password], encoding: JSONEncoding.default)
+    init(url: String) {
+        self.url = URL(string: url)!
+    }
+    
+    func login(email: String, password: String, onLoginCompleted: @escaping () -> Void) {
+        guard Validation.validate(email: email) && Validation.validate(password: password) else {
+            return
+        }
+        
+        let parameters = ["mail": email, "password": password]
+        
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate()
             .responseDecodable(of: LoginResponse.self) { response in
@@ -29,10 +39,13 @@ class AuthenticationAPIService: AuthenticationService {
                         print("success")
                         self.loggedUser = loginResponse.user
                         self.token = loginResponse.token
-                        onLogin()
+                        onLoginCompleted()
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
+                
                 }
         }
+        
+        //try to decode it as json. if password is wrong the structure of the json will be different
     }
 }

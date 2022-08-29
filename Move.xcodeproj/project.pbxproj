@@ -39,7 +39,6 @@
 		DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */; };
-		DE43FCD528B7923700CBD130 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD428B7923700CBD130 /* APICalls.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
 		DE43FCDA28BCD6F100CBD130 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD928BCD6F100CBD130 /* MainService.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
@@ -49,6 +48,8 @@
 		DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5828AE613300C8DA17 /* LoginView.swift */; };
 		DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5B28AE659B00C8DA17 /* LoginViewModel.swift */; };
 		DE882D6028AE6B1A00C8DA17 /* PreviewDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */; };
+		DE9E3F3628BCDD6700B98FEE /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3528BCDD6700B98FEE /* Validation.swift */; };
+		DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,7 +87,6 @@
 		DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleBackgroundView.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		DE43FCD428B7923700CBD130 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
 		DE43FCD928BCD6F100CBD130 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +95,8 @@
 		DE882D5828AE613300C8DA17 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE882D5B28AE659B00C8DA17 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDevices.swift; sourceTree = "<group>"; };
+		DE9E3F3528BCDD6700B98FEE /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseVerificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		DE0ACF0B28A39BB300F32C36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE9E3F3728BCE75200B98FEE /* DrivingLicenseVerification */,
 				DE2F523C28A645DC007762BA /* AuthenticationViews */,
 				DE2B228628A4F37400BAE7F5 /* CoordinatorViews */,
 				DE0ACF1028A3B21200F32C36 /* OnboardingViews */,
@@ -252,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */,
-				DE43FCD428B7923700CBD130 /* APICalls.swift */,
 				DE43FCD928BCD6F100CBD130 /* MainService.swift */,
 			);
 			path = Services;
@@ -290,8 +292,17 @@
 			children = (
 				DE2B228428A4EDB500BAE7F5 /* Constants.swift */,
 				DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */,
+				DE9E3F3528BCDD6700B98FEE /* Validation.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		DE9E3F3728BCE75200B98FEE /* DrivingLicenseVerification */ = {
+			isa = PBXGroup;
+			children = (
+				DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */,
+			);
+			path = DrivingLicenseVerification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,11 +398,12 @@
 				DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */,
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
+				DE9E3F3628BCDD6700B98FEE /* Validation.swift in Sources */,
 				DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */,
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */,
+				DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
-				DE43FCD528B7923700CBD130 /* APICalls.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,

@@ -14,6 +14,7 @@ enum AuthenticationCoordinatorState {
 
 struct AuthenticationCoordinatorView: View {
     @State var state: AuthenticationCoordinatorState? = .signUp
+    let onLoginCompleted: () -> Void
     
     var body: some View {
         NavigationView {
@@ -31,8 +32,10 @@ struct AuthenticationCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .login, selection: $state) {
-                    LoginView(loginViewModel: LoginViewModel()) {
+                    LoginView(loginViewModel: LoginViewModel(authenticationService: AuthenticationAPIService(url: "https://move-scooters.herokuapp.com/users/login"))) {
                         state = .signUp
+                    } onLoginCompleted: {
+                        onLoginCompleted()
                     }
                     .navigationBarHidden(true)
                     .transition(.opacity.animation(.default))
@@ -49,7 +52,7 @@ struct AuthenticationCoordinatorView: View {
 struct AuthenticationCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            AuthenticationCoordinatorView()
+            AuthenticationCoordinatorView(onLoginCompleted: {})
                 .previewDevice(device)
             
         }
