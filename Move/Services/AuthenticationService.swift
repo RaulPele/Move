@@ -11,7 +11,7 @@ import Alamofire
 
 protocol AuthenticationService {
     func login(email: String, password: String, onLoginCompleted: @escaping () -> Void)
-    
+    func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void)
 }
 
 class AuthenticationAPIService: AuthenticationService {
@@ -32,7 +32,7 @@ class AuthenticationAPIService: AuthenticationService {
         
         let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
-            .validate()
+            .validate(statusCode: 200..<300)
             .responseDecodable(of: LoginResponse.self) { response in
                 switch response.result {
                     case .success(let loginResponse):
@@ -42,10 +42,45 @@ class AuthenticationAPIService: AuthenticationService {
                         onLoginCompleted()
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
-                
+                    if let data = response.data {
+                        print("Data: \(String(data: data, encoding: .utf8))")
+                    }
+
                 }
+        //try to decode it as json. if password is wrong the structure of the json will be different
+            }
+    }
+    
+    func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void) {
+        guard Validation.validate(email: email) &&
+                Validation.validate(password: password) &&
+                Validation.validate(username: username) else {
+            print("Validation error")
+            return
         }
         
-        //try to decode it as json. if password is wrong the structure of the json will be different
+        let parameters = [
+            "name": username,
+            "mail": email,
+            "password": password
+        ]
+        
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        request
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: LoginResponse.self) { response in
+                switch response.result {
+                case .success(let loginResponse):
+                    print("succsesfully registered")
+                    self.loggedUser = loginResponse.user
+                    onRegisterCompleted()
+                    
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                    if let data = response.data {
+                        print("Data: \(String(data: data, encoding: .utf8))")
+                    }
+                }
+            }
     }
 }

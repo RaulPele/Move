@@ -43,6 +43,8 @@ struct MainCoordinatorView: View {
                 NavigationLink(tag: .authentication, selection: $state) {
                     AuthenticationCoordinatorView {
                         state = .drivingLicenseVerification
+                    } onRegisterCompleted: {
+                        state = .drivingLicenseVerification
                     }
                     .navigationBarHidden(true)
                 } label: {

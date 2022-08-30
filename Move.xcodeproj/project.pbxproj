@@ -50,6 +50,7 @@
 		DE882D6028AE6B1A00C8DA17 /* PreviewDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */; };
 		DE9E3F3628BCDD6700B98FEE /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3528BCDD6700B98FEE /* Validation.swift */; };
 		DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */; };
+		DE9E3F3D28BDEA0D00B98FEE /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		DE882D5F28AE6B1A00C8DA17 /* PreviewDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDevices.swift; sourceTree = "<group>"; };
 		DE9E3F3528BCDD6700B98FEE /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseVerificationView.swift; sourceTree = "<group>"; };
+		DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 			children = (
 				DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */,
 				DE43FCD928BCD6F100CBD130 /* MainService.swift */,
+				DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				DE1FEB5C28ABCB9B0019CE5A /* TextFields.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
+				DE9E3F3D28BDEA0D00B98FEE /* ErrorResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

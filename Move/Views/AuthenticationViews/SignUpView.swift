@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     @ObservedObject var signUpViewModel: SignUpViewModel
     let onLoginClicked: () -> Void
+    let onRegisterCompleted: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -64,7 +65,9 @@ struct SignUpView: View {
                     }
                     
                     Button() {
-                        print("on get started click")
+                        signUpViewModel.register {
+                            onRegisterCompleted()
+                        }
                     } label: {
                         Text("Get started!")
                             .frame(maxWidth: .infinity)
@@ -101,7 +104,9 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SignUpView(signUpViewModel: SignUpViewModel()) {}
+            SignUpView(signUpViewModel: SignUpViewModel(authenticationService: AuthenticationAPIService(url: ""))) {} onRegisterCompleted: {
+                
+            }
                 .previewDevice(device)
                 .previewDisplayName(device.id)
         }

@@ -42,6 +42,4 @@ extension User: Codable {
 struct LoginResponse: Codable {
     var user: User
     var token: String
-    
-    
 }

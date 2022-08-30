@@ -17,4 +17,8 @@ class Validation {
     static func validate(password: String) -> Bool {
         return !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+    
+    static func validate(username: String) -> Bool {
+        return username.count >= 3 && !username.contains(" ")
+    }
 }

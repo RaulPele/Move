@@ -15,14 +15,17 @@ enum AuthenticationCoordinatorState {
 struct AuthenticationCoordinatorView: View {
     @State var state: AuthenticationCoordinatorState? = .signUp
     let onLoginCompleted: () -> Void
+    let onRegisterCompleted: () -> Void
     
     var body: some View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .signUp, selection: $state) {
-                    SignUpView(signUpViewModel: .init()) {
-                        state = .login
-                    }
+                    SignUpView(signUpViewModel: .init(authenticationService: AuthenticationAPIService(url: "https://move-scooters.herokuapp.com/users/register")), onLoginClicked: {
+                            state = .login
+                    }, onRegisterCompleted: {
+                        onRegisterCompleted()
+                    })
                     .transition(.opacity.animation(.default))
 
                     .navigationBarHidden(true)
@@ -52,7 +55,7 @@ struct AuthenticationCoordinatorView: View {
 struct AuthenticationCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            AuthenticationCoordinatorView(onLoginCompleted: {})
+            AuthenticationCoordinatorView(onLoginCompleted: {}, onRegisterCompleted: {})
                 .previewDevice(device)
             
         }
