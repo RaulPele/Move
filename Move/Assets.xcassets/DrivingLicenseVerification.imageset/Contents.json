@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "DrivingLicenseVerification@1x.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "DrivingLicenseVerification@2x.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "DrivingLicenseVerification@3x.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

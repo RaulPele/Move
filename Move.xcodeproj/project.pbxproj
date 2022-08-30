@@ -51,6 +51,7 @@
 		DE9E3F3628BCDD6700B98FEE /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3528BCDD6700B98FEE /* Validation.swift */; };
 		DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */; };
 		DE9E3F3D28BDEA0D00B98FEE /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */; };
+		DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		DE9E3F3528BCDD6700B98FEE /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseVerificationView.swift; sourceTree = "<group>"; };
 		DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */,
 				DE1FEB5728AB9C840019CE5A /* Buttons.swift */,
 				DE1FEB5B28ABCB9B0019CE5A /* TextFields.swift */,
+				DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,
+				DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */,
 				DE882D5628AD14E000C8DA17 /* AuthenticationCoordinatorView.swift in Sources */,
 				DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
