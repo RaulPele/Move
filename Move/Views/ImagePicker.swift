@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import UIKit
+import VisionKit
 
 struct ImagePickerView: UIViewControllerRepresentable {
-    var sourceType: UIImagePickerController.SourceType
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
     @Binding var image: Image?
     @Binding var isPresented: Bool
     

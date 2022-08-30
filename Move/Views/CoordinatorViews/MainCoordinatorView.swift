@@ -52,7 +52,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationView()
+                    DrivingLicenseVerificationView(verificationViewModel: .init())
                 } label: {
                     EmptyView()
                 }
