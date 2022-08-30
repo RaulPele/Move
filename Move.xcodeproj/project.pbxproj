@@ -53,6 +53,7 @@
 		DE9E3F3D28BDEA0D00B98FEE /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */; };
 		DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */; };
 		DE9E3F4128BE3A2700B98FEE /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F4028BE3A2700B98FEE /* Permissions.swift */; };
+		DE9E3F4428BE47A400B98FEE /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F4328BE47A400B98FEE /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		DE9E3F3C28BDEA0D00B98FEE /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		DE9E3F4028BE3A2700B98FEE /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		DE9E3F4328BE47A400B98FEE /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,16 +164,17 @@
 		DE0ACF0B28A39BB300F32C36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE9E3F4228BE476700B98FEE /* BackgroundViews */,
 				DE9E3F3728BCE75200B98FEE /* DrivingLicenseVerification */,
 				DE2F523C28A645DC007762BA /* AuthenticationViews */,
 				DE2B228628A4F37400BAE7F5 /* CoordinatorViews */,
 				DE0ACF1028A3B21200F32C36 /* OnboardingViews */,
 				DE0ACF0E28A3B19B00F32C36 /* SplashViews */,
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
-				DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */,
 				DE1FEB5728AB9C840019CE5A /* Buttons.swift */,
 				DE1FEB5B28ABCB9B0019CE5A /* TextFields.swift */,
 				DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */,
+				DE9E3F4328BE47A400B98FEE /* ScannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,6 +317,14 @@
 			path = DrivingLicenseVerification;
 			sourceTree = "<group>";
 		};
+		DE9E3F4228BE476700B98FEE /* BackgroundViews */ = {
+			isa = PBXGroup;
+			children = (
+				DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */,
+			);
+			path = BackgroundViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -412,6 +423,7 @@
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */,
 				DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */,
+				DE9E3F4428BE47A400B98FEE /* ScannerView.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
 				DE9E3F4128BE3A2700B98FEE /* Permissions.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,

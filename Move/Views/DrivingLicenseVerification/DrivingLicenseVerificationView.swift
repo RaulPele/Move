@@ -10,9 +10,9 @@ import SwiftUI
 
 class DrivingLicenseVerificationViewModel: ObservableObject {
     @Published var image: Image?
-    @Published var shouldPresentImagePicker = false
-    @Published var shouldPresentActionScheet = false
-    @Published var shouldPresentCamera = false
+    @Published var showImagePicker = false
+    @Published var showActionSheet = false
+    @Published var showScanner = false
 }
 
 struct DrivingLicenseVerificationView: View {
@@ -62,8 +62,7 @@ struct DrivingLicenseVerificationView: View {
                 Spacer()
                 
                 Button {
-                    verificationViewModel.shouldPresentActionScheet = true
-                    print("button pressed")
+                    verificationViewModel.showActionSheet = true
                 } label: {
                     Text("Add driving license")
                         .frame(maxWidth: .infinity)
@@ -71,17 +70,24 @@ struct DrivingLicenseVerificationView: View {
                 .buttonStyle(.filledButton)
                 .padding(.top, 31)
                 .padding(.horizontal, 24)
-                .sheet(isPresented: $verificationViewModel.shouldPresentImagePicker) {
-                    ImagePickerView(sourceType: self.verificationViewModel.shouldPresentCamera ? .camera : .photoLibrary, image: $verificationViewModel.image, isPresented: $verificationViewModel.shouldPresentImagePicker)
-                }.actionSheet(isPresented: $verificationViewModel.shouldPresentActionScheet) { () -> ActionSheet in
+                .sheet(isPresented: $verificationViewModel.showImagePicker) {
+                    ImagePickerView(sourceType: .photoLibrary, image: $verificationViewModel.image, isPresented: $verificationViewModel.showImagePicker)
+                }
+                .sheet(isPresented: $verificationViewModel.showScanner) {
+                    ScannerView { result in
+                        verificationViewModel.showScanner = false
+                    } didCancelScanning: {
+                        verificationViewModel.showScanner = false
+                    }
+
+                }
+                .actionSheet(isPresented: $verificationViewModel.showActionSheet) { () -> ActionSheet in
                         ActionSheet(title: Text("Choose uploading mode"), message:  Text("Please choose a way to upload a license picture"), buttons: [
                             ActionSheet.Button.default(Text("Camera"), action: {
-                                self.verificationViewModel.shouldPresentImagePicker = true
-                                self.verificationViewModel.shouldPresentCamera = true
+                                self.verificationViewModel.showScanner = true
                             }),
                             ActionSheet.Button.default(Text("Gallery"), action: {
-                                self.verificationViewModel.shouldPresentImagePicker = true
-                                self.verificationViewModel.shouldPresentCamera = false
+                                self.verificationViewModel.showImagePicker = true
                             })
                         ])
                 }
