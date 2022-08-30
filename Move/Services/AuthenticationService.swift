@@ -15,8 +15,6 @@ protocol AuthenticationService {
 }
 
 class AuthenticationAPIService: AuthenticationService {
-    var loggedUser: User? = nil
-    var token: String? = nil
     var url: URL
     
     init(url: String) {
@@ -33,12 +31,11 @@ class AuthenticationAPIService: AuthenticationService {
         let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: LoginResponse.self) { response in
+            .responseDecodable(of: LoginData.self) { response in
                 switch response.result {
-                    case .success(let loginResponse):
+                    case .success(let loginData):
                         print("success")
-                        self.loggedUser = loginResponse.user
-                        self.token = loginResponse.token
+                        self.saveUserData(userData: loginData)
                         onLoginCompleted()
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
@@ -68,11 +65,11 @@ class AuthenticationAPIService: AuthenticationService {
         let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: LoginResponse.self) { response in
+            .responseDecodable(of: LoginData.self) { response in
                 switch response.result {
-                case .success(let loginResponse):
-                    print("succsesfully registered")
-                    self.loggedUser = loginResponse.user
+                case .success(let loginData):
+                    print("succesfully registered")
+                    self.saveUserData(userData: loginData)
                     onRegisterCompleted()
                     
                 case .failure(let error):
@@ -82,5 +79,13 @@ class AuthenticationAPIService: AuthenticationService {
                     }
                 }
             }
+    }
+    
+    private func saveUserData(userData: LoginData) {
+        let encoder = JSONEncoder()
+        let userData = try? encoder.encode(userData)
+        if let userData = userData {
+            UserDefaults.standard.set(userData, forKey: "userData")
+        }
     }
 }

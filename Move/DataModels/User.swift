@@ -39,7 +39,7 @@ extension User: Codable {
 //    }
 }
 
-struct LoginResponse: Codable {
+struct LoginData: Codable {
     var user: User
     var token: String
 }
