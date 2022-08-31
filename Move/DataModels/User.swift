@@ -38,7 +38,7 @@ extension User: Codable {
 //        username = try values.decode(String.self, forKey: .username)
 //    }
 }
-
+//TODO: rename
 struct LoginData: Codable {
     var user: User
     var token: String

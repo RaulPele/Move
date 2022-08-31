@@ -32,7 +32,7 @@ struct FloatingTextField: View {
                         .textInputAutocapitalization(.never)
                     
                 }
-                .animation(.spring(response: 0.2, dampingFraction: 0.5))
+                .animation(.spring(response: 0.2, dampingFraction: 0.5), value: text)
                 
                 if isFocused && !text.isEmpty {
                     Button {
@@ -86,7 +86,7 @@ struct FloatingSecureField: View {
                     .textInputAutocapitalization(.never)
                     
                 }
-                .animation(.spring(response: 0.2, dampingFraction: 0.5))
+                .animation(.spring(response: 0.2, dampingFraction: 0.5), value: text)
                 
                 if !text.isEmpty{
                     Button {

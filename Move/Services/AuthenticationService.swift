@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 
-
 protocol AuthenticationService {
     func login(email: String, password: String, onLoginCompleted: @escaping () -> Void)
     func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void)
@@ -22,7 +21,7 @@ class AuthenticationAPIService: AuthenticationService {
     }
     
     func login(email: String, password: String, onLoginCompleted: @escaping () -> Void) {
-        guard Validation.validate(email: email) && Validation.validate(password: password) else {
+        guard Validation.isValid(email: email) && Validation.isValid(password: password) else {
             return
         }
         
@@ -35,23 +34,24 @@ class AuthenticationAPIService: AuthenticationService {
                 switch response.result {
                     case .success(let loginData):
                         print("success")
+                    
                         self.saveUserData(userData: loginData)
                         onLoginCompleted()
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
-                    if let data = response.data {
-                        print("Data: \(String(data: data, encoding: .utf8))")
-                    }
+                        if let data = response.data {
+                            print("Data: \(String(data: data, encoding: .utf8))")
+                        }
 
                 }
-        //try to decode it as json. if password is wrong the structure of the json will be different
+        //TODO: handle errors
             }
     }
     
     func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void) {
-        guard Validation.validate(email: email) &&
-                Validation.validate(password: password) &&
-                Validation.validate(username: username) else {
+        guard Validation.isValid(email: email) &&
+                Validation.isValid(password: password) &&
+                Validation.isValid(username: username) else {
             print("Validation error")
             return
         }

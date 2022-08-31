@@ -26,12 +26,8 @@ struct ScannerView: UIViewControllerRepresentable {
         return Coordinator(with: self)
     }
     
-    
-    
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
         let scannerView: ScannerView
-        
-        
         
         init(with scannerView: ScannerView) {
             self.scannerView = scannerView
