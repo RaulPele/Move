@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @ObservedObject var signUpViewModel: SignUpViewModel
+    @StateObject private var signUpViewModel = SignUpViewModel()
     let onLoginClicked: () -> Void
     let onRegisterCompleted: () -> Void
     
@@ -18,51 +18,12 @@ struct SignUpView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
+                    AuthenticationHeaderView(logoPath: "SmallLogoWhite",
+                                             title: "Let's get started",
+                                             description: "Sign up or login and start riding right away")
                     
-                    VStack(alignment: .leading, spacing: 20) {
-                        Image("SmallLogoWhite")
-                            .renderingMode(.original)
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.bottom, 4)
-                        
-                        Text("Let's get started")
-                            .font(.heading1())
-                            .foregroundColor(.neutralWhite)
-                        
-                        Text("Sign up or login and start riding right away")
-                            .font(.heading2())
-                            .foregroundColor(.neutralGray)
-                    }
-                    
-                    VStack(spacing: 26) {
-                        FloatingTextField(title: "Email address", text: $signUpViewModel.email)
-                        FloatingTextField(title: "Username", text: $signUpViewModel.username)
-                        FloatingSecureField(title: "Password", text: $signUpViewModel.password)
-                    }
-                    .padding(.bottom, 3)
-                    
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("By continuing you agree to Move's ")
-                            .font(.smallText())
-                            .foregroundColor(.neutralWhite)
-                        
-                        HStack(spacing: 0) {
-                            Text("[Terms and Conditions](https://tapptitude.com)")
-                                .underline()
-                                .font(.smallText().bold())
-                                .accentColor(.neutralWhite)
-                            
-                            Text(" and ")
-                                .foregroundColor(.neutralWhite)
-                                .font(.smallText())
-                            
-                            Text("[Privacy Policy](https://tapptitude.com)")
-                                .underline()
-                                .accentColor(.neutralWhite)
-                                .font(.smallText().bold())
-                        }
-                        
-                    }
+                    signUpTextFieldsView
+                    termsAndConditionsView
                     
                     Button() {
                         signUpViewModel.register {
@@ -76,23 +37,7 @@ struct SignUpView: View {
                     .disabled(signUpViewModel.fieldsCompleted ? false : true)
                     .animation(.default, value: signUpViewModel.fieldsCompleted)
                     
-                    
-                    HStack(spacing: 0) {
-                        Text("You already have an account? You can ")
-                            .foregroundColor(.neutralWhite)
-                            .font(.smallText())
-                        
-                        Button {
-                            onLoginClicked()
-                        } label: {
-                            Text("log in here")
-                                .foregroundColor(.neutralWhite)
-                                .underline()
-                                .font(.smallText().bold())
-                            
-                        }
-                    }
-                    .padding(.horizontal, 25) //35
+                    loginFooterView
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical)
@@ -101,10 +46,64 @@ struct SignUpView: View {
     }
 }
 
+private extension SignUpView {
+    var signUpTextFieldsView: some View {
+        return VStack(spacing: 26) {
+            FloatingTextField(title: "Email address", text: $signUpViewModel.email)
+            FloatingTextField(title: "Username", text: $signUpViewModel.username)
+            FloatingSecureField(title: "Password", text: $signUpViewModel.password)
+        }
+        .padding(.bottom, 3)
+    }
+    
+    var termsAndConditionsView: some View {
+        return VStack(alignment: .leading, spacing: 0) {
+            Text("By continuing you agree to Move's ")
+                .font(.smallText())
+                .foregroundColor(.neutralWhite)
+            
+            HStack(spacing: 0) {
+                Text("[Terms and Conditions](https://tapptitude.com)")
+                    .underline()
+                    .font(.smallText().bold())
+                    .accentColor(.neutralWhite)
+                
+                Text(" and ")
+                    .foregroundColor(.neutralWhite)
+                    .font(.smallText())
+                
+                Text("[Privacy Policy](https://tapptitude.com)")
+                    .underline()
+                    .accentColor(.neutralWhite)
+                    .font(.smallText().bold())
+            }
+        }
+    }
+    
+    var loginFooterView: some View {
+        return HStack(spacing: 0) {
+            Text("You already have an account? You can ")
+                .foregroundColor(.neutralWhite)
+                .font(.smallText())
+            
+            Button {
+                onLoginClicked()
+            } label: {
+                Text("log in here")
+                    .foregroundColor(.neutralWhite)
+                    .underline()
+                    .font(.smallText().bold())
+                
+            }
+        }
+        .padding(.horizontal, 25) //35
+    }
+}
+
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SignUpView(signUpViewModel: SignUpViewModel(authenticationService: AuthenticationAPIService(url: ""))) {} onRegisterCompleted: {
+            SignUpView {} onRegisterCompleted: {
                 
             }
                 .previewDevice(device)

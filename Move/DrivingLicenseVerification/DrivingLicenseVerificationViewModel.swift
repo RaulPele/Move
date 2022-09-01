@@ -8,13 +8,15 @@
 import Foundation
 import SwiftUI
 
-class DrivingLicenseVerificationViewModel: ObservableObject {
-    @Published var image: Image?
-    @Published var showImagePicker = false
-    @Published var showActionSheet = false
-    @Published var showScanner = false
-    
-    func verifyLicense(image: UIImage) {
-        //TODO: verify license
+extension DrivingLicenseVerificationView {
+    class DrivingLicenseVerificationViewModel: ObservableObject {
+        @Published var image: Image?
+        @Published var showImagePicker = false
+        @Published var showActionSheet = false
+        @Published var showScanner = false
+        
+        func verifyLicense(image: UIImage) {
+            //TODO: verify license
+        }
     }
 }

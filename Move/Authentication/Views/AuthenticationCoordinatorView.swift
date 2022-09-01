@@ -13,15 +13,15 @@ enum AuthenticationCoordinatorState {
 }
 
 struct AuthenticationCoordinatorView: View {
-    @State var state: AuthenticationCoordinatorState? = .signUp
+    @State private var state: AuthenticationCoordinatorState? = .signUp
     let onLoginCompleted: () -> Void
     let onRegisterCompleted: () -> Void
-    
+
     var body: some View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .signUp, selection: $state) {
-                    SignUpView(signUpViewModel: .init(authenticationService: AuthenticationAPIService(url: "https://move-scooters.herokuapp.com/users/register")), onLoginClicked: {
+                    SignUpView(onLoginClicked: {
                             state = .login
                     }, onRegisterCompleted: {
                         onRegisterCompleted()
@@ -35,7 +35,7 @@ struct AuthenticationCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .login, selection: $state) {
-                    LoginView(loginViewModel: LoginViewModel(authenticationService: AuthenticationAPIService(url: "https://move-scooters.herokuapp.com/users/login"))) {
+                    LoginView() {
                         state = .signUp
                     } onLoginCompleted: {
                         onLoginCompleted()

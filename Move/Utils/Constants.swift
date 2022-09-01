@@ -28,35 +28,3 @@ struct Constants {
     static let onboardingRulesTitle = "Rules"
     static let onboardingRulesDescription = "You must be 18 years or and older with a valid driving licence to operate a scooter. Please follow all street signs, signals and markings, and obey local traffic laws."
 }
-
-extension OnboardingData {
-    static func safety() -> OnboardingData {
-        return OnboardingData(imageName: Constants.onboardingSafetyImageName,
-                              title: Constants.onboardingSafetyTitle,
-                              description: Constants.onboardingSafetyDescription)
-    }
-    
-    static func scan() -> OnboardingData {
-        return OnboardingData(imageName: Constants.onboardingScanImageName,
-                              title: Constants.onboardingScanTitle,
-                              description: Constants.onboardingScanDescription)
-    }
-    
-    static func ride() -> OnboardingData {
-        return OnboardingData(imageName: Constants.onboardingRideImageName,
-                              title: Constants.onboardingRideTitle,
-                              description: Constants.onboardingRideDescription)
-    }
-    
-    static func parking() -> OnboardingData {
-        return OnboardingData(imageName: Constants.onboardingParkingImageName,
-                              title: Constants.onboardingParkingTitle,
-                              description: Constants.onboardingParkingDescription)
-    }
-    
-    static func rules() -> OnboardingData {
-        return OnboardingData(imageName: Constants.onboardingRulesImageName,
-                              title: Constants.onboardingRulesTitle,
-                              description: Constants.onboardingRulesDescription)
-    }
-}

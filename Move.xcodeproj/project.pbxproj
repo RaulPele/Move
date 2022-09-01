@@ -37,6 +37,7 @@
 		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
 		DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */; };
+		DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -90,6 +91,7 @@
 		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleBackgroundView.swift; sourceTree = "<group>"; };
+		DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE9E3F5428C07D3D00B98FEE /* DataModels */,
 				DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */,
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
 				DE2F523428A63574007762BA /* MainCoordinatorView.swift */,
@@ -247,7 +250,6 @@
 		DE9E3F4C28BF8F6500B98FEE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				DE43FCCF28B78BC100CBD130 /* User.swift */,
 				DE9E3F4E28BF8FF500B98FEE /* Views */,
 				DE9E3F4D28BF8FDF00B98FEE /* ViewModels */,
 				DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */,
@@ -271,6 +273,7 @@
 				DE1FEB5928ABB2380019CE5A /* SignUpView.swift */,
 				DE882D5828AE613300C8DA17 /* LoginView.swift */,
 				DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */,
+				DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +297,14 @@
 				DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */,
 			);
 			path = DrivingLicenseVerification;
+			sourceTree = "<group>";
+		};
+		DE9E3F5428C07D3D00B98FEE /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				DE43FCCF28B78BC100CBD130 /* User.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +425,7 @@
 				DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */,
 				DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
+				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseService.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
 				DE9E3F3D28BDEA0D00B98FEE /* ErrorResponse.swift in Sources */,

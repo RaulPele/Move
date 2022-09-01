@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingCoordinatorView: View {
-    @StateObject var coordinatorViewModel = OnboardingCoordinatorViewModel(state: .safety)
+    @StateObject private var coordinatorViewModel = OnboardingCoordinatorViewModel(state: .safety)
     let onFinished : () -> Void
     
     var body: some View {
@@ -39,6 +39,6 @@ struct OnboardingCoordinatorView: View {
 
 struct OnboardingCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingCoordinatorView(coordinatorViewModel: .init(state: .safety)) {}
+        OnboardingCoordinatorView {}
     }
 }

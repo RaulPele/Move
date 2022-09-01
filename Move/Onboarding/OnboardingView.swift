@@ -27,56 +27,27 @@ struct OnboardingView: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 3/5)
                     .clipped()
                 
-                HStack(spacing: 0) {
-                    Text(onboardingData.title)
-                        .foregroundColor(.primaryDark)
-                        .font(.heading1())
-                    
-                    Spacer()
-                    
-                    Button("Skip") {
-                        onSkipButtonClicked()
-                    }
-                    .foregroundColor(.neutralGray)
-                    .font(.baiJamjureeSemiBold(size: 14))
-                }
-                .padding([.top, .leading, .trailing], 24)
-                .padding(.bottom, 12)
+                onboardingHeaderView
                 
-                HStack {
-                    Text(onboardingData.description)
-                        .foregroundColor(.primaryDark)
-                        .font(.body1())
-                        .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
-                }
-                .padding(.leading, 24)
+                Text(onboardingData.description)
+                    .foregroundColor(.primaryDark)
+                    .font(.body1())
+                    .frame(maxWidth: 2/3 * UIScreen.main.bounds.width, alignment: .leading)
+                    .padding(.leading, 24)
                 
                 Spacer()
                 
-                HStack(spacing: 0) {
-                    generatePageIndicator()
-
-                    Spacer()
-                    
-                    Button {
-                        onNextButtonClicked()
-                    } label: {
-                        HStack {
-                            Text(pageIndex != numberOfPages - 1 ? "Next" : "Get started")
-                            Image(systemName: "arrow.right")
-                        }
-                    }
-                    .buttonStyle(.filledButton)
-                }
-                .padding([.leading, .trailing], 24)
+                onboardingFooterView
             }
             .padding(.bottom, 24)
             .edgesIgnoringSafeArea(.top)
         }
     }
-    
-    func generatePageIndicator() -> some View {
-        HStack(spacing: 12) {
+}
+
+private extension OnboardingView {
+    var pageIndicator: some View {
+       return HStack(spacing: 12) {
             ForEach(0..<numberOfPages, id: \.self) {i in
                 if i == pageIndex {
                     RoundedRectangle(cornerRadius: 1.5)
@@ -90,12 +61,52 @@ struct OnboardingView: View {
             }
         }
     }
+    
+    var onboardingHeaderView: some View {
+        return HStack(spacing: 0) {
+            Text(onboardingData.title)
+                .foregroundColor(.primaryDark)
+                .font(.heading1())
+            
+            Spacer()
+            
+            Button("Skip") {
+                onSkipButtonClicked()
+            }
+            .foregroundColor(.neutralGray)
+            .font(.baiJamjureeSemiBold(size: 14))
+        }
+        .padding([.top, .leading, .trailing], 24)
+        .padding(.bottom, 12)
+    }
+    
+    var onboardingFooterView: some View {
+        return HStack(spacing: 0) {
+            pageIndicator
+            Spacer()
+            
+            Button {
+                onNextButtonClicked()
+            } label: {
+                HStack {
+                    Text(pageIndex != numberOfPages - 1 ? "Next" : "Get started")
+                    Image(systemName: "arrow.right")
+                }
+            }
+            .buttonStyle(.filledButton)
+        }
+        .padding([.leading, .trailing], 24)
+    }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {} onSkipButtonClicked: {
-            
+        ForEach(devices) { device in
+            OnboardingView(onboardingData: .safety(), pageIndex: 0, numberOfPages: 5) {} onSkipButtonClicked: {
+                
+            }
+            .previewDevice(device)
         }
+        
     }
 }

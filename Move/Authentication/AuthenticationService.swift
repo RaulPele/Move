@@ -14,11 +14,7 @@ protocol AuthenticationService {
 }
 
 class AuthenticationAPIService: AuthenticationService {
-    var url: URL
-    
-    init(url: String) {
-        self.url = URL(string: url)!
-    }
+    var url = URL(string: "https://move-scooters.herokuapp.com/users/login")!
     
     func login(email: String, password: String, onLoginCompleted: @escaping () -> Void) {
         guard Validation.isValid(email: email) && Validation.isValid(password: password) else {
@@ -26,8 +22,9 @@ class AuthenticationAPIService: AuthenticationService {
         }
         
         let parameters = ["mail": email, "password": password]
+        let headers = ["Content-Type": "application/json"]
         
-        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: LoginData.self) { response in

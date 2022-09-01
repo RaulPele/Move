@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var loginViewModel: LoginViewModel
+    @StateObject private var loginViewModel = LoginViewModel()
     let onSignUpClicked: () -> Void
     let onLoginCompleted: () -> Void
     
@@ -18,26 +18,11 @@ struct LoginView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Image("SmallLogoWhite")
-                            .renderingMode(.original)
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.bottom, 4)
-                        
-                        Text("Login")
-                            .font(.heading1())
-                            .foregroundColor(.neutralWhite)
-                        
-                        Text("Enter your account credentials and start riding away")
-                            .font(.heading2())
-                            .foregroundColor(.neutralGray)
-                    }
+                    AuthenticationHeaderView(logoPath: "SmallLogoWhite",
+                                             title: "Login", description:
+                                                "Enter your account credentials and start riding away")
                     
-                    VStack(spacing: 26) {
-                        FloatingTextField(title: "Email address", text: $loginViewModel.email)
-                        FloatingSecureField(title: "Password", text: $loginViewModel.password)
-                    }
-                    .padding(.bottom, 3)
+                    loginTextFieldsView
                     
                     Button {
                         
@@ -59,23 +44,8 @@ struct LoginView: View {
                     .buttonStyle(.filledButton)
                     .disabled(loginViewModel.fieldsCompleted ? false : true)
                     
-                    HStack(spacing: 0) {
-                        Text("Don't have an account? You can")
-                            .foregroundColor(.neutralWhite)
-                            .font(.smallText())
+                    createAccountFooterView
                         
-                        Button {
-                            onSignUpClicked()
-                        } label: {
-                            Text("start with one here")
-                                .foregroundColor(.neutralWhite)
-                                .underline()
-                                .font(.smallText().bold())
-                                .padding(.leading, 3)
-
-                        }
-                    }
-                    .padding(.horizontal, 19)
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical)
@@ -83,13 +53,42 @@ struct LoginView: View {
         }
         
     }
+}
+
+private extension LoginView {
+    var loginTextFieldsView: some View {
+        return VStack(spacing: 26) {
+            FloatingTextField(title: "Email address", text: $loginViewModel.email)
+            FloatingSecureField(title: "Password", text: $loginViewModel.password)
+        }
+        .padding(.bottom, 3)
+    }
     
+    var createAccountFooterView: some View {
+        HStack(spacing: 0) {
+            Text("Don't have an account? You can")
+                .foregroundColor(.neutralWhite)
+                .font(.smallText())
+            
+            Button {
+                onSignUpClicked()
+            } label: {
+                Text("start with one here")
+                    .foregroundColor(.neutralWhite)
+                    .underline()
+                    .font(.smallText().bold())
+                    .padding(.leading, 3)
+
+            }
+        }
+        .padding(.horizontal, 19)
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) {device in
-            LoginView(loginViewModel: .init(authenticationService: AuthenticationAPIService(url: "")), onSignUpClicked: {
+            LoginView(onSignUpClicked: {
                 
             }, onLoginCompleted: {
                 
