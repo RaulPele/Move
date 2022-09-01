@@ -19,10 +19,11 @@ struct FloatingTextField: View {
                 ZStack(alignment: .leading) {
                     Text(title)
                         .foregroundColor(.neutralGray)
-                        .font(text.isEmpty ? .body1() : .caption2())
+//                        .font(text.isEmpty ? .body1() : .caption2())
+                        .font(.body1())
                         .offset(y: text.isEmpty ? 0 : -25)
-                        .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-                        .padding(.vertical, text.isEmpty ? 10 : 0)
+//                        .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                        .padding(.vertical, 10)
                     
                     TextField("", text: $text)
                         .foregroundColor(text.isEmpty ? .neutralGray : .neutralWhite)

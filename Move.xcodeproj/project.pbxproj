@@ -38,6 +38,8 @@
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
 		DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */; };
 		DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */; };
+		DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */; };
+		DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -92,6 +94,7 @@
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleBackgroundView.swift; sourceTree = "<group>"; };
 		DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
+		DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */,
 				DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +184,7 @@
 				DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */,
 				DE9E3F4328BE47A400B98FEE /* ScannerView.swift */,
 				DE9E3F5228BF934400B98FEE /* FloatingSecureField.swift */,
+				DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			name = Move;
 			packageProductDependencies = (
 				DE43FCD728BCAAC900CBD130 /* Alamofire */,
+				DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */,
 			);
 			productName = Move;
 			productReference = DE0ACEF828A266EF00F32C36 /* Move.app */;
@@ -356,6 +362,7 @@
 			mainGroup = DE0ACEEF28A266EF00F32C36;
 			packageReferences = (
 				DE43FCD628BCAAC900CBD130 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = DE0ACEF928A266EF00F32C36 /* Products */;
 			projectDirPath = "";
@@ -412,6 +419,7 @@
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
+				DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,
 				DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */,
 				DE9E3F5328BF934400B98FEE /* FloatingSecureField.swift in Sources */,
@@ -641,6 +649,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		DE43FCD628BCAAC900CBD130 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -652,6 +668,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
 		DE43FCD728BCAAC900CBD130 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE43FCD628BCAAC900CBD130 /* XCRemoteSwiftPackageReference "Alamofire" */;

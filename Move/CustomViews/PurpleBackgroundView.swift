@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PurpleBackgroundView: View {
     var body: some View {
-        ZStack {
-            Color.primaryLight
+//        ZStack {
+//            Color.primaryLight
                 
             VStack {
                 RoundedRectangle(cornerRadius: 94)
@@ -30,9 +30,10 @@ struct PurpleBackgroundView: View {
                     .offset(x: -150, y: 60)
                     
             }
-        }
+            .background(Color.primaryLight)
+//        }
 //        .frame(maxWidth: UIScreen.main.bounds.width)
-        .ignoresSafeArea()
+//        .ignoresSafeArea()
     }
 }
 

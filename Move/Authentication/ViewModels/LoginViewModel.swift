@@ -11,6 +11,8 @@ extension LoginView {
     class LoginViewModel: ObservableObject {
         @Published var email: String = ""
         @Published var password: String = ""
+        @Published var isLoading = false
+        
         private let authenticationService: AuthenticationService = AuthenticationAPIService()
         
         var fieldsCompleted: Bool {

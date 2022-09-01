@@ -13,8 +13,8 @@ struct SignUpView: View {
     let onRegisterCompleted: () -> Void
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            PurpleBackgroundView()
+//        ZStack(alignment: .topLeading) {
+//            PurpleBackgroundView()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
@@ -42,7 +42,8 @@ struct SignUpView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical)
             }
-        }
+            .background(PurpleBackgroundView())
+//        }
     }
 }
 

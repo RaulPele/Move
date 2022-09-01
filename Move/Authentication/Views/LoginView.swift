@@ -13,8 +13,8 @@ struct LoginView: View {
     let onLoginCompleted: () -> Void
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            PurpleBackgroundView()
+//        ZStack(alignment: .topLeading) {
+//            PurpleBackgroundView()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
@@ -34,8 +34,11 @@ struct LoginView: View {
                     }
                     
                     Button {
+                        loginViewModel.isLoading = true
+                        
                         loginViewModel.login {
                             onLoginCompleted()
+                            loginViewModel.isLoading = false
                         }
                     } label: {
                         Text("Login")
@@ -50,8 +53,31 @@ struct LoginView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical)
             }
-        }
+            .hasLoadingBehaviour(showLoadingIndicator: $loginViewModel.isLoading)
+            .background(PurpleBackgroundView())
+//        }
         
+    }
+}
+
+struct LoadingBehaviour: ViewModifier {
+    @Binding var showLoadingIndicator: Bool
+    
+    func body(content: Content) -> some View {
+        if showLoadingIndicator {
+            return AnyView(content
+                .disabled(true)
+                .blur(radius: 1.5)
+                .overlay(ActivityIndicator(isVisible: $showLoadingIndicator, color: .white).frame(width: 100, height: 100)))
+        } else {
+            return AnyView(content)
+        }
+    }
+}
+
+extension View {
+    func hasLoadingBehaviour(showLoadingIndicator: Binding<Bool>) -> some View {
+        modifier(LoadingBehaviour(showLoadingIndicator: showLoadingIndicator))
     }
 }
 
