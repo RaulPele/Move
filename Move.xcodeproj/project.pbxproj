@@ -18,6 +18,10 @@
 		DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5928ABB2380019CE5A /* SignUpView.swift */; };
 		DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */; };
 		DE28ECD128C1E5C3007AA04C /* LoadingBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28ECD028C1E5C3007AA04C /* LoadingBehaviour.swift */; };
+		DE28ECD428C1F23A007AA04C /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28ECD328C1F23A007AA04C /* ErrorHandler.swift */; };
+		DE28ECD728C1F26C007AA04C /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = DE28ECD628C1F26C007AA04C /* SwiftMessages */; };
+		DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28ECD928C1FB04007AA04C /* APIConfig.swift */; };
+		DE28ECDC28C1FB40007AA04C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28ECDB28C1FB40007AA04C /* APIError.swift */; };
 		DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228228A3B27000BAE7F5 /* OnboardingView.swift */; };
 		DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228428A4EDB500BAE7F5 /* Constants.swift */; };
 		DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */; };
@@ -73,6 +77,9 @@
 		DE1FEB5928ABB2380019CE5A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		DE28ECD028C1E5C3007AA04C /* LoadingBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBehaviour.swift; sourceTree = "<group>"; };
+		DE28ECD328C1F23A007AA04C /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		DE28ECD928C1FB04007AA04C /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		DE28ECDB28C1FB40007AA04C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		DE2B228228A3B27000BAE7F5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE2B228428A4EDB500BAE7F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DE2B228728A4F39200BAE7F5 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -120,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */,
+				DE28ECD728C1F26C007AA04C /* SwiftMessages in Frameworks */,
 				DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +154,8 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE28ECD828C1FAE1007AA04C /* Networking */,
+				DE28ECD228C1F227007AA04C /* ErrorHandling */,
 				DE9E3F5428C07D3D00B98FEE /* DataModels */,
 				DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */,
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
@@ -203,6 +213,23 @@
 				DE28ECD028C1E5C3007AA04C /* LoadingBehaviour.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		DE28ECD228C1F227007AA04C /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				DE28ECD328C1F23A007AA04C /* ErrorHandler.swift */,
+			);
+			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		DE28ECD828C1FAE1007AA04C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DE28ECD928C1FB04007AA04C /* APIConfig.swift */,
+				DE28ECDB28C1FB40007AA04C /* APIError.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		DE2B228928A50B6E00BAE7F5 /* Fonts */ = {
@@ -331,6 +358,7 @@
 			packageProductDependencies = (
 				DE43FCD728BCAAC900CBD130 /* Alamofire */,
 				DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */,
+				DE28ECD628C1F26C007AA04C /* SwiftMessages */,
 			);
 			productName = Move;
 			productReference = DE0ACEF828A266EF00F32C36 /* Move.app */;
@@ -363,6 +391,7 @@
 			packageReferences = (
 				DE43FCD628BCAAC900CBD130 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				DE28ECD528C1F26C007AA04C /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 			);
 			productRefGroup = DE0ACEF928A266EF00F32C36 /* Products */;
 			projectDirPath = "";
@@ -413,10 +442,12 @@
 				DE1FEB5828AB9C840019CE5A /* Buttons.swift in Sources */,
 				DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */,
 				DE9E3F4428BE47A400B98FEE /* ScannerView.swift in Sources */,
+				DE28ECDC28C1FB40007AA04C /* APIError.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
 				DE28ECD128C1E5C3007AA04C /* LoadingBehaviour.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
+				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
@@ -425,6 +456,7 @@
 				DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */,
 				DE9E3F5328BF934400B98FEE /* FloatingSecureField.swift in Sources */,
 				DE882D5628AD14E000C8DA17 /* AuthenticationCoordinatorView.swift in Sources */,
+				DE28ECD428C1F23A007AA04C /* ErrorHandler.swift in Sources */,
 				DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */,
 				DE9E3F4728BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
@@ -649,6 +681,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE28ECD528C1F26C007AA04C /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
@@ -668,6 +708,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE28ECD628C1F26C007AA04C /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE28ECD528C1F26C007AA04C /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
 		DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE33D17C28C0E681008A8EA2 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;

@@ -15,7 +15,15 @@ enum MainCoordinatorState {
 }
 
 struct MainCoordinatorView: View {
-    @State var state: MainCoordinatorState? = MainCoordinatorState.start
+    let errorHandler: MyErrorHandler
+    
+    @State private var state: MainCoordinatorState? = MainCoordinatorState.start
+    @StateObject private var errorToastViewModel: ErrorToastViewModel
+    
+    init(errorHandler: MyErrorHandler) {
+        self.errorHandler = errorHandler
+        self._errorToastViewModel = StateObject(wrappedValue: errorHandler.viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -47,6 +55,8 @@ struct MainCoordinatorView: View {
                         state = .drivingLicenseVerification
                     }
                     .navigationBarHidden(true)
+                    .overlay(errorView)
+
                 } label: {
                     EmptyView()
                 }
@@ -59,10 +69,20 @@ struct MainCoordinatorView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    var errorView: some View {
+        if let error = errorToastViewModel.error {
+            Text(error.title)
+                .foregroundColor(.white)
+                .background(.red)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+    }
 }
 
 struct MainCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCoordinatorView()
+        MainCoordinatorView(errorHandler: .shared)
     }
 }

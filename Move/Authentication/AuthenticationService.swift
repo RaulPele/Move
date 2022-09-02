@@ -12,7 +12,7 @@ protocol AuthenticationService {
     func login(email: String, password: String, onLoginCompleted: @escaping () -> Void)
     func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void)
 }
-
+//TODO: networking layer
 class AuthenticationAPIService: AuthenticationService {
     var url = URL(string: "https://move-scooters.herokuapp.com/users/login")!
     
@@ -36,8 +36,11 @@ class AuthenticationAPIService: AuthenticationService {
                         onLoginCompleted()
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
-                        if let data = response.data {
-                            print("Data: \(String(data: data, encoding: .utf8))")
+                        if let data = response.data,
+                           let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+                            //completion(.failure(apiError))
+                        } else {
+                           // completion(.failure(error))
                         }
 
                 }

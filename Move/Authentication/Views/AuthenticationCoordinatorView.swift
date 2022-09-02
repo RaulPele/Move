@@ -35,7 +35,7 @@ struct AuthenticationCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .login, selection: $state) {
-                    LoginView() {
+                    LoginView(errorHandler: SwiftMessagesErrorHandler()) {
                         state = .signUp
                     } onLoginCompleted: {
                         onLoginCompleted()

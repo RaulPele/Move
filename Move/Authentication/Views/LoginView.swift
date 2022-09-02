@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var loginViewModel = LoginViewModel()
+    var errorHandler: ErrorHandler = MyErrorHandler.shared
     let onSignUpClicked: () -> Void
     let onLoginCompleted: () -> Void
+    
+    @StateObject private var loginViewModel = LoginViewModel()
+
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -32,12 +35,13 @@ struct LoginView: View {
                     }
                     
                     Button {
-                        loginViewModel.isLoading = true
+//                        loginViewModel.isLoading = true
+                        errorHandler.handle(error: APIError(message: "wrong email", code: 402), title: "Login failed")
+//                        loginViewModel.login {
+//                            onLoginCompleted()
+//                            loginViewModel.isLoading = false
+//                        }
                         
-                        loginViewModel.login {
-                            onLoginCompleted()
-                            loginViewModel.isLoading = false
-                        }
                     } label: {
                         Text("Login")
                             .frame(maxWidth: .infinity)
