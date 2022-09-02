@@ -12,7 +12,7 @@ protocol AuthenticationService {
     func login(email: String, password: String, completionHandler: @escaping (Result<User, Error>) -> Void)
     func register(email: String, password: String, username: String, completionHandler: @escaping (Result<User, Error>) -> Void)
 }
-//TODO: networking layer
+
 class AuthenticationAPIService: AuthenticationService {
     var baseURL = URL(string: "https://move-scooters.herokuapp.com")!
     

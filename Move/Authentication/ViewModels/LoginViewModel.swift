@@ -23,14 +23,5 @@ extension LoginView {
             authenticationService.login(email: email, password: password, completionHandler: completionHandler)
         }
         
-//        func handle(result: Result<User, Error>, onLoginCompleted: () -> Void) {
-//            switch result {
-//            case .success(_):
-//                onLoginCompleted()
-//            case .failure(let error):
-//                errorHandler.handle(error: error, title: "Login failed")
-//                print("Login failed error. Failure case.")
-//            }
-//        }
     }
 }

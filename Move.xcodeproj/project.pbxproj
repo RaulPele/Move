@@ -49,6 +49,9 @@
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
+		DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */; };
+		DE46BC2928C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC2828C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift */; };
+		DE46BC2B28C2355F0061F800 /* ValidLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC2A28C2355F0061F800 /* ValidLicenseView.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
 		DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */; };
 		DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */; };
@@ -107,6 +110,9 @@
 		DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationView.swift; sourceTree = "<group>"; };
+		DE46BC2828C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationViewModel.swift; sourceTree = "<group>"; };
+		DE46BC2A28C2355F0061F800 /* ValidLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidLicenseView.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
@@ -330,6 +336,9 @@
 				DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */,
 				DE9E3F4828BF397800B98FEE /* DrivingLicenseService.swift */,
 				DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */,
+				DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */,
+				DE46BC2828C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift */,
+				DE46BC2A28C2355F0061F800 /* ValidLicenseView.swift */,
 			);
 			path = DrivingLicenseVerification;
 			sourceTree = "<group>";
@@ -448,6 +457,7 @@
 				DE9E3F4428BE47A400B98FEE /* ScannerView.swift in Sources */,
 				DE28ECDC28C1FB40007AA04C /* APIError.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
+				DE46BC2928C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift in Sources */,
 				DE28ECD128C1E5C3007AA04C /* LoadingBehaviour.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
@@ -463,6 +473,7 @@
 				DE28ECD428C1F23A007AA04C /* ErrorHandler.swift in Sources */,
 				DE43FCD328B78F7A00CBD130 /* AuthenticationService.swift in Sources */,
 				DE9E3F4728BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift in Sources */,
+				DE46BC2B28C2355F0061F800 /* ValidLicenseView.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
 				DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */,
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
@@ -472,6 +483,7 @@
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseService.swift in Sources */,
+				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
