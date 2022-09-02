@@ -22,7 +22,6 @@ struct FloatingSecureField: View {
                         .foregroundColor(.neutralGray)
                         .font(.body1())
                         .offset(y: text.isEmpty ? 0 : -25)
-//                        .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
                         .padding(.vertical, 10)
                     
                     Group {

@@ -12,8 +12,6 @@ struct DrivingLicenseVerificationView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Color.neutralWhite
-            
             VStack(spacing: 20) {
                 titleBar
                 

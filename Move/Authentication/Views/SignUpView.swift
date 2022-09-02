@@ -13,9 +13,7 @@ struct SignUpView: View {
     let onRegisterCompleted: () -> Void
     
     var body: some View {
-//        ZStack(alignment: .topLeading) {
-//            PurpleBackgroundView()
-            
+        ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
                     AuthenticationHeaderView(logoPath: "SmallLogoWhite",
@@ -26,8 +24,11 @@ struct SignUpView: View {
                     termsAndConditionsView
                     
                     Button() {
+                        signUpViewModel.isLoading = true
+                        
                         signUpViewModel.register {
                             onRegisterCompleted()
+                            signUpViewModel.isLoading = false
                         }
                     } label: {
                         Text("Get started!")
@@ -42,8 +43,9 @@ struct SignUpView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical)
             }
-            .background(PurpleBackgroundView())
-//        }
+        }
+        .hasLoadingBehaviour(showLoadingIndicator: $signUpViewModel.isLoading)
+        .background(PurpleBackgroundView())
     }
 }
 
@@ -107,8 +109,8 @@ struct SignUpView_Previews: PreviewProvider {
             SignUpView {} onRegisterCompleted: {
                 
             }
-                .previewDevice(device)
-                .previewDisplayName(device.id)
+            .previewDevice(device)
+            .previewDisplayName(device.id)
         }
     }
 }

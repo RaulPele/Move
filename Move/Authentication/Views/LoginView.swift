@@ -13,9 +13,7 @@ struct LoginView: View {
     let onLoginCompleted: () -> Void
     
     var body: some View {
-//        ZStack(alignment: .topLeading) {
-//            PurpleBackgroundView()
-            
+        ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
                     AuthenticationHeaderView(logoPath: "SmallLogoWhite",
@@ -48,38 +46,19 @@ struct LoginView: View {
                     .disabled(loginViewModel.fieldsCompleted ? false : true)
                     
                     createAccountFooterView
-                        
+                    
                 }
                 .padding(.horizontal, 24)
                 .padding(.vertical)
             }
-            .hasLoadingBehaviour(showLoadingIndicator: $loginViewModel.isLoading)
-            .background(PurpleBackgroundView())
-//        }
+        }
+        .hasLoadingBehaviour(showLoadingIndicator: $loginViewModel.isLoading)
+        .background(PurpleBackgroundView())
+
         
     }
 }
 
-struct LoadingBehaviour: ViewModifier {
-    @Binding var showLoadingIndicator: Bool
-    
-    func body(content: Content) -> some View {
-        if showLoadingIndicator {
-            return AnyView(content
-                .disabled(true)
-                .blur(radius: 1.5)
-                .overlay(ActivityIndicator(isVisible: $showLoadingIndicator, color: .white).frame(width: 100, height: 100)))
-        } else {
-            return AnyView(content)
-        }
-    }
-}
-
-extension View {
-    func hasLoadingBehaviour(showLoadingIndicator: Binding<Bool>) -> some View {
-        modifier(LoadingBehaviour(showLoadingIndicator: showLoadingIndicator))
-    }
-}
 
 private extension LoginView {
     var loginTextFieldsView: some View {
@@ -104,7 +83,7 @@ private extension LoginView {
                     .underline()
                     .font(.smallText().bold())
                     .padding(.leading, 3)
-
+                
             }
         }
         .padding(.horizontal, 19)
@@ -119,7 +98,7 @@ struct LoginView_Previews: PreviewProvider {
             }, onLoginCompleted: {
                 
             })
-                .previewDevice(device)
+            .previewDevice(device)
         }
     }
 }
