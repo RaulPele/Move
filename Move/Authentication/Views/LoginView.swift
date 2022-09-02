@@ -35,19 +35,27 @@ struct LoginView: View {
                     }
                     
                     Button {
-//                        loginViewModel.isLoading = true
-                        errorHandler.handle(error: APIError(message: "wrong email", code: 402), title: "Login failed")
-//                        loginViewModel.login {
-//                            onLoginCompleted()
-//                            loginViewModel.isLoading = false
-//                        }
+                        loginViewModel.isLoading = true
+                        
+                        loginViewModel.login { result in
+                            loginViewModel.isLoading = false
+                            switch result {
+                            case .success(_):
+                                onLoginCompleted()
+                            case .failure(let error):
+                                errorHandler.handle(error: error, title: "Login failed")
+                            }
+                        
+                        }
                         
                     } label: {
-                        Text("Login")
+                        Text("Loading")
                             .frame(maxWidth: .infinity)
+                            .opacity(loginViewModel.isLoading ? 0 : 1)
                     }
                     .buttonStyle(.filledButton)
                     .disabled(loginViewModel.fieldsCompleted ? false : true)
+                    .hasLoadingBehaviour(showLoadingIndicator: $loginViewModel.isLoading)
                     
                     createAccountFooterView
                     
@@ -56,7 +64,6 @@ struct LoginView: View {
                 .padding(.vertical)
             }
         }
-        .hasLoadingBehaviour(showLoadingIndicator: $loginViewModel.isLoading)
         .background(PurpleBackgroundView())
 
         

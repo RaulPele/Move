@@ -9,14 +9,14 @@ import Foundation
 import Alamofire
 
 protocol AuthenticationService {
-    func login(email: String, password: String, onLoginCompleted: @escaping () -> Void)
-    func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void)
+    func login(email: String, password: String, completionHandler: @escaping (Result<User, Error>) -> Void)
+    func register(email: String, password: String, username: String, completionHandler: @escaping (Result<User, Error>) -> Void)
 }
 //TODO: networking layer
 class AuthenticationAPIService: AuthenticationService {
-    var url = URL(string: "https://move-scooters.herokuapp.com/users/login")!
+    var baseURL = URL(string: "https://move-scooters.herokuapp.com")!
     
-    func login(email: String, password: String, onLoginCompleted: @escaping () -> Void) {
+    func login(email: String, password: String, completionHandler: @escaping (Result<User, Error>) -> Void) {
         guard Validation.isValid(email: email) && Validation.isValid(password: password) else {
             return
         }
@@ -24,31 +24,27 @@ class AuthenticationAPIService: AuthenticationService {
         let parameters = ["mail": email, "password": password]
         let headers = ["Content-Type": "application/json"]
         
-        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(baseURL.appendingPathComponent("users/login"), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: LoginData.self) { response in
+            .responseDecodable(of: AuthenticationData.self) { response in
                 switch response.result {
-                    case .success(let loginData):
-                        print("success")
-                    
-                        self.saveUserData(userData: loginData)
-                        onLoginCompleted()
+                    case .success(let authenticationData):
+                        self.saveUserData(userData: authenticationData)
+                        completionHandler(.success(authenticationData.user))
                     case .failure(let error):
-                        print("Error: \(error.localizedDescription)")
                         if let data = response.data,
                            let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
-                            //completion(.failure(apiError))
+                            completionHandler(.failure(apiError))
                         } else {
-                           // completion(.failure(error))
+                            completionHandler(.failure(error))
                         }
 
                 }
-        //TODO: handle errors
             }
     }
     
-    func register(email: String, password: String, username: String, onRegisterCompleted: @escaping () -> Void) {
+    func register(email: String, password: String, username: String, completionHandler: @escaping (Result<User, Error>) -> Void) {
         guard Validation.isValid(email: email) &&
                 Validation.isValid(password: password) &&
                 Validation.isValid(username: username) else {
@@ -62,26 +58,28 @@ class AuthenticationAPIService: AuthenticationService {
             "password": password
         ]
         
-        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(baseURL.appendingPathComponent("users/register"), method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: LoginData.self) { response in
+            .responseDecodable(of: AuthenticationData.self) { response in
                 switch response.result {
-                case .success(let loginData):
+                case .success(let authenticationData):
                     print("succesfully registered")
-                    self.saveUserData(userData: loginData)
-                    onRegisterCompleted()
+                    self.saveUserData(userData: authenticationData)
+                    completionHandler(.success(authenticationData.user))
                     
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                    if let data = response.data {
-                        print("Data: \(String(data: data, encoding: .utf8))")
+                    if let data = response.data,
+                       let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+                        completionHandler(.failure(apiError))
+                    } else {
+                        completionHandler(.failure(error))
                     }
                 }
             }
     }
     
-    private func saveUserData(userData: LoginData) {
+    private func saveUserData(userData: AuthenticationData) {
         let encoder = JSONEncoder()
         let userData = try? encoder.encode(userData)
         if let userData = userData {

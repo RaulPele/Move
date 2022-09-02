@@ -15,8 +15,7 @@ struct LoadingBehaviour: ViewModifier {
         if showLoadingIndicator {
             return AnyView(content
                 .disabled(true)
-                .blur(radius: 1.5)
-                .overlay(ActivityIndicator(isVisible: $showLoadingIndicator, color: .white).frame(width: 100, height: 100)))
+                .overlay(ActivityIndicator(isVisible: $showLoadingIndicator, color: .white).frame(width: 30, height: 30)))
         } else {
             return AnyView(content)
         }

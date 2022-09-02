@@ -13,7 +13,7 @@ struct ActivityIndicator: View {
     var color: Color = .white
     
     var body: some View {
-        ActivityIndicatorView(isVisible: $isVisible, type: .rotatingDots(count: 5))
+        ActivityIndicatorView(isVisible: $isVisible, type: .arcs(count: 3, lineWidth: 1))
             .foregroundColor(color)
     }
 }

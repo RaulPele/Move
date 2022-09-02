@@ -19,8 +19,18 @@ extension LoginView {
             return !email.isEmpty && !password.isEmpty
         }
         
-        func login(onLoginCompleted: @escaping () -> Void) {
-            authenticationService.login(email: email, password: password, onLoginCompleted: onLoginCompleted)
+        func login(completionHandler: @escaping (Result<User, Error>) -> Void) {
+            authenticationService.login(email: email, password: password, completionHandler: completionHandler)
         }
+        
+//        func handle(result: Result<User, Error>, onLoginCompleted: () -> Void) {
+//            switch result {
+//            case .success(_):
+//                onLoginCompleted()
+//            case .failure(let error):
+//                errorHandler.handle(error: error, title: "Login failed")
+//                print("Login failed error. Failure case.")
+//            }
+//        }
     }
 }

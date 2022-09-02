@@ -9,5 +9,5 @@ import Foundation
 
 struct APIError: Error, Decodable {
     let message: String
-    var code: Int
+    var code: Int?
 }

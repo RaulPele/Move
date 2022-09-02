@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    var errorHandler: ErrorHandler = MyErrorHandler.shared
     @StateObject private var signUpViewModel = SignUpViewModel()
     let onLoginClicked: () -> Void
     let onRegisterCompleted: () -> Void
@@ -26,9 +27,15 @@ struct SignUpView: View {
                     Button() {
                         signUpViewModel.isLoading = true
                         
-                        signUpViewModel.register {
-                            onRegisterCompleted()
+                        signUpViewModel.register { result in
                             signUpViewModel.isLoading = false
+                            
+                            switch result {
+                            case .success(_):
+                                onRegisterCompleted()
+                            case .failure(let error):
+                                errorHandler.handle(error: error, title: "Register failed")
+                            }
                         }
                     } label: {
                         Text("Get started!")
@@ -36,7 +43,7 @@ struct SignUpView: View {
                     }
                     .buttonStyle(.filledButton)
                     .disabled(signUpViewModel.fieldsCompleted ? false : true)
-                    .animation(.default, value: signUpViewModel.fieldsCompleted)
+                    .hasLoadingBehaviour(showLoadingIndicator: $signUpViewModel.isLoading)
                     
                     loginFooterView
                 }
@@ -44,7 +51,6 @@ struct SignUpView: View {
                 .padding(.vertical)
             }
         }
-        .hasLoadingBehaviour(showLoadingIndicator: $signUpViewModel.isLoading)
         .background(PurpleBackgroundView())
     }
 }
