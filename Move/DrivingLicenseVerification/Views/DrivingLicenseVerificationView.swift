@@ -9,6 +9,9 @@ import SwiftUI
 
 struct DrivingLicenseVerificationView: View {
     @StateObject private var verificationViewModel = DrivingLicenseVerificationViewModel()
+    let onVerificationPending: () -> Void
+    let onVerificationFinished: () -> Void
+    let onBackButtonPressed: () -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -30,6 +33,7 @@ struct DrivingLicenseVerificationView: View {
                 
                 Button {
                     verificationViewModel.showActionSheet = true
+                   
                 } label: {
                     Text("Add driving license")
                         .frame(maxWidth: .infinity)
@@ -44,10 +48,11 @@ struct DrivingLicenseVerificationView: View {
                         verificationViewModel.showScanner = false
                         switch result {
                         case .success(let scannedImages):
-                            verificationViewModel.verifyLicense(image: scannedImages[0]) {
-                                result in
-                                print("aaa")
+                            verificationViewModel.verifyLicense(image: scannedImages[0]) { _ in
+                                onVerificationFinished()
                             }
+                            onVerificationPending()
+
                         case .failure(let error) :
                             print("Scanning error: \(error.localizedDescription)")
                         }
@@ -71,6 +76,7 @@ struct DrivingLicenseVerificationView: View {
                     ])
                 }
                 
+                
             }
             .padding(.bottom, 20)
             .padding(.top, 10)
@@ -82,7 +88,7 @@ private extension DrivingLicenseVerificationView {
     var titleBar: some View {
         return HStack(spacing: 0) {
             Button {
-                
+                onBackButtonPressed()
             } label: {
                 Image("chevron-left")
             }
@@ -120,7 +126,7 @@ private extension DrivingLicenseVerificationView {
 struct DrivingLicenseVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            DrivingLicenseVerificationView()
+            DrivingLicenseVerificationView(onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
                 .previewDevice(device)
         }
         .previewInterfaceOrientation(.portrait)

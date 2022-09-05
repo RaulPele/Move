@@ -40,9 +40,8 @@ class DrivingLicenseAPIService: DrivingLicenseService {
                     completionHandler(.failure(error))
                 }
             }
-            
         }
     }
-
+    
 }
 

@@ -13,6 +13,7 @@ struct DrivingLicensePendingVerificationView: View {
     var body: some View {
         ZStack {
             PurpleBackgroundView()
+            
             VStack(spacing: 34) {
                 Text("We are currently verifying your driving license")
                     .foregroundColor(.neutralWhite)

@@ -12,6 +12,7 @@ enum MainCoordinatorState {
     case onboarding
     case authentication
     case drivingLicenseVerification
+    case map
 }
 
 struct MainCoordinatorView: View {
@@ -62,7 +63,20 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationView()
+                    DrivingLicenseVerificationCoordinatorView {
+                        state = .authentication
+                    } onVerificationFinished: {
+                        state = .map
+                    }
+                    .navigationBarHidden(true)
+
+                } label: {
+                    EmptyView()
+                }
+                
+                NavigationLink(tag: .map, selection: $state) {
+                    MapView()
+                        .navigationBarHidden(true)
                 } label: {
                     EmptyView()
                 }

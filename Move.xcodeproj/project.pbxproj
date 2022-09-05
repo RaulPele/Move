@@ -56,6 +56,8 @@
 		DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC3028C5E1250061F800 /* DrivingLicenseService.swift */; };
 		DE46BC3328C604BA0061F800 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC3228C604BA0061F800 /* UserDTO.swift */; };
 		DE46BC3628C608AC0061F800 /* VerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC3528C608AC0061F800 /* VerificationResponse.swift */; };
+		DE46BC3A28C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE46BC3928C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift */; };
+		DE4AABA028C61430004AC99F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AAB9F28C61430004AC99F /* MapView.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
 		DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */; };
 		DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */; };
@@ -121,6 +123,8 @@
 		DE46BC3028C5E1250061F800 /* DrivingLicenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseService.swift; sourceTree = "<group>"; };
 		DE46BC3228C604BA0061F800 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		DE46BC3528C608AC0061F800 /* VerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResponse.swift; sourceTree = "<group>"; };
+		DE46BC3928C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseVerificationCoordinatorView.swift; sourceTree = "<group>"; };
+		DE4AAB9F28C61430004AC99F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE46BC3B28C613D50061F800 /* Map */,
 				DE46BC2D28C5E0EC0061F800 /* Services */,
 				DE28ECD828C1FAE1007AA04C /* Networking */,
 				DE28ECD228C1F227007AA04C /* ErrorHandling */,
@@ -299,6 +304,33 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
+		DE46BC3728C60AEF0061F800 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */,
+				DE46BC2828C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DE46BC3828C60B1C0061F800 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE46BC2A28C2355F0061F800 /* ValidLicenseView.swift */,
+				DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */,
+				DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DE46BC3B28C613D50061F800 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DE4AAB9F28C61430004AC99F /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		DE882D5D28AE6A6500C8DA17 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,11 +394,9 @@
 		DE9E3F5028BF90DF00B98FEE /* DrivingLicenseVerification */ = {
 			isa = PBXGroup;
 			children = (
-				DE9E3F3A28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift */,
-				DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */,
-				DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */,
-				DE46BC2828C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift */,
-				DE46BC2A28C2355F0061F800 /* ValidLicenseView.swift */,
+				DE46BC3828C60B1C0061F800 /* Views */,
+				DE46BC3728C60AEF0061F800 /* ViewModels */,
+				DE46BC3928C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift */,
 			);
 			path = DrivingLicenseVerification;
 			sourceTree = "<group>";
@@ -511,7 +541,9 @@
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
 				DE8388C628A5143400A0908D /* FontExtension.swift in Sources */,
 				DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */,
+				DE4AABA028C61430004AC99F /* MapView.swift in Sources */,
 				DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */,
+				DE46BC3A28C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,

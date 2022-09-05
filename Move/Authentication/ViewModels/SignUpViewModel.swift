@@ -20,8 +20,17 @@ extension SignUpView {
             return !email.isEmpty && !username.isEmpty && !password.isEmpty
         }
         
-        func register(completionHandler: @escaping (Result<User, Error>) -> Void) {
-            authenticationService.register(email: email, password: password, username: username, completionHandler: completionHandler)
+        func register(onRegisterCompleted: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+            authenticationService.register(email: email, password: password, username: username) { result in
+                self.isLoading = false
+                
+                switch result {
+                case .success(_):
+                    onRegisterCompleted()
+                case .failure(let error):
+                    onError(error)
+                }
+            }
         }
     }
 }

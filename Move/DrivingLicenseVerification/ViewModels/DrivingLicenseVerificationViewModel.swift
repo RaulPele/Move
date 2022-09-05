@@ -14,6 +14,7 @@ extension DrivingLicenseVerificationView {
         @Published var showImagePicker = false
         @Published var showActionSheet = false
         @Published var showScanner = false
+        
         let drivingLicenseService: DrivingLicenseService = DrivingLicenseAPIService(url: "https://move-scooters.herokuapp.com/users/login")
         
         func verifyLicense(image: UIImage, completionHandler: @escaping (Result<User, Error>) -> Void) {

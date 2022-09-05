@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     var errorHandler: ErrorHandler = MyErrorHandler.shared
+    
     @StateObject private var signUpViewModel = SignUpViewModel()
     let onLoginClicked: () -> Void
     let onRegisterCompleted: () -> Void
@@ -29,15 +30,10 @@ struct SignUpView: View {
                     Button() {
                         signUpViewModel.isLoading = true
                         
-                        signUpViewModel.register { result in
-                            signUpViewModel.isLoading = false
-                            
-                            switch result {
-                            case .success(_):
-                                onRegisterCompleted()
-                            case .failure(let error):
-                                errorHandler.handle(error: error, title: "Register failed")
-                            }
+                        signUpViewModel.register {
+                            onRegisterCompleted()
+                        } onError: { error in
+                            errorHandler.handle(error: error, title: "Register failed")
                         }
                     } label: {
                         Text("Get started!")

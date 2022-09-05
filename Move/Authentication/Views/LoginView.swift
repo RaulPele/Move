@@ -9,12 +9,12 @@ import SwiftUI
 
 struct LoginView: View {
     var errorHandler: ErrorHandler = MyErrorHandler.shared
+
     let onSignUpClicked: () -> Void
     let onLoginCompleted: () -> Void
     
     @StateObject private var loginViewModel = LoginViewModel()
 
-    
     var body: some View {
         ZStack(alignment: .topLeading) {
             PurpleBackgroundView()
@@ -39,15 +39,10 @@ struct LoginView: View {
                     Button {
                         loginViewModel.isLoading = true
                         
-                        loginViewModel.login { result in
-                            loginViewModel.isLoading = false
-                            switch result {
-                            case .success(_):
-                                onLoginCompleted()
-                            case .failure(let error):
-                                errorHandler.handle(error: error, title: "Login failed")
-                            }
-                        
+                        loginViewModel.login {
+                            onLoginCompleted()
+                        } onError: { error in
+                            errorHandler.handle(error: error, title: "Login failed")
                         }
                         
                     } label: {
