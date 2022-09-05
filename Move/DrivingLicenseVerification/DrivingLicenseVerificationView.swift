@@ -44,7 +44,10 @@ struct DrivingLicenseVerificationView: View {
                         verificationViewModel.showScanner = false
                         switch result {
                         case .success(let scannedImages):
-                            verificationViewModel.verifyLicense(image: scannedImages[0])
+                            verificationViewModel.verifyLicense(image: scannedImages[0]) {
+                                result in
+                                print("aaa")
+                            }
                         case .failure(let error) :
                             print("Scanning error: \(error.localizedDescription)")
                         }

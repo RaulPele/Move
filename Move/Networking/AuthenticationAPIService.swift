@@ -8,11 +8,6 @@
 import Foundation
 import Alamofire
 
-protocol AuthenticationService {
-    func login(email: String, password: String, completionHandler: @escaping (Result<User, Error>) -> Void)
-    func register(email: String, password: String, username: String, completionHandler: @escaping (Result<User, Error>) -> Void)
-}
-
 class AuthenticationAPIService: AuthenticationService {
     var baseURL = URL(string: "https://move-scooters.herokuapp.com")!
     
@@ -27,11 +22,11 @@ class AuthenticationAPIService: AuthenticationService {
         let request = AF.request(baseURL.appendingPathComponent("users/login"), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: AuthenticationData.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     case .success(let authenticationData):
                         self.saveUserData(userData: authenticationData)
-                        completionHandler(.success(authenticationData.user))
+                    completionHandler(.success(authenticationData.userDTO.toUser()))
                     case .failure(let error):
                         if let data = response.data,
                            let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
@@ -61,12 +56,12 @@ class AuthenticationAPIService: AuthenticationService {
         let request = AF.request(baseURL.appendingPathComponent("users/register"), method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: AuthenticationData.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                 case .success(let authenticationData):
                     print("succesfully registered")
                     self.saveUserData(userData: authenticationData)
-                    completionHandler(.success(authenticationData.user))
+                    completionHandler(.success(authenticationData.userDTO.toUser()))
                     
                 case .failure(let error):
                     if let data = response.data,
@@ -79,7 +74,8 @@ class AuthenticationAPIService: AuthenticationService {
             }
     }
     
-    private func saveUserData(userData: AuthenticationData) {
+    private func saveUserData(userData: AuthenticationResponse) {
+        print("Token: \(userData.token)")
         let encoder = JSONEncoder()
         let userData = try? encoder.encode(userData)
         if let userData = userData {

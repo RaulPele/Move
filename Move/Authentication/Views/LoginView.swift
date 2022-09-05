@@ -17,6 +17,8 @@ struct LoginView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
+            PurpleBackgroundView()
+            
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
                     AuthenticationHeaderView(logoPath: "SmallLogoWhite",
@@ -49,7 +51,7 @@ struct LoginView: View {
                         }
                         
                     } label: {
-                        Text("Loading")
+                        Text("Login")
                             .frame(maxWidth: .infinity)
                             .opacity(loginViewModel.isLoading ? 0 : 1)
                     }
@@ -64,9 +66,6 @@ struct LoginView: View {
                 .padding(.vertical)
             }
         }
-        .background(PurpleBackgroundView())
-
-        
     }
 }
 

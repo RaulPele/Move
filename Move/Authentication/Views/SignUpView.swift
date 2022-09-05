@@ -15,6 +15,8 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
+            PurpleBackgroundView()
+            
             ScrollView {
                 VStack(alignment: .leading, spacing: 32) {
                     AuthenticationHeaderView(logoPath: "SmallLogoWhite",
@@ -51,7 +53,6 @@ struct SignUpView: View {
                 .padding(.vertical)
             }
         }
-        .background(PurpleBackgroundView())
     }
 }
 
