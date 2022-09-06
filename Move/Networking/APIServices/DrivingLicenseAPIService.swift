@@ -21,7 +21,6 @@ class DrivingLicenseAPIService: DrivingLicenseService {
         guard let imageData = image.jpegData(compressionQuality: 0.85)else {
             return
         }
-        print("JPEG Image: \(imageData)")
         
         AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(Data(sessionToken.utf8), withName: "token")

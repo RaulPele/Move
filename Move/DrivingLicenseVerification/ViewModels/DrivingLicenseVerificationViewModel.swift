@@ -17,7 +17,7 @@ extension DrivingLicenseVerificationView {
         
         let drivingLicenseService: DrivingLicenseService = DrivingLicenseAPIService(url: "https://move-scooters.herokuapp.com/users/login")
         
-        func verifyLicense(completionHandler: @escaping (Result<User, Error>) -> Void) {
+        func verifyLicense(onVerificationFinished: @escaping () -> Void, onError: @escaping (Error) -> Void) {
             //TODO: Session service
             guard let image = image else {
                 return
@@ -26,7 +26,14 @@ extension DrivingLicenseVerificationView {
             let userData = UserDefaults.standard.data(forKey: "userData")!
             let authenticationData = try! JSONDecoder().decode(AuthenticationResponse.self, from: userData)
             print("token: \(authenticationData.token)")
-            drivingLicenseService.verifyLicense(image: image, sessionToken: authenticationData.token, completionHandler: completionHandler)
+            drivingLicenseService.verifyLicense(image: image, sessionToken: authenticationData.token) { result in
+            switch result {
+                case .success(_):
+                    onVerificationFinished()
+                case .failure(let error):
+                    onError(error)
+                }
+            }
         }
     }
 }

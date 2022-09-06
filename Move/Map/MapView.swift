@@ -6,15 +6,26 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
-    var body: some View {
-        Text("Map")
-    }
+    @StateObject private var mapViewModel = MapViewModel()
+    
+    @State private var mapRegion = MKCoordinateRegion(center: Coordinates.ClujNapoca, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+
+        var body: some View {
+            Map(coordinateRegion: $mapRegion, annotationItems: mapViewModel.scooterLocations) { scooter in
+                MapMarker(coordinate: scooter.location)
+            }
+                .ignoresSafeArea()
+        }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        ForEach(devices) { device in
+            MapView()
+                .previewDevice(device)
+        }
     }
 }

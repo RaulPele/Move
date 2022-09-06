@@ -11,7 +11,8 @@ struct ContentView: View {
     let errorHandler: ErrorHandler = SwiftMessagesErrorHandler()
     
     var body: some View {
-        MainCoordinatorView(errorHandler: errorHandler)
+//        MainCoordinatorView(errorHandler: errorHandler)
+        MapView()
     }
 }
 

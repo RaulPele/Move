@@ -112,10 +112,12 @@ private extension DrivingLicenseVerificationView {
             ])
         }
         .onChange(of: verificationViewModel.image) { _ in
-            verificationViewModel.verifyLicense() { _ in
+            verificationViewModel.verifyLicense {
                 onVerificationFinished()
+            } onError: { error in
+                errorHandler.handle(error: error, title: "License verification failed")
             }
-            onVerificationPending()
+
         }
         .padding(.bottom, 20)
         .padding(.top, 10)

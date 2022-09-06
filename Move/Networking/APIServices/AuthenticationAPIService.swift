@@ -34,7 +34,6 @@ class AuthenticationAPIService: AuthenticationService {
                         } else {
                             completionHandler(.failure(error))
                         }
-
                 }
             }
     }
@@ -75,7 +74,6 @@ class AuthenticationAPIService: AuthenticationService {
     }
     
     private func saveUserData(userData: AuthenticationResponse) {
-        print("Token: \(userData.token)")
         let encoder = JSONEncoder()
         let userData = try? encoder.encode(userData)
         if let userData = userData {
