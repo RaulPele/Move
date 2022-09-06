@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct DrivingLicenseVerificationView: View {
+    var errorHandler: ErrorHandler
+    
     @StateObject private var verificationViewModel = DrivingLicenseVerificationViewModel()
+    
     let onVerificationPending: () -> Void
     let onVerificationFinished: () -> Void
     let onBackButtonPressed: () -> Void
@@ -28,58 +31,10 @@ struct DrivingLicenseVerificationView: View {
                     .layoutPriority(2)
                 
                 descriptionView
-                
                 Spacer()
-                
-                Button {
-                    verificationViewModel.showActionSheet = true
-                   
-                } label: {
-                    Text("Add driving license")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.filledButton)
-                .padding(.horizontal, 24)
-                .sheet(isPresented: $verificationViewModel.showImagePicker) {
-                    ImagePickerView(sourceType: .photoLibrary, image: $verificationViewModel.image, isPresented: $verificationViewModel.showImagePicker)
-                }
-                .sheet(isPresented: $verificationViewModel.showScanner) {
-                    ScannerView { result in
-                        verificationViewModel.showScanner = false
-                        switch result {
-                        case .success(let scannedImages):
-                            verificationViewModel.verifyLicense(image: scannedImages[0]) { _ in
-                                onVerificationFinished()
-                            }
-                            onVerificationPending()
-
-                        case .failure(let error) :
-                            print("Scanning error: \(error.localizedDescription)")
-                        }
-                    } didCancelScanning: {
-                        verificationViewModel.showScanner = false
-                    }
-                    
-                }
-                .actionSheet(isPresented: $verificationViewModel.showActionSheet) { () -> ActionSheet in
-                    ActionSheet(title: Text("Choose uploading mode"), message:  Text("Please choose a way to upload a license picture"), buttons: [
-                        ActionSheet.Button.default(
-                            Text("Camera").foregroundColor(.primaryDark), action: {
-                                self.verificationViewModel.showScanner = true
-                            }),
-                        ActionSheet.Button.default(Text("Gallery"), action: {
-                            self.verificationViewModel.showImagePicker = true
-                        }),
-                        ActionSheet.Button.default(Text("Cancel"), action: {
-                            self.verificationViewModel.showActionSheet = false
-                        })
-                    ])
-                }
-                
-                
+                addLicenseButton
+        
             }
-            .padding(.bottom, 20)
-            .padding(.top, 10)
         }
     }
 }
@@ -121,12 +76,56 @@ private extension DrivingLicenseVerificationView {
         }
         .padding(.horizontal, 24)
     }
+    
+    var addLicenseButton: some View {
+        return Button {
+            verificationViewModel.showActionSheet = true
+            
+        } label: {
+            Text("Add driving license")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.filledButton)
+        .padding(.horizontal, 24)
+        .sheet(isPresented: $verificationViewModel.showImagePicker) {
+            ImagePickerView(sourceType: .photoLibrary, image: $verificationViewModel.image, isPresented: $verificationViewModel.showImagePicker)
+        }
+        .sheet(isPresented: $verificationViewModel.showScanner) {
+            ScannerView(image: $verificationViewModel.image) {
+                verificationViewModel.showScanner = false
+            } onScanError: { error in
+                print("Error")
+            }
+        }
+        .actionSheet(isPresented: $verificationViewModel.showActionSheet) { () -> ActionSheet in
+            ActionSheet(title: Text("Choose uploading mode"), message:  Text("Please choose a way to upload a license picture"), buttons: [
+                ActionSheet.Button.default(
+                    Text("Camera").foregroundColor(.primaryDark), action: {
+                        self.verificationViewModel.showScanner = true
+                    }),
+                ActionSheet.Button.default(Text("Gallery"), action: {
+                    self.verificationViewModel.showImagePicker = true
+                }),
+                ActionSheet.Button.default(Text("Cancel"), action: {
+                    self.verificationViewModel.showActionSheet = false
+                })
+            ])
+        }
+        .onChange(of: verificationViewModel.image) { _ in
+            verificationViewModel.verifyLicense() { _ in
+                onVerificationFinished()
+            }
+            onVerificationPending()
+        }
+        .padding(.bottom, 20)
+        .padding(.top, 10)
+    }
 }
 
 struct DrivingLicenseVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            DrivingLicenseVerificationView(onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
+            DrivingLicenseVerificationView(errorHandler: SwiftMessagesErrorHandler(), onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
                 .previewDevice(device)
         }
         .previewInterfaceOrientation(.portrait)

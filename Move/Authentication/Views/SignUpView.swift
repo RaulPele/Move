@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    var errorHandler: ErrorHandler = MyErrorHandler.shared
+    var errorHandler: ErrorHandler
     
     @StateObject private var signUpViewModel = SignUpViewModel()
     let onLoginClicked: () -> Void
@@ -109,9 +109,7 @@ private extension SignUpView {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SignUpView {} onRegisterCompleted: {
-                
-            }
+            SignUpView(errorHandler: SwiftMessagesErrorHandler(), onLoginClicked: {}, onRegisterCompleted: {})
             .previewDevice(device)
             .previewDisplayName(device.id)
         }

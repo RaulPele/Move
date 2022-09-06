@@ -16,14 +16,12 @@ enum MainCoordinatorState {
 }
 
 struct MainCoordinatorView: View {
-    let errorHandler: MyErrorHandler
+    let errorHandler: ErrorHandler
     
     @State private var state: MainCoordinatorState? = MainCoordinatorState.start
-    @StateObject private var errorToastViewModel: ErrorToastViewModel
     
-    init(errorHandler: MyErrorHandler) {
+    init(errorHandler: ErrorHandler) {
         self.errorHandler = errorHandler
-        self._errorToastViewModel = StateObject(wrappedValue: errorHandler.viewModel)
     }
     
     var body: some View {
@@ -50,20 +48,19 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .authentication, selection: $state) {
-                    AuthenticationCoordinatorView {
+                    AuthenticationCoordinatorView(errorHandler: errorHandler) {
                         state = .drivingLicenseVerification
                     } onRegisterCompleted: {
                         state = .drivingLicenseVerification
                     }
                     .navigationBarHidden(true)
-                    .overlay(errorView)
 
                 } label: {
                     EmptyView()
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationCoordinatorView {
+                    DrivingLicenseVerificationCoordinatorView(errorHandler: errorHandler) {
                         state = .authentication
                     } onVerificationFinished: {
                         state = .map
@@ -83,20 +80,10 @@ struct MainCoordinatorView: View {
             }
         }
     }
-    
-    @ViewBuilder
-    var errorView: some View {
-        if let error = errorToastViewModel.error {
-            Text(error.title)
-                .foregroundColor(.white)
-                .background(.red)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        }
-    }
 }
 
 struct MainCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCoordinatorView(errorHandler: .shared)
+        MainCoordinatorView(errorHandler: SwiftMessagesErrorHandler())
     }
 }

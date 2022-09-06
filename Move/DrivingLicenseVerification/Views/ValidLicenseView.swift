@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ValidLicenseView: View {
+    let onOpenMap: () -> Void
+    
     var body: some View {
         ZStack {
             PurpleBackgroundView()
@@ -25,7 +27,7 @@ struct ValidLicenseView: View {
                 Spacer()
                 
                 Button {
-                    
+                    onOpenMap()
                 } label: {
                     Text("Find scooters")
                         .font(.button1())
@@ -41,7 +43,7 @@ struct ValidLicenseView: View {
 struct ValidLicenseView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ValidLicenseView()
+            ValidLicenseView(onOpenMap: {})
                 .previewDevice(device)
         }
     }

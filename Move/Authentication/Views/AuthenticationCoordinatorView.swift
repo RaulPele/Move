@@ -13,10 +13,11 @@ enum AuthenticationCoordinatorState {
 }
 
 struct AuthenticationCoordinatorView: View {
+    var errorHandler: ErrorHandler
+    
     @State private var state: AuthenticationCoordinatorState? = .signUp
     let onLoginCompleted: () -> Void
     let onRegisterCompleted: () -> Void
-    let errorHandler = SwiftMessagesErrorHandler()
 
     var body: some View {
         NavigationView {
@@ -56,7 +57,7 @@ struct AuthenticationCoordinatorView: View {
 struct AuthenticationCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            AuthenticationCoordinatorView(onLoginCompleted: {}, onRegisterCompleted: {})
+            AuthenticationCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), onLoginCompleted: {}, onRegisterCompleted: {})
                 .previewDevice(device)
             
         }

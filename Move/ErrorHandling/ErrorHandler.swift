@@ -30,7 +30,6 @@ extension ErrorHandler {
 
 class SwiftMessagesErrorHandler: ErrorHandler {
     func handle(error: ErrorData) {
-
         let view = MessageView.viewFromNib(layout: .cardView)
 
         view.configureTheme(.error)
@@ -40,34 +39,4 @@ class SwiftMessagesErrorHandler: ErrorHandler {
         
         SwiftMessages.show(view: view)
     }
-    
-    
-}
-
-class ErrorToastViewModel: ObservableObject {
-    @Published var error: ErrorData?
-    
-    func showError(error: ErrorData) {
-        self.error = error
-    }
-    
-    func hideError() {
-        error = nil
-    }
-}
-
-class MyErrorHandler: ErrorHandler {
-    static var shared = MyErrorHandler()
-
-    var viewModel = ErrorToastViewModel()
-    
-    func handle(error: ErrorData) {
-        viewModel.showError(error: error)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.viewModel.hideError()
-        }
-    }
-    
-    
 }

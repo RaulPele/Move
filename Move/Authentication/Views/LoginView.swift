@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    var errorHandler: ErrorHandler = MyErrorHandler.shared
+    var errorHandler: ErrorHandler
 
     let onSignUpClicked: () -> Void
     let onLoginCompleted: () -> Void
@@ -98,7 +98,7 @@ private extension LoginView {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) {device in
-            LoginView(onSignUpClicked: {
+            LoginView(errorHandler: SwiftMessagesErrorHandler(), onSignUpClicked: {
                 
             }, onLoginCompleted: {
                 

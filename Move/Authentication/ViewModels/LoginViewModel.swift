@@ -9,21 +9,11 @@ import Foundation
 
 extension LoginView {
     class LoginViewModel: ObservableObject {
-        var errorHandler: ErrorHandler = MyErrorHandler.shared
-
         @Published var email: String = ""
         @Published var password: String = ""
         @Published var isLoading = false
         
         private let authenticationService: AuthenticationService = AuthenticationAPIService()
-
-        init() {
-            
-        }
-        
-        init(errorHandler: ErrorHandler) {
-            self.errorHandler = errorHandler
-        }
         
         var fieldsCompleted: Bool {
             return !email.isEmpty && !password.isEmpty

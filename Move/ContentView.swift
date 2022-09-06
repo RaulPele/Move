@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let errorHandler: ErrorHandler = SwiftMessagesErrorHandler()
+    
     var body: some View {
-        MainCoordinatorView(errorHandler: .shared)
+        MainCoordinatorView(errorHandler: errorHandler)
     }
 }
 

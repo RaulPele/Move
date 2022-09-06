@@ -9,8 +9,11 @@ import SwiftUI
 import VisionKit
 
 struct ScannerView: UIViewControllerRepresentable {
-    let didFinishScanning: (_ result: Result<[UIImage], Error>) -> Void
+    @Binding var image: UIImage?
+    
+//    let didFinishScanning: (_ result: Result<[UIImage], Error>) -> Void
     let didCancelScanning: () -> Void
+    let onScanError: (Error) -> Void
     
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
         let scannerViewController = VNDocumentCameraViewController()
@@ -38,7 +41,8 @@ struct ScannerView: UIViewControllerRepresentable {
         }
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
-            scannerView.didFinishScanning(.failure(error))
+//            scannerView.didFinishScanning(.failure(error))
+            scannerView.onScanError(error)
         }
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
@@ -47,8 +51,14 @@ struct ScannerView: UIViewControllerRepresentable {
             for i in 0..<scan.pageCount {
                 scannedPages.append(scan.imageOfPage(at: i))
             }
-            
-            scannerView.didFinishScanning(.success(scannedPages))
+            scannerView.image = scannedPages[0]
+//            scannerView.didFinishScanning(.success(scannedPages))
         }
     }
 }
+
+//extension ScannerView {
+//    class ScannerViewModel: ObservableObject {
+//        @Published var scannedPages = [UIImage]()
+//    }
+//}
