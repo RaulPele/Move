@@ -117,7 +117,7 @@ private extension DrivingLicenseVerificationView {
             } onError: { error in
                 errorHandler.handle(error: error, title: "License verification failed")
             }
-
+            onVerificationPending()
         }
         .padding(.bottom, 20)
         .padding(.top, 10)

@@ -10,6 +10,11 @@ import Alamofire
 
 class AuthenticationAPIService: AuthenticationService {
     var baseURL = URL(string: "https://move-scooters.herokuapp.com")!
+    let sessionManager: SessionManager
+    
+    init(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
+    }
     
     func login(email: String, password: String, completionHandler: @escaping (Result<User, Error>) -> Void) {
         guard Validation.isValid(email: email) && Validation.isValid(password: password) else {

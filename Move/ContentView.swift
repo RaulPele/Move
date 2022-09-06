@@ -7,12 +7,26 @@
 
 import SwiftUI
 
+struct AppDependencies {
+    let errorHandler: ErrorHandler
+    let sessionManager: SessionManager
+    let authenticationService: AuthenticationService
+    let scooterService: ScooterService
+    
+    init() {
+        self.errorHandler = SwiftMessagesErrorHandler()
+        self.sessionManager = SessionManager()
+        self.authenticationService = AuthenticationAPIService(sessionManager: sessionManager)
+        self.scooterService = ScooterMockedService()
+    }
+}
+
 struct ContentView: View {
-    let errorHandler: ErrorHandler = SwiftMessagesErrorHandler()
+    let appDependencies = AppDependencies()
     
     var body: some View {
-//        MainCoordinatorView(errorHandler: errorHandler)
-        MapView()
+        MainCoordinatorView(appDependencies: appDependencies)
+//        MapView()
     }
 }
 

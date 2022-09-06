@@ -13,7 +13,11 @@ extension LoginView {
         @Published var password: String = ""
         @Published var isLoading = false
         
-        private let authenticationService: AuthenticationService = AuthenticationAPIService()
+        private let authenticationService: AuthenticationService
+        
+        init(authenticationService: AuthenticationService) {
+            self.authenticationService = authenticationService
+        }
         
         var fieldsCompleted: Bool {
             return !email.isEmpty && !password.isEmpty

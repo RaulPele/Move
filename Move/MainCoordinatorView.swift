@@ -16,12 +16,12 @@ enum MainCoordinatorState {
 }
 
 struct MainCoordinatorView: View {
-    let errorHandler: ErrorHandler
+    let appDependencies: AppDependencies
     
     @State private var state: MainCoordinatorState? = MainCoordinatorState.start
     
-    init(errorHandler: ErrorHandler) {
-        self.errorHandler = errorHandler
+    init(appDependencies: AppDependencies) {
+        self.appDependencies = appDependencies
     }
     
     var body: some View {
@@ -48,7 +48,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .authentication, selection: $state) {
-                    AuthenticationCoordinatorView(errorHandler: errorHandler) {
+                    AuthenticationCoordinatorView(errorHandler: appDependencies.errorHandler, authenticationService: appDependencies.authenticationService) {
                         state = .drivingLicenseVerification
                     } onRegisterCompleted: {
                         state = .drivingLicenseVerification
@@ -60,7 +60,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationCoordinatorView(errorHandler: errorHandler) {
+                    DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler) {
                         state = .authentication
                     } onVerificationFinished: {
                         state = .map
@@ -84,6 +84,6 @@ struct MainCoordinatorView: View {
 
 struct MainCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCoordinatorView(errorHandler: SwiftMessagesErrorHandler())
+        MainCoordinatorView(appDependencies: .init())
     }
 }

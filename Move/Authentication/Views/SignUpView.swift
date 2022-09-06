@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct SignUpView: View {
-    var errorHandler: ErrorHandler
+    let errorHandler: ErrorHandler
+    let authenticationService: AuthenticationService
     
-    @StateObject private var signUpViewModel = SignUpViewModel()
+    @StateObject private var signUpViewModel: SignUpViewModel
     let onLoginClicked: () -> Void
     let onRegisterCompleted: () -> Void
+    
+    init(errorHandler: ErrorHandler,
+         authenticationService: AuthenticationService,
+         onLoginClicked: @escaping () -> Void,
+         onRegisterCompleted: @escaping () -> Void) {
+        self.errorHandler = errorHandler
+        self.authenticationService = authenticationService
+        self.onLoginClicked = onLoginClicked
+        self.onRegisterCompleted = onRegisterCompleted
+        
+        self._signUpViewModel = StateObject(wrappedValue: SignUpViewModel(authenticationService: authenticationService))
+    }
+    
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -109,7 +123,7 @@ private extension SignUpView {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SignUpView(errorHandler: SwiftMessagesErrorHandler(), onLoginClicked: {}, onRegisterCompleted: {})
+            SignUpView(errorHandler: SwiftMessagesErrorHandler(), authenticationService: AuthenticationAPIService(sessionManager: .init()), onLoginClicked: {}, onRegisterCompleted: {})
             .previewDevice(device)
             .previewDisplayName(device.id)
         }

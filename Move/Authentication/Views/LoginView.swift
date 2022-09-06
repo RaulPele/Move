@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct LoginView: View {
-    var errorHandler: ErrorHandler
+    let errorHandler: ErrorHandler
+    let authenticationService: AuthenticationService
 
     let onSignUpClicked: () -> Void
     let onLoginCompleted: () -> Void
     
-    @StateObject private var loginViewModel = LoginViewModel()
+    @StateObject private var loginViewModel: LoginViewModel
+    
+    init(errorHandler: ErrorHandler,
+         authenticationService: AuthenticationService,
+         onSignUpClicked: @escaping () -> Void,
+         onLoginCompleted: @escaping () -> Void) {
+        self.errorHandler = errorHandler
+        self.authenticationService = authenticationService
+        
+        self.onLoginCompleted = onLoginCompleted
+        self.onSignUpClicked = onSignUpClicked
+        
+        self._loginViewModel = StateObject(wrappedValue: LoginViewModel(authenticationService: authenticationService))
+    }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -98,11 +112,7 @@ private extension LoginView {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) {device in
-            LoginView(errorHandler: SwiftMessagesErrorHandler(), onSignUpClicked: {
-                
-            }, onLoginCompleted: {
-                
-            })
+            LoginView(errorHandler: SwiftMessagesErrorHandler(), authenticationService: AuthenticationAPIService(sessionManager: .init()), onSignUpClicked: {}, onLoginCompleted: {})
             .previewDevice(device)
         }
     }
