@@ -25,8 +25,8 @@ struct ContentView: View {
     let appDependencies = AppDependencies()
     
     var body: some View {
-        MainCoordinatorView(appDependencies: appDependencies)
-//        MapView()
+//        MainCoordinatorView(appDependencies: appDependencies)
+        MapScreenView(scooterService: ScooterMockedService())
     }
 }
 

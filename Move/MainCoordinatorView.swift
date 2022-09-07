@@ -72,8 +72,8 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .map, selection: $state) {
-                    MapView()
-                        .navigationBarHidden(true)
+//                    MapView()
+//                        .navigationBarHidden(true)
                 } label: {
                     EmptyView()
                 }

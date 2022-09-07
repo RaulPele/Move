@@ -11,7 +11,6 @@ import VisionKit
 struct ScannerView: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     
-//    let didFinishScanning: (_ result: Result<[UIImage], Error>) -> Void
     let didCancelScanning: () -> Void
     let onScanError: (Error) -> Void
     
@@ -41,7 +40,6 @@ struct ScannerView: UIViewControllerRepresentable {
         }
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
-//            scannerView.didFinishScanning(.failure(error))
             scannerView.onScanError(error)
         }
         
@@ -52,13 +50,6 @@ struct ScannerView: UIViewControllerRepresentable {
                 scannedPages.append(scan.imageOfPage(at: i))
             }
             scannerView.image = scannedPages[0]
-//            scannerView.didFinishScanning(.success(scannedPages))
         }
     }
 }
-
-//extension ScannerView {
-//    class ScannerViewModel: ObservableObject {
-//        @Published var scannedPages = [UIImage]()
-//    }
-//}

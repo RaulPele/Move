@@ -24,7 +24,7 @@ struct AuthenticationCoordinatorView: View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .signUp, selection: $state) {
-                    SignUpView(errorHandler: errorHandler, authenticationService: authenticationService ,onLoginClicked: {
+                    SignUpView(errorHandler: errorHandler, authenticationService: authenticationService, onLoginClicked: {
                             state = .login
                     }, onRegisterCompleted: {
                         onRegisterCompleted()
