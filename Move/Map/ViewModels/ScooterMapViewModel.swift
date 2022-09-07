@@ -38,15 +38,15 @@ class ScooterMapViewModel: NSObject, ObservableObject {
 
 extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customView")
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "scooterAnnotation")
+      
         annotationView.canShowCallout = true
-        annotationView.image = UIImage(named: "SmallLogoWhite")
+        annotationView.image = UIImage(named: "unselected-pin-fill")
         
         return annotationView
     }
     
-    @objc func lalala() {
-            print("Killmeplz")
-    }
+    
+    
 }
 
