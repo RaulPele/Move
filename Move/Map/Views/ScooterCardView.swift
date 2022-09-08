@@ -10,34 +10,9 @@ import SwiftUI
 struct ScooterCardView: View {
     
     var body: some View {
-        ZStack(alignment: .top) {
-            
-            VStack(spacing: 0) {
-                HStack(alignment: .top, spacing: 0) {
-                    scooterImageView
-                    
-                    VStack(spacing: 21) {
-                        scooterDetailsView
-                        buttonsView
-                    }
-                    .padding([.top, .trailing], 24)
-                }
-                
-                VStack(spacing: 24) {
-                    locationView
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Unlock")
-                            .frame(maxWidth: .infinity)
-                            
-                    }
-                    .buttonStyle(.filledButton)
-                }
-                .padding(24)
-            }
+        VStack(spacing: 0) {
+            topSectionView
+            bottomSectionView
         }
         .frame(maxWidth: UIScreen.main.bounds.width * 0.7, maxHeight: UIScreen.main.bounds.height * 0.4, alignment: .top)
         .background(RoundedRectangle(cornerRadius: 30, style: .continuous)
@@ -108,6 +83,35 @@ private extension ScooterCardView {
             }
             .buttonStyle(.roundedIconButton)
         }
+    }
+    
+    var topSectionView: some View {
+        return HStack(alignment: .top, spacing: 0) {
+            scooterImageView
+            
+            VStack(spacing: 21) {
+                scooterDetailsView
+                buttonsView
+            }
+            .padding([.top, .trailing], 24)
+        }
+    }
+    
+    var bottomSectionView: some View {
+        return VStack(spacing: 24) {
+            locationView
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Text("Unlock")
+                    .frame(maxWidth: .infinity)
+                
+            }
+            .buttonStyle(.filledButton)
+        }
+        .padding(24)
     }
 }
 
