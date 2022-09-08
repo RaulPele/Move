@@ -30,6 +30,7 @@ private extension ScooterCardView {
                 .frame(maxWidth: 152, maxHeight: 152)
                 .rotationEffect(.degrees(45))
                 .offset(y: -45)
+                .clipped()
             
             Image("CardViewScooterImage")
                 .resizable()

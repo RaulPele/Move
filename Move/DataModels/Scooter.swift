@@ -13,9 +13,13 @@ enum ScooterStatus {
     case unlocked
 }
 
-struct Scooter: Identifiable {
+struct Scooter: Identifiable, Equatable {
     let id: String
     var status: ScooterStatus
     var batteryPercentage: Int
     var location: CLLocationCoordinate2D
+    
+    static func == (lhs: Scooter, rhs: Scooter) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

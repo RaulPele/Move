@@ -11,6 +11,7 @@ import MapKit
 class ScooterMapViewModel: NSObject, ObservableObject {
     let scooterService: ScooterService
     var onScooterSelected: (Scooter) -> Void = { _ in }
+    var onScooterDeselected: () -> Void = { }
     
     var centerCoordinate = Coordinates.ClujNapoca
     var scooterAnnotations: [ScooterAnnotation] = [] {
@@ -54,6 +55,10 @@ extension ScooterMapViewModel: MKMapViewDelegate {
             return
         }
         onScooterSelected(scooterAnnotation.scooter)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        onScooterDeselected()
     }
     
     

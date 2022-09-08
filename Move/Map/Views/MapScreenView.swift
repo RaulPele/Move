@@ -20,13 +20,18 @@ struct MapScreenView: View {
     var body: some View {
         ZStack {
             ScooterMapView(mapViewModel: mapScreenViewModel.scooterMapViewModel)
-            Spacer()
-            selectedScooterView
+            
         }
         .ignoresSafeArea()
         .onAppear {
             mapScreenViewModel.loadScooters()
         }
+        .overlay(VStack {
+            selectedScooterView
+                .transition(.opacity.animation(.easeInOut))
+
+
+        }, alignment: .bottom)
     }
     
     @ViewBuilder

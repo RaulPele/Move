@@ -23,6 +23,10 @@ extension MapScreenView {
             scooterMapViewModel.onScooterSelected = { scooter in
                 self.selectedScooter = scooter
             }
+            
+            scooterMapViewModel.onScooterDeselected = {
+                self.selectedScooter = nil
+            }
         }
         
         func loadScooters() {
