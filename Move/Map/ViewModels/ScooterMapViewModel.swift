@@ -10,9 +10,10 @@ import MapKit
 
 class ScooterMapViewModel: NSObject, ObservableObject {
     let scooterService: ScooterService
+    var onScooterSelected: (Scooter) -> Void = { _ in }
     
     var centerCoordinate = Coordinates.ClujNapoca
-    var scooters: [ScooterAnnotation] = [] {
+    var scooterAnnotations: [ScooterAnnotation] = [] {
         didSet {
             refreshScooterList()
         }
@@ -32,7 +33,7 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     
     func refreshScooterList() {
          mapView.removeAnnotations(mapView.annotations)
-         mapView.addAnnotations(scooters)
+         mapView.addAnnotations(scooterAnnotations)
      }
 }
 
@@ -40,11 +41,22 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "scooterAnnotation")
       
-        annotationView.canShowCallout = true
+        annotationView.canShowCallout = false
         annotationView.image = UIImage(named: "unselected-pin-fill")
         
         return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let scooterAnnotation = view.annotation as? ScooterAnnotation
+        
+        guard let scooterAnnotation = scooterAnnotation else {
+            return
+        }
+        onScooterSelected(scooterAnnotation.scooter)
+    }
+    
+    
     
     
     

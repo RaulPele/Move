@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ScooterCardView: View {
+    let scooter: Scooter
     
     var body: some View {
         VStack(spacing: 0) {
@@ -42,14 +43,14 @@ private extension ScooterCardView {
                 .foregroundColor(.primaryDark.opacity(0.6))
                 .font(.body2())
             
-            Text("#AB23")
+            Text(scooter.id)
                 .foregroundColor(.primaryDark)
                 .font(.baiJamjureeBold(size: 20))
             
             HStack(spacing: 7) {
                 Image("battery-full")
                 
-                Text("100%")
+                Text("\(scooter.batteryPercentage)%")
                     .foregroundColor(.primaryDark)
                     .font(.body2())
             }
@@ -118,7 +119,7 @@ private extension ScooterCardView {
 struct ScooterCardView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ScooterCardView()
+            ScooterCardView(scooter: .init(id: "#AB23", status: .unlocked, batteryPercentage: 100, location: Coordinates.ClujNapoca))
                 .previewDevice(device)
         }
     }

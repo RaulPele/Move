@@ -10,12 +10,10 @@ import MapKit
 
 class ScooterAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
-    let title: String?
-    let subtitle: String?
+    let scooter: Scooter
     
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+    init(coordinate: CLLocationCoordinate2D, scooter: Scooter) {
         self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
+        self.scooter = scooter
     }
 }

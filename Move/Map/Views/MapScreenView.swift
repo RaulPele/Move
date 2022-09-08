@@ -20,10 +20,19 @@ struct MapScreenView: View {
     var body: some View {
         ZStack {
             ScooterMapView(mapViewModel: mapScreenViewModel.scooterMapViewModel)
+            Spacer()
+            selectedScooterView
         }
         .ignoresSafeArea()
         .onAppear {
             mapScreenViewModel.loadScooters()
+        }
+    }
+    
+    @ViewBuilder
+    var selectedScooterView: some View {
+        if let selectedScooter = mapScreenViewModel.selectedScooter {
+            ScooterCardView(scooter: selectedScooter)
         }
     }
 }

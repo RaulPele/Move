@@ -14,9 +14,15 @@ extension MapScreenView {
         var scooterMapViewModel: ScooterMapViewModel
         let scooterService: ScooterService
         
+        @Published var selectedScooter: Scooter?
+        
         init(scooterService: ScooterService) {
             self.scooterService = scooterService
             scooterMapViewModel =  .init(scooterService: scooterService)
+            
+            scooterMapViewModel.onScooterSelected = { scooter in
+                self.selectedScooter = scooter
+            }
         }
         
         func loadScooters() {
@@ -25,11 +31,11 @@ extension MapScreenView {
             
             for scooter in scooters {
                 
-                let annotation = ScooterAnnotation(coordinate: scooter.location, title: scooter.id, subtitle: "Status: \(scooter.status), Battery: \(scooter.batteryPercentage)")
+                let annotation = ScooterAnnotation(coordinate: scooter.location, scooter: scooter)
                 scooterAnnotations.append(annotation)
             }
             
-            scooterMapViewModel.scooters = scooterAnnotations
+            scooterMapViewModel.scooterAnnotations = scooterAnnotations
         }
     }
 }
