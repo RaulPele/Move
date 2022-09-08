@@ -8,14 +8,20 @@
 import Foundation
 import MapKit
 
-enum ScooterStatus {
-    case locked
-    case unlocked
+enum BookedStatus: String, Codable {
+    case free
+}
+
+enum LockedStatus: String, Codable {
+    case available
 }
 
 struct Scooter: Identifiable, Equatable {
+    
     let id: String
-    var status: ScooterStatus
+    let scooterNumber: Int
+    var bookedStatus: BookedStatus
+    var lockedStatus: LockedStatus
     var batteryPercentage: Int
     var location: CLLocationCoordinate2D
     

@@ -71,6 +71,8 @@
 		DE4AABBB28C8E120004AC99F /* ScooterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AABBA28C8E120004AC99F /* ScooterCardView.swift */; };
 		DE4AABBE28C9F4CC004AC99F /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AABBD28C9F4CC004AC99F /* TransparentButton.swift */; };
 		DE4AABC028C9F56D004AC99F /* RoundedIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AABBF28C9F56D004AC99F /* RoundedIconButton.swift */; };
+		DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AABC328CA2337004AC99F /* ScooterDTO.swift */; };
+		DE4AABC628CA27C7004AC99F /* GetScootersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */; };
 		DE8388C628A5143400A0908D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8388C528A5143400A0908D /* FontExtension.swift */; };
 		DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */; };
 		DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */; };
@@ -151,6 +153,8 @@
 		DE4AABBA28C8E120004AC99F /* ScooterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterCardView.swift; sourceTree = "<group>"; };
 		DE4AABBD28C9F4CC004AC99F /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		DE4AABBF28C9F56D004AC99F /* RoundedIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedIconButton.swift; sourceTree = "<group>"; };
+		DE4AABC328CA2337004AC99F /* ScooterDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterDTO.swift; sourceTree = "<group>"; };
+		DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScootersResponse.swift; sourceTree = "<group>"; };
 		DE8388C528A5143400A0908D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		DE882D5028ACE00000C8DA17 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		DE882D5328AD03B700C8DA17 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
@@ -274,11 +278,11 @@
 		DE28ECD828C1FAE1007AA04C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				DE4AABC228CA2322004AC99F /* DTOs */,
 				DE4AABA728C764F2004AC99F /* APIServices */,
 				DE46BC3428C608940061F800 /* Responses */,
 				DE28ECD928C1FB04007AA04C /* APIConfig.swift */,
 				DE28ECDB28C1FB40007AA04C /* APIError.swift */,
-				DE46BC3228C604BA0061F800 /* UserDTO.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -327,6 +331,7 @@
 			children = (
 				DE28ECDD28C228D6007AA04C /* AuthenticationResponse.swift */,
 				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
+				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -423,6 +428,15 @@
 				DE9E3F5228BF934400B98FEE /* FloatingSecureField.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		DE4AABC228CA2322004AC99F /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				DE46BC3228C604BA0061F800 /* UserDTO.swift */,
+				DE4AABC328CA2337004AC99F /* ScooterDTO.swift */,
+			);
+			path = DTOs;
 			sourceTree = "<group>";
 		};
 		DE882D5D28AE6A6500C8DA17 /* Extensions */ = {
@@ -622,6 +636,7 @@
 				DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
+				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE4AABB028C77A7F004AC99F /* SessionManager.swift in Sources */,
@@ -653,6 +668,7 @@
 				DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */,
 				DE46BC3A28C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
+				DE4AABC628CA27C7004AC99F /* GetScootersResponse.swift in Sources */,
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,
 				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,

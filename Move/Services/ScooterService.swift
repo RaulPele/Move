@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ScooterService {
-    func getAllScooters() -> [Scooter]
+    func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void)
 }
