@@ -204,7 +204,9 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
-				DE4AABAA28C7654C004AC99F /* MockedData */,
+				DE0ACF0E28A3B19B00F32C36 /* Splash */,
+				DE9E3F4F28BF906B00B98FEE /* Onboarding */,
+				DE9E3F5028BF90DF00B98FEE /* DrivingLicenseVerification */,
 				DE46BC3B28C613D50061F800 /* Map */,
 				DE46BC2D28C5E0EC0061F800 /* Services */,
 				DE28ECD828C1FAE1007AA04C /* Networking */,
@@ -213,16 +215,14 @@
 				DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */,
 				DE0ACEFD28A266EF00F32C36 /* ContentView.swift */,
 				DE2F523428A63574007762BA /* MainCoordinatorView.swift */,
-				DE0ACF0E28A3B19B00F32C36 /* Splash */,
-				DE9E3F5028BF90DF00B98FEE /* DrivingLicenseVerification */,
-				DE9E3F4F28BF906B00B98FEE /* Onboarding */,
 				DE9E3F4C28BF8F6500B98FEE /* Authentication */,
 				DE882D5E28AE6A8D00C8DA17 /* Utils */,
 				DE882D5D28AE6A6500C8DA17 /* Extensions */,
 				DE2B22A728A5108F00BAE7F5 /* Info.plist */,
 				DE2B228928A50B6E00BAE7F5 /* Fonts */,
-				DE0ACF0B28A39BB300F32C36 /* CustomViews */,
+				DE0ACF0B28A39BB300F32C36 /* ReusableViews */,
 				DE0ACEFB28A266EF00F32C36 /* MoveApp.swift */,
+				DE4AABAA28C7654C004AC99F /* MockedData */,
 				DE0ACEFF28A266F000F32C36 /* Assets.xcassets */,
 				DE0ACF0128A266F000F32C36 /* Preview Content */,
 			);
@@ -237,7 +237,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DE0ACF0B28A39BB300F32C36 /* CustomViews */ = {
+		DE0ACF0B28A39BB300F32C36 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
 				DE4AABC128C9FC9B004AC99F /* TextFields */,
@@ -248,7 +248,7 @@
 				DE9E3F4328BE47A400B98FEE /* ScannerView.swift */,
 				DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */,
 			);
-			path = CustomViews;
+			path = ReusableViews;
 			sourceTree = "<group>";
 		};
 		DE0ACF0E28A3B19B00F32C36 /* Splash */ = {
@@ -807,6 +807,9 @@
 				INFOPLIST_FILE = Move/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Allow app to use camera\"";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Move needs your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Move needs your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Move needs your location to show it on the map";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Allow app to use gallery\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -841,6 +844,9 @@
 				INFOPLIST_FILE = Move/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Allow app to use camera\"";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Move needs your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Move needs your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Move needs your location to show it on the map";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Allow app to use gallery\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

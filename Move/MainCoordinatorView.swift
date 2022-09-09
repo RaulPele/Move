@@ -31,6 +31,7 @@ struct MainCoordinatorView: View {
                     SplashView() {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             state = .onboarding
+                            //manage session
                         }
                     }
                     .navigationBarHidden(true)

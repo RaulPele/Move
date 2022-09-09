@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MapScreenView: View {
     let scooterService: ScooterService
-    
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
     init(scooterService: ScooterService) {
@@ -20,7 +19,9 @@ struct MapScreenView: View {
     var body: some View {
         ZStack {
             ScooterMapView(mapViewModel: mapScreenViewModel.scooterMapViewModel)
-            
+                .onAppear() {
+                    mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
+                }
         }
         .ignoresSafeArea()
         .onAppear {

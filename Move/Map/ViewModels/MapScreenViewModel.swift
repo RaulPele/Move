@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 
+
 extension MapScreenView {
     class MapScreenViewModel: ObservableObject {
         var scooterMapViewModel: ScooterMapViewModel
@@ -20,11 +21,17 @@ extension MapScreenView {
             self.scooterService = scooterService
             scooterMapViewModel =  .init(scooterService: scooterService)
             
-            scooterMapViewModel.onScooterSelected = { scooter in
+            scooterMapViewModel.onScooterSelected = { [weak self] scooter in
+                guard let self = self else {
+                    return
+                }
                 self.selectedScooter = scooter
             }
             
-            scooterMapViewModel.onScooterDeselected = {
+            scooterMapViewModel.onScooterDeselected = { [weak self] in
+                guard let self = self else {
+                    return
+                }
                 self.selectedScooter = nil
             }
         }
