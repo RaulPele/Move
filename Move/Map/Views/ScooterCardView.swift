@@ -25,16 +25,21 @@ struct ScooterCardView: View {
 private extension ScooterCardView {
     var scooterImageView: some View {
         return ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 60, style: .continuous)
-                .foregroundColor(.neutralLightPurple.opacity(0.15))
-                .frame(maxWidth: 152, maxHeight: 152)
-                .rotationEffect(.degrees(45))
-                .offset(y: -45)
-                .clipped()
+//            RoundedRectangle(cornerRadius: 60, style: .continuous)
+//                .foregroundColor(.neutralLightPurple.opacity(0.15))
+//                .frame(maxWidth: 152, maxHeight: 152)
+//                .rotationEffect(.degrees(45))
+//                .offset(y: -45)
+//                .clipped()
+//                .disabled(true)
+            Image("ScooterRectangleBackground")
+                .resizable()
+                .scaledToFit()
             
             Image("CardViewScooterImage")
                 .resizable()
                 .scaledToFit()
+                
         }
     }
     
@@ -44,7 +49,7 @@ private extension ScooterCardView {
                 .foregroundColor(.primaryDark.opacity(0.6))
                 .font(.body2())
             
-            Text(scooter.id)
+            Text(verbatim: "#\(scooter.scooterNumber)")
                 .foregroundColor(.primaryDark)
                 .font(.baiJamjureeBold(size: 20))
             
@@ -120,7 +125,7 @@ private extension ScooterCardView {
 struct ScooterCardView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ScooterCardView(scooter: .init(id: "#AB23", status: .unlocked, batteryPercentage: 100, location: Coordinates.ClujNapoca))
+            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: Coordinates.ClujNapoca))
                 .previewDevice(device)
         }
     }

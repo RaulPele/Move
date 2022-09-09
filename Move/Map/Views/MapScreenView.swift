@@ -46,7 +46,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterMockedService())
+            MapScreenView(scooterService: ScooterAPIService())
                 .previewDevice(device)
         }
     }

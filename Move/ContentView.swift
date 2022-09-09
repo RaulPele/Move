@@ -17,7 +17,7 @@ struct AppDependencies {
         self.errorHandler = SwiftMessagesErrorHandler()
         self.sessionManager = SessionManager()
         self.authenticationService = AuthenticationAPIService(sessionManager: sessionManager)
-        self.scooterService = ScooterMockedService()
+        self.scooterService = ScooterAPIService()
     }
 }
 
@@ -26,7 +26,7 @@ struct ContentView: View {
     
     var body: some View {
 //        MainCoordinatorView(appDependencies: appDependencies)
-        MapScreenView(scooterService: ScooterMockedService())
+        MapScreenView(scooterService: appDependencies.scooterService)
     }
 }
 

@@ -30,16 +30,24 @@ extension MapScreenView {
         }
         
         func loadScooters() {
-            let scooters = scooterService.getAllScooters()
-            var scooterAnnotations = [ScooterAnnotation]()
-            
-            for scooter in scooters {
-                
-                let annotation = ScooterAnnotation(coordinate: scooter.location, scooter: scooter)
-                scooterAnnotations.append(annotation)
+           scooterService.getAllScooters() { result in
+                switch result {
+                case .success(let scooters):
+                    var scooterAnnotations = [ScooterAnnotation]()
+                    
+                    for scooter in scooters {
+                        
+                        let annotation = ScooterAnnotation(coordinate: scooter.location, scooter: scooter)
+                        scooterAnnotations.append(annotation)
+                    }
+                    
+                    self.scooterMapViewModel.scooterAnnotations = scooterAnnotations
+                    
+                case .failure(let error):
+                    print("Error getting scooters: \(error.localizedDescription)")
+                }
             }
-            
-            scooterMapViewModel.scooterAnnotations = scooterAnnotations
+           
         }
     }
 }

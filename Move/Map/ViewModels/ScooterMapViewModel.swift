@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 class ScooterMapViewModel: NSObject, ObservableObject {
     let scooterService: ScooterService
@@ -33,8 +34,8 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     }()
     
     func refreshScooterList() {
-         mapView.removeAnnotations(mapView.annotations)
-         mapView.addAnnotations(scooterAnnotations)
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.addAnnotations(self.scooterAnnotations)
      }
 }
 
