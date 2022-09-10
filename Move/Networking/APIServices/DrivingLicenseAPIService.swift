@@ -10,11 +10,11 @@ import UIKit
 import Alamofire
 
 class DrivingLicenseAPIService: DrivingLicenseService {
-    var url: URL
+    var url = URL(string: "https://move-scooters.herokuapp.com/api/users/addImage")!
     
-    init(url: String) {
-        self.url = URL(string: url)!
-    }
+//    init(url: String) {
+//        self.url = URL(string: url)!
+//    }
     
     func verifyLicense(image: UIImage, sessionToken: String,
                        completionHandler: @escaping (Result<User, Error>) -> Void) {
@@ -22,11 +22,12 @@ class DrivingLicenseAPIService: DrivingLicenseService {
             return
         }
         
+        let headers = ["Authorization": "Bearer \(sessionToken)"]
+        
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(Data(sessionToken.utf8), withName: "token")
             multipartFormData.append(imageData, withName: "productImage", fileName: "license.jpeg", mimeType: "image/jpeg")
         }, to: url,
-                  method: .put)
+                  method: .put, headers: .init(headers))
         .responseDecodable(of: VerificationResponse.self) { response in
             switch(response.result) {
             case .success(let verificationResponse):

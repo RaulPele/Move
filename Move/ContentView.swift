@@ -12,12 +12,14 @@ struct AppDependencies {
     let sessionManager: SessionManager
     let authenticationService: AuthenticationService
     let scooterService: ScooterService
+    let drivingLicenseService: DrivingLicenseService
     
     init() {
         self.errorHandler = SwiftMessagesErrorHandler()
         self.sessionManager = SessionManager()
         self.authenticationService = AuthenticationAPIService(sessionManager: sessionManager)
         self.scooterService = ScooterAPIService()
+        self.drivingLicenseService = DrivingLicenseAPIService()
     }
 }
 
@@ -25,8 +27,8 @@ struct ContentView: View {
     let appDependencies = AppDependencies()
     
     var body: some View {
-//        MainCoordinatorView(appDependencies: appDependencies)
-        MapScreenView(scooterService: appDependencies.scooterService)
+        MainCoordinatorView(appDependencies: appDependencies)
+//        MapScreenView(scooterService: appDependencies.scooterService)
     }
 }
 

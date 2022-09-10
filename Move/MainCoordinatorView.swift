@@ -61,7 +61,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler) {
+                    DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler, drivingLicenseService: appDependencies.drivingLicenseService) {
                         state = .authentication
                     } onVerificationFinished: {
                         state = .map
@@ -73,8 +73,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .map, selection: $state) {
-//                    MapView()
-//                        .navigationBarHidden(true)
+                    MapScreenView(scooterService: appDependencies.scooterService) //TODO: add coordinator
                 } label: {
                     EmptyView()
                 }

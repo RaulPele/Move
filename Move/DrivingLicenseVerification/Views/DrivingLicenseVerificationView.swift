@@ -9,12 +9,27 @@ import SwiftUI
 
 struct DrivingLicenseVerificationView: View {
     var errorHandler: ErrorHandler
+    let drivingLicenseService: DrivingLicenseService
     
-    @StateObject private var verificationViewModel = DrivingLicenseVerificationViewModel()
+    @StateObject private var verificationViewModel: DrivingLicenseVerificationViewModel
     
     let onVerificationPending: () -> Void
     let onVerificationFinished: () -> Void
     let onBackButtonPressed: () -> Void
+    
+    init(errorHandler: ErrorHandler,
+         drivingLicenseService: DrivingLicenseService,
+         onVerificationPending: @escaping () -> Void,
+         onVerificationFinished: @escaping () -> Void,
+         onBackButtonPressed: @escaping () -> Void) {
+        self.errorHandler = errorHandler
+        self.drivingLicenseService = drivingLicenseService
+        self.onVerificationPending = onVerificationPending
+        self.onVerificationFinished = onVerificationFinished
+        self.onBackButtonPressed = onBackButtonPressed
+        
+        self._verificationViewModel = StateObject(wrappedValue: DrivingLicenseVerificationViewModel(drivingLicenseService: drivingLicenseService))
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -129,7 +144,7 @@ private extension DrivingLicenseVerificationView {
 struct DrivingLicenseVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            DrivingLicenseVerificationView(errorHandler: SwiftMessagesErrorHandler(), onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
+            DrivingLicenseVerificationView(errorHandler: SwiftMessagesErrorHandler(), drivingLicenseService: DrivingLicenseAPIService(), onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
                 .previewDevice(device)
         }
         .previewInterfaceOrientation(.portrait)
