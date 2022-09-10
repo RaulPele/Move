@@ -26,8 +26,8 @@ struct ScooterDTO: Codable {
         case location
         case scooterNumber = "ScootNumber"
         case battery
-        case bookedStatus = "booked_status"
-        case lockedStatus = "locked_status"
+        case bookedStatus
+        case lockedStatus
     }
 }
 

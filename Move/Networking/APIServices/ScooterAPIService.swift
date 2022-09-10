@@ -14,7 +14,7 @@ class ScooterAPIService: ScooterService {
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void) {
         let headers = ["Content-Type" : "application/json"]
         
-        let request = AF.request(baseURL.appendingPathComponent("scooters/getScooters"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(baseURL.appendingPathComponent("/api/scooters/getScooters"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
             
         request.validate(statusCode: 200..<300)
             .responseDecodable(of: GetScootersResponse.self) { response in
