@@ -129,5 +129,9 @@ extension ScooterMapViewModel: MKMapViewDelegate {
             onUserTrackingDisabled()
         }
     }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        onScooterDeselected()
+    }
 }
 
