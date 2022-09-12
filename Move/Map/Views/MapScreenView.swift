@@ -27,12 +27,11 @@ struct MapScreenView: View {
         .onAppear {
             mapScreenViewModel.loadScooters()
         }
-        .overlay(VStack {
+        .overlay(
             selectedScooterView
                 .transition(.opacity.animation(.easeInOut))
-
-
-        }, alignment: .bottom)
+            , alignment: .bottom)
+        .overlay(topBar, alignment: .top)
     }
     
     @ViewBuilder
@@ -40,6 +39,38 @@ struct MapScreenView: View {
         if let selectedScooter = mapScreenViewModel.selectedScooter {
             ScooterCardView(scooter: selectedScooter)
         }
+    }
+    
+    var topBar: some View {
+            
+        HStack {
+            Button {
+                
+            } label: {
+                Image("menu-icon")
+            }
+            .buttonStyle(.roundedIconButton)
+            
+            Spacer()
+            
+            Text("Allow location")
+                .font(.heading3())
+                .foregroundColor(.primaryLight)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image("track-location-icon")
+            }
+            .buttonStyle(.roundedIconButton)
+
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 10)
+//        .background(LinearGradient(colors: [.neutralWhite, .clear], startPoint: .top, endPoint: .bottom))
+        
     }
 }
 
