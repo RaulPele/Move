@@ -11,6 +11,8 @@ struct MapScreenView: View {
     let scooterService: ScooterService
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
+    
+    
     init(scooterService: ScooterService) {
         self.scooterService = scooterService
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
@@ -22,6 +24,9 @@ struct MapScreenView: View {
                 .onAppear() {
                     mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
                 }
+//                .onDrag {
+//                    mapScreenViewModel.onMapDragged()
+//                }
         }
         .ignoresSafeArea()
         .onAppear {
@@ -42,7 +47,6 @@ struct MapScreenView: View {
     }
     
     var topBar: some View {
-            
         HStack {
             Button {
                 
@@ -60,9 +64,9 @@ struct MapScreenView: View {
             Spacer()
             
             Button {
-                
+                mapScreenViewModel.toggleUserLocationTracking()
             } label: {
-                Image("track-location-icon")
+                Image(mapScreenViewModel.isTrackingUserLocation ? "tracking-location-icon" : "not-tracking-location-icon")
             }
             .buttonStyle(.roundedIconButton)
 

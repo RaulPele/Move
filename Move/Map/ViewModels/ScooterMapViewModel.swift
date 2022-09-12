@@ -11,11 +11,14 @@ import SwiftUI
 
 class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     let scooterService: ScooterService
+    
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
-    var locationManager: CLLocationManager? = nil
+    var onUserTrackingDisabled: () -> Void = { }
     
+    private var locationManager: CLLocationManager? = nil
     @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
+    
     
     var scooterAnnotations: [ScooterAnnotation] = [] {
         didSet {
@@ -23,19 +26,21 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         }
     }
     
-    init(scooterService: ScooterService) {
-        self.scooterService = scooterService
-    }
-    
-    
     lazy var mapView: MKMapView = {
         let mapView = MKMapView(frame: .zero)
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.setRegion(region, animated: true)
         mapView.showsCompass = false
+//        let mapDragRecognizer = UIPanGestureRecognizer(target: self, action: didDragMap(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>))
+//        mapView.addGestureRecognizer(mapDragRecognizer)
+        
         return mapView
     }()
+    
+    init(scooterService: ScooterService) {
+        self.scooterService = scooterService
+    }
     
     func refreshScooterList() {
         self.mapView.removeAnnotations(self.mapView.annotations)
@@ -118,9 +123,11 @@ extension ScooterMapViewModel: MKMapViewDelegate {
         onScooterDeselected()
     }
     
-//    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-//        mapView.setUserTrackingMode(.followWithHeading, animated: true)
-//    }
-    
+    //TODO: look into it
+    func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+        if mode == .none {
+            onUserTrackingDisabled()
+        }
+    }
 }
 

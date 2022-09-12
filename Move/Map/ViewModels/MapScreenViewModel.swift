@@ -16,6 +16,7 @@ extension MapScreenView {
         let scooterService: ScooterService
         
         @Published var selectedScooter: Scooter?
+        @Published var tracking = false
         
         init(scooterService: ScooterService) {
             self.scooterService = scooterService
@@ -41,7 +42,16 @@ extension MapScreenView {
                 self.selectedScooter = nil
             }
             
-           
+            scooterMapViewModel.onUserTrackingDisabled = { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.tracking = false
+            }
+        }
+        
+        var isTrackingUserLocation: Bool {
+            return tracking
         }
         
         func loadScooters() {
@@ -62,7 +72,16 @@ extension MapScreenView {
                     print("Error getting scooters: \(error.localizedDescription)")
                 }
             }
-           
+        }
+        
+        func toggleUserLocationTracking() {
+            tracking.toggle()
+            print("Tracking is now: \(tracking)")
+            if tracking {
+                scooterMapViewModel.mapView.setUserTrackingMode(.followWithHeading, animated: true)
+            } else {
+                scooterMapViewModel.mapView.setUserTrackingMode(.none, animated: true)
+            }
         }
     }
 }
