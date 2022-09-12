@@ -15,7 +15,8 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     var onScooterDeselected: () -> Void = { }
     var locationManager: CLLocationManager? = nil
     
-    var centerCoordinate = Coordinates.ClujNapoca
+    @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
+    
     var scooterAnnotations: [ScooterAnnotation] = [] {
         didSet {
             refreshScooterList()
@@ -31,7 +32,8 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         let mapView = MKMapView(frame: .zero)
         mapView.delegate = self
         mapView.showsUserLocation = true
-        mapView.setRegion(.init(center: centerCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)), animated: false)
+        mapView.setRegion(region, animated: true)
+        mapView.showsCompass = false
         return mapView
     }()
     
@@ -62,8 +64,9 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
             print("Location services is restricted")
         case .denied:
             print("Allow location services")
+            
         case .authorizedAlways, .authorizedWhenInUse:
-            print("Authorized")
+            centerMapOnUserLocation()
             
         @unknown default:
             break
@@ -72,6 +75,17 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
+    }
+    
+    func centerMapOnUserLocation() {
+        guard let locationManager = locationManager,
+        let location = locationManager.location else {
+            print("location not initialized")
+            return
+        }
+
+        region = MKCoordinateRegion(center: location.coordinate, span: .init(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        mapView.setRegion(region, animated: true)
     }
 }
 
@@ -103,5 +117,10 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         onScooterDeselected()
     }
+    
+//    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+//        mapView.setUserTrackingMode(.followWithHeading, animated: true)
+//    }
+    
 }
 

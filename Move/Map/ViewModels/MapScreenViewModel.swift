@@ -19,7 +19,13 @@ extension MapScreenView {
         
         init(scooterService: ScooterService) {
             self.scooterService = scooterService
+            
             scooterMapViewModel =  .init(scooterService: scooterService)
+//            scooterMapViewModel.objectWillChange.sink { _ in
+//                print("something")
+//                self.objectWillChange.send()
+//            }
+           
             
             scooterMapViewModel.onScooterSelected = { [weak self] scooter in
                 guard let self = self else {
@@ -34,6 +40,8 @@ extension MapScreenView {
                 }
                 self.selectedScooter = nil
             }
+            
+           
         }
         
         func loadScooters() {

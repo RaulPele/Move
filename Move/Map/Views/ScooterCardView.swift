@@ -25,13 +25,6 @@ struct ScooterCardView: View {
 private extension ScooterCardView {
     var scooterImageView: some View {
         return ZStack(alignment: .topLeading) {
-//            RoundedRectangle(cornerRadius: 60, style: .continuous)
-//                .foregroundColor(.neutralLightPurple.opacity(0.15))
-//                .frame(maxWidth: 152, maxHeight: 152)
-//                .rotationEffect(.degrees(45))
-//                .offset(y: -45)
-//                .clipped()
-//                .disabled(true)
             Image("ScooterRectangleBackground")
                 .resizable()
                 .scaledToFit()

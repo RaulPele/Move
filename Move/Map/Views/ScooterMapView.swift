@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct ScooterMapView: UIViewRepresentable {
-    let mapViewModel: ScooterMapViewModel
+    var mapViewModel: ScooterMapViewModel
     
     func makeUIView(context: Context) -> MKMapView {
         return mapViewModel.mapView
