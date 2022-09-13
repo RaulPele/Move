@@ -15,6 +15,7 @@
 		DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0C28A39BC900F32C36 /* SplashView.swift */; };
 		DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */; };
 		DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */; };
+		DE1B96BF28D0B261007D8FD6 /* GeocoderProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */; };
 		DE1FEB5828AB9C840019CE5A /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5728AB9C840019CE5A /* FilledButton.swift */; };
 		DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5928ABB2380019CE5A /* SignUpView.swift */; };
 		DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */; };
@@ -100,6 +101,7 @@
 		DE0ACF0C28A39BC900F32C36 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
 		DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderProxy.swift; sourceTree = "<group>"; };
 		DE1FEB5728AB9C840019CE5A /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		DE1FEB5928ABB2380019CE5A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DE1FEB5B28ABCB9B0019CE5A /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				DE46BC3428C608940061F800 /* Responses */,
 				DE28ECD928C1FB04007AA04C /* APIConfig.swift */,
 				DE28ECDB28C1FB40007AA04C /* APIError.swift */,
+				DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */,
 				DE4AABA028C61430004AC99F /* ScooterMapView.swift in Sources */,
 				DE1FEB5C28ABCB9B0019CE5A /* FloatingTextField.swift in Sources */,
+				DE1B96BF28D0B261007D8FD6 /* GeocoderProxy.swift in Sources */,
 				DE46BC3A28C60B4A0061F800 /* DrivingLicenseVerificationCoordinatorView.swift in Sources */,
 				DE2B228528A4EDB500BAE7F5 /* Constants.swift in Sources */,
 				DE4AABC628CA27C7004AC99F /* GetScootersResponse.swift in Sources */,
