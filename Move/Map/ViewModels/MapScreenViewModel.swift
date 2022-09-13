@@ -8,25 +8,24 @@
 import Foundation
 import MapKit
 import SwiftUI
-
+import Combine
 
 extension MapScreenView {
     class MapScreenViewModel: ObservableObject {
-        var scooterMapViewModel: ScooterMapViewModel
+        @Published var scooterMapViewModel: ScooterMapViewModel
         let scooterService: ScooterService
         
         @Published var selectedScooter: Scooter?
-        @Published var tracking = false
+        private var cancellables = [AnyCancellable]()
         
         init(scooterService: ScooterService) {
             self.scooterService = scooterService
             
             scooterMapViewModel =  .init(scooterService: scooterService)
-//            scooterMapViewModel.objectWillChange.sink { _ in
-//                print("something")
-//                self.objectWillChange.send()
-//            }
-           
+            
+            scooterMapViewModel.objectWillChange.sink { _ in
+                self.objectWillChange.send()
+            }.store(in: &cancellables)
             
             scooterMapViewModel.onScooterSelected = { [weak self] scooter in
                 guard let self = self else {
@@ -41,17 +40,6 @@ extension MapScreenView {
                 }
                 self.selectedScooter = nil
             }
-            
-            scooterMapViewModel.onUserTrackingDisabled = { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                self.tracking = false
-            }
-        }
-        
-        var isTrackingUserLocation: Bool {
-            return tracking
         }
         
         func loadScooters() {
@@ -74,14 +62,11 @@ extension MapScreenView {
             }
         }
         
-        func toggleUserLocationTracking() {
-            tracking.toggle()
-            print("Tracking is now: \(tracking)")
-            if tracking {
-                scooterMapViewModel.mapView.setUserTrackingMode(.followWithHeading, animated: true)
-            } else {
-                scooterMapViewModel.mapView.setUserTrackingMode(.none, animated: true)
+        func startRefreshingScooters() {
+            let reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+                self.loadScooters()
             }
         }
+        
     }
 }

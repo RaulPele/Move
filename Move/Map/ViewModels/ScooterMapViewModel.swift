@@ -14,11 +14,10 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
-    var onUserTrackingDisabled: () -> Void = { }
     
     private var locationManager: CLLocationManager? = nil
     @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
-    
+    @Published var tracking = false
     
     var scooterAnnotations: [ScooterAnnotation] = [] {
         didSet {
@@ -40,9 +39,20 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         self.scooterService = scooterService
     }
     
+    var isTrackingUserLocation: Bool {
+        return tracking
+    }
+    
     func refreshScooterList() {
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        self.mapView.addAnnotations(self.scooterAnnotations)
+//        if self.mapView.annotations.count != self.scooterAnnotations.count {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotations(self.scooterAnnotations)
+//        } else {
+//            for i in 0..<self.scooterAnnotations.count {
+                
+//            }
+//        }
+        
      }
     
     func checkIfLocationServicesIsEnabled() {
@@ -60,7 +70,6 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         }
 
         switch locationManager.authorizationStatus {
-            
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
@@ -83,13 +92,23 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     func centerMapOnUserLocation() {
         guard let locationManager = locationManager,
         let location = locationManager.location else {
-            print("location not initialized")
             return
         }
 
         region = MKCoordinateRegion(center: location.coordinate, span: .init(latitudeDelta: 0.05, longitudeDelta: 0.05))
         mapView.setRegion(region, animated: true)
     }
+    
+    func toggleUserLocationTracking() {
+        tracking.toggle()
+
+        if tracking {
+            self.mapView.setUserTrackingMode(.followWithHeading, animated: true)
+        } else {
+            self.mapView.setUserTrackingMode(.none, animated: true)
+        }
+    }
+    
 }
 
 extension ScooterMapViewModel: MKMapViewDelegate {
@@ -105,6 +124,7 @@ extension ScooterMapViewModel: MKMapViewDelegate {
             
             annotationView!.tintColor = .blue
         } else if annotation is ScooterAnnotation {
+
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseIdentifiers.scooterAnnotation.rawValue)
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.scooterAnnotation.rawValue)
@@ -132,12 +152,12 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     //TODO: look into it
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
         if mode == .none {
-            onUserTrackingDisabled()
+            tracking = false
         }
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        onScooterDeselected()
+//        onScooterDeselected()
     }
 }
 

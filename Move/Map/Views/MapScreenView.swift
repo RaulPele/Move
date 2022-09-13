@@ -24,13 +24,11 @@ struct MapScreenView: View {
                 .onAppear() {
                     mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
                 }
-//                .onDrag {
-//                    mapScreenViewModel.onMapDragged()
-//                }
         }
         .ignoresSafeArea()
         .onAppear {
             mapScreenViewModel.loadScooters()
+            mapScreenViewModel.startRefreshingScooters()
         }
         .overlay(
             selectedScooterView
@@ -64,9 +62,9 @@ struct MapScreenView: View {
             Spacer()
             
             Button {
-                mapScreenViewModel.toggleUserLocationTracking()
+                self.mapScreenViewModel.scooterMapViewModel.toggleUserLocationTracking()
             } label: {
-                Image(mapScreenViewModel.isTrackingUserLocation ? "tracking-location-icon" : "not-tracking-location-icon")
+                Image(self.mapScreenViewModel.scooterMapViewModel.isTrackingUserLocation ? "tracking-location-icon" : "not-tracking-location-icon")
             }
             .buttonStyle(.roundedIconButton)
 
