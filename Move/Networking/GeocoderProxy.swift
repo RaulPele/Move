@@ -8,19 +8,40 @@
 import Foundation
 import CoreLocation
 
-struct Location: Hashable {
-    let latitude: Double
-    let longitude: Double
+extension CLLocationCoordinate2D: Hashable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.latitude)
+        hasher.combine(self.longitude)
+    }
 }
 
 class GeocoderProxy {
     private let geoCoder = CLGeocoder()
-    private let cachedLocations = [Location : CLPlacemark]()
+    private var cachedLocations = [CLLocationCoordinate2D : [CLPlacemark]]()
     
-    func reverseGeocodeLocation(location: CLLocation, completionHandler: CoreLocation.CLGeocodeCompletionHandler) {
-        location.hashValue
-        if let locationPlacemark = cachedLocations[location] {
-            
+    func reverseGeocodeLocation(location: CLLocation, completionHandler: @escaping CoreLocation.CLGeocodeCompletionHandler) {
+        if let locationPlacemarks = cachedLocations[location.coordinate] {
+            print("Retrieved cached data")
+            completionHandler(locationPlacemarks, nil)
+        } else {
+            print("Made new Request to geocode server")
+            geoCoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+                guard let self = self else {
+                    print("Failed to cache data")
+                    completionHandler(placemarks, error)
+                    return
+                }
+                
+                if let placemarks = placemarks {
+                    self.cachedLocations[location.coordinate] = placemarks
+                    print("Successfully cached location for: \(location.coordinate) = \(placemarks.first!.locality) \(placemarks.first!.thoroughfare)")
+                }
+                completionHandler(placemarks, error)
+            }
         }
     }
 }

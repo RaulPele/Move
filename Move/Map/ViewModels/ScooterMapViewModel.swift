@@ -11,6 +11,7 @@ import SwiftUI
 
 class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     let scooterService: ScooterService
+    let geocoderProxy = GeocoderProxy()
     
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
@@ -108,6 +109,29 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
             self.mapView.setUserTrackingMode(.none, animated: true)
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("User location updated")
+        if let location = locations.last {
+            print("Did update locations")
+            geocoderProxy.reverseGeocodeLocation(location: location) { placemarks, error in
+                if let error = error {
+                    print("Error reverse geocoding location: \(error.localizedDescription)")
+                    
+                } else {
+                    let placemark = placemarks!.first!
+                    let streetNumber = placemark.subThoroughfare
+                    let street = placemark.thoroughfare
+                    let city = placemark.locality
+                    
+                    print("Reversed Geocoded Location for user:\n \(street) \(streetNumber) \(city)")
+                }
+            }
+            
+        }
+    }
+    
+    
     
 }
 
