@@ -13,6 +13,7 @@
 		DE0ACF0328A266F000F32C36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0ACF0228A266F000F32C36 /* Preview Assets.xcassets */; };
 		DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0928A2737E00F32C36 /* ColorExtension.swift */; };
 		DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0C28A39BC900F32C36 /* SplashView.swift */; };
+		DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */; };
 		DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */; };
 		DE1FEB5828AB9C840019CE5A /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5728AB9C840019CE5A /* FilledButton.swift */; };
 		DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5928ABB2380019CE5A /* SignUpView.swift */; };
@@ -97,6 +98,7 @@
 		DE0ACF0228A266F000F32C36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DE0ACF0928A2737E00F32C36 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		DE0ACF0C28A39BC900F32C36 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
 		DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		DE1FEB5728AB9C840019CE5A /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		DE1FEB5928ABB2380019CE5A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4AABB428C890E9004AC99F /* ScooterAnnotation.swift */,
+				DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */,
 			);
 			path = Annotations;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				DE28ECDE28C228D6007AA04C /* AuthenticationResponse.swift in Sources */,
 				DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */,
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
+				DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */,
 				DE4AABAC28C7655B004AC99F /* ScooterMockedService.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
 				DE4AABA628C76451004AC99F /* Scooter.swift in Sources */,

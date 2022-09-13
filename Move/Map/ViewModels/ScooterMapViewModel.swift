@@ -32,8 +32,6 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         mapView.showsUserLocation = true
         mapView.setRegion(region, animated: true)
         mapView.showsCompass = false
-//        let mapDragRecognizer = UIPanGestureRecognizer(target: self, action: didDragMap(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>))
-//        mapView.addGestureRecognizer(mapDragRecognizer)
         
         return mapView
     }()
@@ -96,15 +94,23 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
 
 extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = MKAnnotationView()
+        var annotationView: MKAnnotationView?
 
+        
         if annotation is MKUserLocation {
-            annotationView = MKUserLocationView(annotation: annotation, reuseIdentifier: "userAnnotation")
-            annotationView.tintColor = .blue
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
+            if annotationView == nil {
+                annotationView = MKUserLocationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
+            }
+            
+            annotationView!.tintColor = .blue
         } else if annotation is ScooterAnnotation {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "scooterAnnotation")
-            annotationView.image = UIImage(named: "unselected-pin-fill")
-            annotationView.canShowCallout = false
+            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseIdentifiers.scooterAnnotation.rawValue)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.scooterAnnotation.rawValue)
+                annotationView!.image = UIImage(named: "unselected-pin-fill")
+
+            }
         }
         
         return annotationView
