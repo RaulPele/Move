@@ -11,7 +11,7 @@ import SwiftUI
 
 class ScooterMapViewModel: NSObject, ObservableObject {
     let scooterService: ScooterService
-    let geocoderProxy = GeocoderProxy()
+    let geocoderProxy = GeocoderProxy.shared
     
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
@@ -172,15 +172,17 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let scooterAnnotation = view.annotation as? ScooterAnnotation
-        
         guard let scooterAnnotation = scooterAnnotation else {
             return
         }
         onScooterSelected(scooterAnnotation.scooter)
+        view.image = UIImage(named: "selected-pin-fill")
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         onScooterDeselected()
+        view.image = UIImage(named: "unselected-pin-fill")
+
     }
     
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {

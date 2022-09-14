@@ -10,7 +10,7 @@ import MapKit
 
 class ScooterAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
-    let scooter: Scooter
+    var scooter: Scooter
     
     init(coordinate: CLLocationCoordinate2D, scooter: Scooter) {
         self.coordinate = coordinate

@@ -22,6 +22,11 @@ extension CLLocationCoordinate2D: Hashable {
 class GeocoderProxy {
     private let geoCoder = CLGeocoder()
     private var cachedLocations = [CLLocationCoordinate2D : [CLPlacemark]]()
+    static let shared = GeocoderProxy()
+    
+//    private init() {
+//        
+//    }
     
     func reverseGeocodeLocation(location: CLLocation, completionHandler: @escaping CoreLocation.CLGeocodeCompletionHandler) {
 //        if let locationPlacemarks = cachedLocations[location.coordinate] {

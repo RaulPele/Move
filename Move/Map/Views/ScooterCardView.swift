@@ -59,7 +59,7 @@ private extension ScooterCardView {
     var locationView: some View {
         return  HStack(spacing: 8) {
             Image("location-pin")
-            Text("Str. Avram Iancu nr 26 Cladirea 2")
+            Text(scooter.humanReadableAddress ?? "Can't display location for scooter")
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.primaryDark)
                 .font(.body2())

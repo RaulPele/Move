@@ -32,8 +32,27 @@ extension MapScreenView {
             scooterMapViewModel.onScooterSelected = { [weak self] scooter in
                 guard let self = self else {
                     return
+                    
                 }
-                self.selectedScooter = scooter
+
+                //TODO: refactor
+                GeocoderProxy.shared.reverseGeocodeLocation(location: CLLocation(latitude: scooter.location.latitude, longitude: scooter.location.longitude), completionHandler: { placemarks, error in
+                    guard let placemarks = placemarks,
+                          let placemark = placemarks.first else {
+                        print("no placemarks available")
+                        return
+                    }
+                    
+                    guard let street = placemark.thoroughfare,
+                          let number = placemark.subThoroughfare else {
+                        return
+                    }
+                    
+                    scooter.humanReadableAddress = "Str. \(street) \(number)"
+                    self.selectedScooter = scooter
+
+                })
+                                                            
             }
             
             scooterMapViewModel.onScooterDeselected = { [weak self] in
@@ -88,6 +107,8 @@ extension MapScreenView {
                 self.loadScooters()
             }
         }
+        
+        
         
     }
 }
