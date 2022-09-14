@@ -15,6 +15,7 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
+    var onLocationChanged: (String) -> Void = { _ in}
     
     private var locationManager: CLLocationManager? = nil
     @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
@@ -45,15 +46,10 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     }
     
     func refreshScooterList() {
-//        if self.mapView.annotations.count != self.scooterAnnotations.count {
+        if self.mapView.annotations.count - 1 != self.scooterAnnotations.count {
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(self.scooterAnnotations)
-//        } else {
-//            for i in 0..<self.scooterAnnotations.count {
-                
-//            }
-//        }
-        
+        }
      }
     
     func checkIfLocationServicesIsEnabled() {
@@ -74,12 +70,13 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            print("Location services is restricted")
+            onLocationChanged("Location services is restricted")
         case .denied:
-            print("Allow location services")
+            onLocationChanged("Allow location")
             
         case .authorizedAlways, .authorizedWhenInUse:
             centerMapOnUserLocation()
+            getUserLocationString()
             
         @unknown default:
             break
@@ -110,28 +107,29 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("User location updated")
-        if let location = locations.last {
-            print("Did update locations")
-            geocoderProxy.reverseGeocodeLocation(location: location) { placemarks, error in
-                if let error = error {
-                    print("Error reverse geocoding location: \(error.localizedDescription)")
-                    
-                } else {
-                    let placemark = placemarks!.first!
-                    let streetNumber = placemark.subThoroughfare
-                    let street = placemark.thoroughfare
-                    let city = placemark.locality
-                    
-                    print("Reversed Geocoded Location for user:\n \(street) \(streetNumber) \(city)")
-                }
+    func getUserLocationString() {
+        guard let location = locationManager?.location else {
+            return
+        }
+        geocoderProxy.reverseGeocodeLocation(location: location) { [weak self] placemarks, error in
+            guard let self = self else {
+                return
             }
             
+            if let error = error {
+                print("Error decoding location: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let placemarks = placemarks,
+                let placemark = placemarks.first else {
+                return
+            }
+            
+            let city = placemark.locality ?? "Couldn't find user city"
+            self.onLocationChanged(city)
         }
     }
-    
-    
     
 }
 

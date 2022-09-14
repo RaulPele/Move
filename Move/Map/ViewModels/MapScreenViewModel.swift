@@ -16,6 +16,8 @@ extension MapScreenView {
         let scooterService: ScooterService
         
         @Published var selectedScooter: Scooter?
+        @Published var currentLocation = "Allow location"
+        
         private var cancellables = [AnyCancellable]()
         
         init(scooterService: ScooterService) {
@@ -40,6 +42,18 @@ extension MapScreenView {
                 }
                 self.selectedScooter = nil
             }
+            
+            scooterMapViewModel.onLocationChanged = { [weak self] locationString in
+                guard let self = self else {
+                    return
+                }
+                self.currentLocation = locationString
+            }
+        }
+        
+        func initializeMapScreen() {
+            self.loadScooters()
+            self.startReloadingScootersTimer()
         }
         
         func loadScooters() {
@@ -62,7 +76,7 @@ extension MapScreenView {
             }
         }
         
-        func startRefreshingScooters() {
+        func startReloadingScootersTimer() {
             let reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 self.loadScooters()
             }

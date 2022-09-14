@@ -11,8 +11,6 @@ struct MapScreenView: View {
     let scooterService: ScooterService
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
-    
-    
     init(scooterService: ScooterService) {
         self.scooterService = scooterService
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
@@ -27,8 +25,7 @@ struct MapScreenView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-            mapScreenViewModel.loadScooters()
-            mapScreenViewModel.startRefreshingScooters()
+            mapScreenViewModel.initializeMapScreen()
         }
         .overlay(
             selectedScooterView
@@ -55,7 +52,7 @@ struct MapScreenView: View {
             
             Spacer()
             
-            Text("Allow location")
+            Text(mapScreenViewModel.currentLocation)
                 .font(.heading3())
                 .foregroundColor(.primaryLight)
             
