@@ -138,7 +138,10 @@ extension ScooterMapViewModel: MKMapViewDelegate {
         if annotation is MKUserLocation {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
             if annotationView == nil {
-                annotationView = MKUserLocationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
+                annotationView!.image = UIImage(named: self.userLocation == nil ?
+                                                "user-location-arrow-unauthorized" :
+                                                    "user-location-arrow-authorized")
             }
             
             annotationView!.tintColor = .blue

@@ -320,6 +320,13 @@
 			path = "Bai-Jamjuree-Fonts";
 			sourceTree = "<group>";
 		};
+		DE39E5D828D1F7450069C71D /* AnnotationViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AnnotationViews;
+			sourceTree = "<group>";
+		};
 		DE46BC2D28C5E0EC0061F800 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +417,7 @@
 		DE4AABB928C8E0F9004AC99F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE39E5D828D1F7450069C71D /* AnnotationViews */,
 				DE4AAB9F28C61430004AC99F /* ScooterMapView.swift */,
 				DE4AABB128C88EED004AC99F /* MapScreenView.swift */,
 				DE4AABBA28C8E120004AC99F /* ScooterCardView.swift */,
