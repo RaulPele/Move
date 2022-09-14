@@ -68,8 +68,12 @@ extension MapScreenView {
                         scooterAnnotations.append(annotation)
                     }
                     
+                    let selectedScooter = self.selectedScooter?.id
+                
                     self.scooterMapViewModel.scooterAnnotations = scooterAnnotations
-                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.selectedScooter = scooters.first(where: { $0.id == selectedScooter })
+                    }
                 case .failure(let error):
                     print("Error getting scooters: \(error.localizedDescription)")
                 }
@@ -77,7 +81,7 @@ extension MapScreenView {
         }
         
         func startReloadingScootersTimer() {
-            let reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+            let reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
                 self.loadScooters()
             }
         }

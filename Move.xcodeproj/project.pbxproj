@@ -208,6 +208,7 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
+				DE4AABAA28C7654C004AC99F /* MockedServices */,
 				DE0ACF0E28A3B19B00F32C36 /* Splash */,
 				DE9E3F4F28BF906B00B98FEE /* Onboarding */,
 				DE9E3F4C28BF8F6500B98FEE /* Authentication */,
@@ -226,7 +227,6 @@
 				DE2B228928A50B6E00BAE7F5 /* Fonts */,
 				DE0ACF0B28A39BB300F32C36 /* ReusableViews */,
 				DE0ACEFB28A266EF00F32C36 /* MoveApp.swift */,
-				DE4AABAA28C7654C004AC99F /* MockedData */,
 				DE0ACEFF28A266F000F32C36 /* Assets.xcassets */,
 				DE0ACF0128A266F000F32C36 /* Preview Content */,
 			);
@@ -381,12 +381,12 @@
 			path = APIServices;
 			sourceTree = "<group>";
 		};
-		DE4AABAA28C7654C004AC99F /* MockedData */ = {
+		DE4AABAA28C7654C004AC99F /* MockedServices */ = {
 			isa = PBXGroup;
 			children = (
 				DE4AABAB28C7655B004AC99F /* ScooterMockedService.swift */,
 			);
-			path = MockedData;
+			path = MockedServices;
 			sourceTree = "<group>";
 		};
 		DE4AABB328C890DB004AC99F /* Annotations */ = {

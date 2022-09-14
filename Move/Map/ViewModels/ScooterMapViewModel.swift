@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 
-class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+class ScooterMapViewModel: NSObject, ObservableObject {
     let scooterService: ScooterService
     let geocoderProxy = GeocoderProxy()
     
@@ -18,6 +18,8 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     var onLocationChanged: (String) -> Void = { _ in}
     
     private var locationManager: CLLocationManager? = nil
+    var userLocation: CLLocation? = nil
+    
     @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
     @Published var tracking = false
     
@@ -30,7 +32,6 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     lazy var mapView: MKMapView = {
         let mapView = MKMapView(frame: .zero)
         mapView.delegate = self
-        mapView.showsUserLocation = true
         mapView.setRegion(region, animated: true)
         mapView.showsCompass = false
         
@@ -46,10 +47,11 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
     }
     
     func refreshScooterList() {
-        if self.mapView.annotations.count - 1 != self.scooterAnnotations.count {
+//        if self.mapView.annotations.count - 1 != self.scooterAnnotations.count {
+        
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(self.scooterAnnotations)
-        }
+//        }
      }
     
     func checkIfLocationServicesIsEnabled() {
@@ -75,25 +77,15 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
             onLocationChanged("Allow location")
             
         case .authorizedAlways, .authorizedWhenInUse:
-            centerMapOnUserLocation()
-            getUserLocationString()
+            locationManager.requestLocation()
             
         @unknown default:
             break
         }
     }
     
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
-    }
-    
     func centerMapOnUserLocation() {
-        guard let locationManager = locationManager,
-        let location = locationManager.location else {
-            return
-        }
-
-        region = MKCoordinateRegion(center: location.coordinate, span: .init(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        region = MKCoordinateRegion(center: userLocation?.coordinate ?? Coordinates.ClujNapoca, span: .init(latitudeDelta: 0.05, longitudeDelta: 0.05))
         mapView.setRegion(region, animated: true)
     }
     
@@ -131,7 +123,12 @@ class ScooterMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate
         }
     }
     
+    func addUserLocationAnnotation() {
+        mapView.showsUserLocation = true
+        
+    }
 }
+
 
 extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -181,5 +178,34 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
 //        onScooterDeselected()
     }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("Region did change")
+        
+    }
 }
 
+extension ScooterMapViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let shouldCenterOnUserLocation = self.userLocation == nil
+        guard let lastLocation = locations.last else {
+            return
+        }
+        self.userLocation = lastLocation
+        if shouldCenterOnUserLocation {
+            withAnimation {
+                self.centerMapOnUserLocation()
+                self.addUserLocationAnnotation()
+                self.getUserLocationString()
+            }
+        }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Unable to retreive location: \(error.localizedDescription)")
+    }
+}
