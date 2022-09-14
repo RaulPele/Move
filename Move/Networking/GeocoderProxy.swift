@@ -24,10 +24,10 @@ class GeocoderProxy {
     private var cachedLocations = [CLLocationCoordinate2D : [CLPlacemark]]()
     
     func reverseGeocodeLocation(location: CLLocation, completionHandler: @escaping CoreLocation.CLGeocodeCompletionHandler) {
-        if let locationPlacemarks = cachedLocations[location.coordinate] {
-            print("Retrieved cached data")
-            completionHandler(locationPlacemarks, nil)
-        } else {
+//        if let locationPlacemarks = cachedLocations[location.coordinate] {
+//            print("Retrieved cached data")
+//            completionHandler(locationPlacemarks, nil)
+//        } else {
             print("Made new Request to geocode server")
             geoCoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
                 guard let self = self else {
@@ -37,11 +37,11 @@ class GeocoderProxy {
                 }
                 
                 if let placemarks = placemarks {
-                    self.cachedLocations[location.coordinate] = placemarks
+//                    self.cachedLocations[location.coordinate] = placemarks
                     print("Successfully cached location for: \(location.coordinate) = \(placemarks.first!.locality) \(placemarks.first!.thoroughfare)")
                 }
                 completionHandler(placemarks, error)
-            }
+//            }
         }
     }
 }

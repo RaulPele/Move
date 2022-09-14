@@ -43,7 +43,7 @@ extension MapScreenView {
                 self.selectedScooter = nil
             }
             
-            scooterMapViewModel.onLocationChanged = { [weak self] locationString in
+            scooterMapViewModel.onMapLocationChanged = { [weak self] locationString in
                 guard let self = self else {
                     return
                 }

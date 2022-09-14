@@ -15,13 +15,16 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     
     var onScooterSelected: (Scooter) -> Void = { _ in }
     var onScooterDeselected: () -> Void = { }
-    var onLocationChanged: (String) -> Void = { _ in}
+    var onMapLocationChanged: (String) -> Void = { _ in}
     
     private var locationManager: CLLocationManager? = nil
-    var userLocation: CLLocation? = nil
+    private var userLocation: CLLocation? = nil
+    private var previousMapCenter: CLLocation?
+    private var currentMapCenter: CLLocation?
     
     @Published var region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
     @Published var tracking = false
+    
     
     var scooterAnnotations: [ScooterAnnotation] = [] {
         didSet {
@@ -72,9 +75,9 @@ class ScooterMapViewModel: NSObject, ObservableObject {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            onLocationChanged("Location services is restricted")
+            onMapLocationChanged("Location services is restricted")
         case .denied:
-            onLocationChanged("Allow location")
+            onMapLocationChanged("Allow location")
             
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
@@ -99,11 +102,12 @@ class ScooterMapViewModel: NSObject, ObservableObject {
         }
     }
     
-    func getUserLocationString() {
-        guard let location = locationManager?.location else {
+    func getMapLocationString() {
+        guard let currentMapCenter = currentMapCenter else {
             return
         }
-        geocoderProxy.reverseGeocodeLocation(location: location) { [weak self] placemarks, error in
+        
+        geocoderProxy.reverseGeocodeLocation(location: currentMapCenter) { [weak self] placemarks, error in
             guard let self = self else {
                 return
             }
@@ -119,7 +123,7 @@ class ScooterMapViewModel: NSObject, ObservableObject {
             }
             
             let city = placemark.locality ?? "Couldn't find user city"
-            self.onLocationChanged(city)
+            self.onMapLocationChanged(city)
         }
     }
     
@@ -171,7 +175,6 @@ extension ScooterMapViewModel: MKMapViewDelegate {
         onScooterDeselected()
     }
     
-    //TODO: look into it
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
         if mode == .none {
             tracking = false
@@ -179,11 +182,18 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-//        onScooterDeselected()
+        let mapCenter = mapView.centerCoordinate
+        previousMapCenter = CLLocation(latitude: mapCenter.latitude, longitude: mapCenter.longitude)
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("Region did change")
+        let mapCenter = mapView.centerCoordinate
+        currentMapCenter = CLLocation(latitude: mapCenter.latitude, longitude: mapCenter.longitude)
+        
+        let distanceScrolled = currentMapCenter!.distance(from: previousMapCenter!)
+        if distanceScrolled > 500 {
+            getMapLocationString()
+        }
         
     }
 }
@@ -199,7 +209,7 @@ extension ScooterMapViewModel: CLLocationManagerDelegate {
             withAnimation {
                 self.centerMapOnUserLocation()
                 self.addUserLocationAnnotation()
-                self.getUserLocationString()
+                self.getMapLocationString()
             }
         }
     }
