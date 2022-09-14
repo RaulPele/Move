@@ -129,6 +129,14 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     
     func addUserLocationAnnotation() {
         mapView.showsUserLocation = true
+    }
+    
+    func selectScooterAnnotation(for scooter: Scooter) {
+        guard let scooterAnnotation = scooterAnnotations.first(where: {$0.scooter.id == scooter.id}) else {
+            return
+        }
+        
+        mapView.selectAnnotation(scooterAnnotation, animated: false)
         
     }
 }
