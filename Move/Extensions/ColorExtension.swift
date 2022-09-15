@@ -17,4 +17,5 @@ extension Color {
     static let primaryDark = Color("primaryDarkColor")
     static let primaryLight = Color("primaryLightColor")
     static let accent = Color("AccentColor")
+    static let roundedButtonBorder = Color("roundedButtonBorderColor")
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class MySheetHostingController<Content: View>: UIHostingController<Content> {
     override func viewDidLoad() {

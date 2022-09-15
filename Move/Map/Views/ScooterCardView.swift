@@ -58,13 +58,7 @@ private extension ScooterCardView {
                 .foregroundColor(.primaryDark)
                 .font(.baiJamjureeBold(size: 20))
             
-            HStack(spacing: 7) {
-                Image("battery-full")
-                
-                Text("\(scooter.batteryPercentage)%")
-                    .foregroundColor(.primaryDark)
-                    .font(.body2())
-            }
+            BatteryView(batteryPercentage: scooter.batteryPercentage)
         }
     }
     
@@ -130,7 +124,7 @@ private extension ScooterCardView {
 struct ScooterCardView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: Coordinates.ClujNapoca))
+            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 89, location: Coordinates.ClujNapoca))
                 .previewDevice(device)
         }
     }

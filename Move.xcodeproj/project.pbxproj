@@ -49,6 +49,12 @@
 		DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */; };
 		DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */; };
 		DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */; };
+		DE39E5DC28D313510069C71D /* MapCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5DB28D313510069C71D /* MapCoordinatorView.swift */; };
+		DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */; };
+		DE39E5E028D339360069C71D /* BorderedRoundedIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5DF28D339360069C71D /* BorderedRoundedIconButton.swift */; };
+		DE39E5E328D34B140069C71D /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E228D34B140069C71D /* HalfSheet.swift */; };
+		DE39E5E528D34B440069C71D /* MySheetHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E428D34B440069C71D /* MySheetHostingController.swift */; };
+		DE39E5E728D352100069C71D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E628D352100069C71D /* BatteryView.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -135,6 +141,12 @@
 		DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
 		DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterCardViewModel.swift; sourceTree = "<group>"; };
+		DE39E5DB28D313510069C71D /* MapCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinatorView.swift; sourceTree = "<group>"; };
+		DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScooterBottomSheetView.swift; sourceTree = "<group>"; };
+		DE39E5DF28D339360069C71D /* BorderedRoundedIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedRoundedIconButton.swift; sourceTree = "<group>"; };
+		DE39E5E228D34B140069C71D /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
+		DE39E5E428D34B440069C71D /* MySheetHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySheetHostingController.swift; sourceTree = "<group>"; };
+		DE39E5E628D352100069C71D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
 		DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationView.swift; sourceTree = "<group>"; };
@@ -253,6 +265,7 @@
 				DE9E3F3E28BE2D0900B98FEE /* ImagePicker.swift */,
 				DE9E3F4328BE47A400B98FEE /* ScannerView.swift */,
 				DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */,
+				DE39E5E628D352100069C71D /* BatteryView.swift */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -322,11 +335,13 @@
 			path = "Bai-Jamjuree-Fonts";
 			sourceTree = "<group>";
 		};
-		DE39E5D828D1F7450069C71D /* AnnotationViews */ = {
+		DE39E5E128D34AD40069C71D /* UIKitWrappers */ = {
 			isa = PBXGroup;
 			children = (
+				DE39E5E228D34B140069C71D /* HalfSheet.swift */,
+				DE39E5E428D34B440069C71D /* MySheetHostingController.swift */,
 			);
-			path = AnnotationViews;
+			path = UIKitWrappers;
 			sourceTree = "<group>";
 		};
 		DE46BC2D28C5E0EC0061F800 /* Services */ = {
@@ -372,6 +387,7 @@
 		DE46BC3B28C613D50061F800 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				DE39E5E128D34AD40069C71D /* UIKitWrappers */,
 				DE4AABB928C8E0F9004AC99F /* Views */,
 				DE4AABB628C8C553004AC99F /* ViewModels */,
 				DE4AABB328C890DB004AC99F /* Annotations */,
@@ -420,10 +436,11 @@
 		DE4AABB928C8E0F9004AC99F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE39E5D828D1F7450069C71D /* AnnotationViews */,
 				DE4AAB9F28C61430004AC99F /* ScooterMapView.swift */,
 				DE4AABB128C88EED004AC99F /* MapScreenView.swift */,
 				DE4AABBA28C8E120004AC99F /* ScooterCardView.swift */,
+				DE39E5DB28D313510069C71D /* MapCoordinatorView.swift */,
+				DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -434,6 +451,7 @@
 				DE1FEB5728AB9C840019CE5A /* FilledButton.swift */,
 				DE4AABBD28C9F4CC004AC99F /* TransparentButton.swift */,
 				DE4AABBF28C9F56D004AC99F /* RoundedIconButton.swift */,
+				DE39E5DF28D339360069C71D /* BorderedRoundedIconButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -642,6 +660,7 @@
 				DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */,
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* FilledButton.swift in Sources */,
+				DE39E5E728D352100069C71D /* BatteryView.swift in Sources */,
 				DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */,
 				DE9E3F4428BE47A400B98FEE /* ScannerView.swift in Sources */,
 				DE28ECDC28C1FB40007AA04C /* APIError.swift in Sources */,
@@ -650,6 +669,7 @@
 				DE46BC2928C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift in Sources */,
 				DE46BC3328C604BA0061F800 /* UserDTO.swift in Sources */,
 				DE28ECD128C1E5C3007AA04C /* LoadingBehaviour.swift in Sources */,
+				DE39E5DC28D313510069C71D /* MapCoordinatorView.swift in Sources */,
 				DE4AABB828C8C578004AC99F /* ScooterMapViewModel.swift in Sources */,
 				DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
@@ -657,9 +677,11 @@
 				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
+				DE39E5E328D34B140069C71D /* HalfSheet.swift in Sources */,
 				DE4AABB028C77A7F004AC99F /* SessionManager.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
 				DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */,
+				DE39E5E528D34B440069C71D /* MySheetHostingController.swift in Sources */,
 				DE4AABB228C88EED004AC99F /* MapScreenView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
 				DE4AABA228C76354004AC99F /* MapScreenViewModel.swift in Sources */,
@@ -692,7 +714,9 @@
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,
 				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,
+				DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
+				DE39E5E028D339360069C71D /* BorderedRoundedIconButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
