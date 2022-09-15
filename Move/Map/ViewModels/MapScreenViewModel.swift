@@ -34,25 +34,7 @@ extension MapScreenView {
                     return
                     
                 }
-
-                //TODO: refactor
-                GeocoderProxy.shared.reverseGeocodeLocation(location: CLLocation(latitude: scooter.location.latitude, longitude: scooter.location.longitude), completionHandler: { placemarks, error in
-                    guard let placemarks = placemarks,
-                          let placemark = placemarks.first else {
-                        print("no placemarks available")
-                        return
-                    }
-                    
-                    guard let street = placemark.thoroughfare,
-                          let number = placemark.subThoroughfare else {
-                        return
-                    }
-                    
-                    scooter.humanReadableAddress = "Str. \(street) \(number)"
-                    self.selectedScooter = scooter
-
-                })
-                                                            
+                self.selectedScooter = scooter                            
             }
             
             scooterMapViewModel.onScooterDeselected = { [weak self] in

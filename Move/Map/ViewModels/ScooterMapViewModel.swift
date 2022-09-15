@@ -50,11 +50,8 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     }
     
     func refreshScooterList() {
-//        if self.mapView.annotations.count - 1 != self.scooterAnnotations.count {
-        
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(self.scooterAnnotations)
-//        }
      }
     
     func checkIfLocationServicesIsEnabled() {

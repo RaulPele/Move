@@ -48,6 +48,7 @@
 		DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */; };
 		DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */; };
 		DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */; };
+		DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -133,6 +134,7 @@
 		DE2F523D28A6462E007762BA /* PurpleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleBackgroundView.swift; sourceTree = "<group>"; };
 		DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
 		DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterCardViewModel.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
 		DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationView.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			children = (
 				DE4AABA128C76354004AC99F /* MapScreenViewModel.swift */,
 				DE4AABB728C8C578004AC99F /* ScooterMapViewModel.swift */,
+				DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE4AABB028C77A7F004AC99F /* SessionManager.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
+				DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */,
 				DE4AABB228C88EED004AC99F /* MapScreenView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
 				DE4AABA228C76354004AC99F /* MapScreenViewModel.swift in Sources */,

@@ -10,6 +10,14 @@ import SwiftUI
 struct ScooterCardView: View {
     let scooter: Scooter
     
+    @StateObject private var scooterCardViewModel: ScooterCardViewModel
+    
+    init(scooter: Scooter) {
+        self.scooter = scooter
+        self._scooterCardViewModel = StateObject(wrappedValue: ScooterCardViewModel(scooter: scooter))
+        print(self._scooterCardViewModel.wrappedValue.scooter.scooterNumber)
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             topSectionView
@@ -19,6 +27,10 @@ struct ScooterCardView: View {
         .background(RoundedRectangle(cornerRadius: 30, style: .continuous)
             .foregroundColor(.neutralWhite))
         .shadow(radius: 10)
+        .onAppear {
+            scooterCardViewModel.convertScooterLocation()
+        }
+        
     }
 }
 
@@ -59,7 +71,7 @@ private extension ScooterCardView {
     var locationView: some View {
         return  HStack(spacing: 8) {
             Image("location-pin")
-            Text(scooter.humanReadableAddress ?? "Can't display location for scooter")
+            Text(scooterCardViewModel.scooterAddress)
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.primaryDark)
                 .font(.body2())

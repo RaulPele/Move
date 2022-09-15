@@ -16,7 +16,7 @@ enum LockedStatus: String, Codable {
     case available
 }
 
-class Scooter: Identifiable, Equatable {
+struct Scooter: Identifiable, Equatable {
     
     let id: String
     let scooterNumber: Int

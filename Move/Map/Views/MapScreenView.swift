@@ -29,6 +29,7 @@ struct MapScreenView: View {
         }
         .overlay(
             selectedScooterView
+                .id(UUID())
                 .transition(.opacity.animation(.easeInOut))
             , alignment: .bottom)
         .overlay(topBar, alignment: .top)
