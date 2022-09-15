@@ -73,7 +73,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .map, selection: $state) {
-                    MapScreenView(scooterService: appDependencies.scooterService) //TODO: add coordinator
+                    MapCoordinatorView(scooterService: appDependencies.scooterService)
                 } label: {
                     EmptyView()
                 }

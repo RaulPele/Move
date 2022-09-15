@@ -28,8 +28,7 @@ struct ContentView: View {
     
     var body: some View {
 //        MainCoordinatorView(appDependencies: appDependencies)
-        MapScreenView(scooterService: appDependencies.scooterService)
-        
+        MapCoordinatorView(scooterService: appDependencies.scooterService)
     }
 }
 

@@ -75,10 +75,10 @@ private extension UnlockScooterBottomSheetView {
             Text("Scooter")
                 .font(.heading4())
                 .foregroundColor(.primaryDark.opacity(0.6))
+            
             Text(verbatim: "#\(scooter.scooterNumber)")
                 .font(.heading1())
                 .foregroundColor(.primaryDark)
-                
             
             BatteryView(batteryPercentage: scooter.batteryPercentage)
         }
@@ -91,8 +91,6 @@ private extension UnlockScooterBottomSheetView {
                 .scaledToFit()
             
             Image("SheetScooterRectangleBackground")
-                
-
         }
     }
     

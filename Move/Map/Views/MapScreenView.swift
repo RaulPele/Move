@@ -11,8 +11,11 @@ struct MapScreenView: View {
     let scooterService: ScooterService
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
-    init(scooterService: ScooterService) {
+    let onUnlockScooterPressed: (Scooter) -> Void
+    
+    init(scooterService: ScooterService, onUnlockScooterPressed: @escaping (Scooter) -> Void) {
         self.scooterService = scooterService
+        self.onUnlockScooterPressed = onUnlockScooterPressed
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
     }
     
@@ -38,7 +41,7 @@ struct MapScreenView: View {
     @ViewBuilder
     var selectedScooterView: some View {
         if let selectedScooter = mapScreenViewModel.selectedScooter {
-            ScooterCardView(scooter: selectedScooter)
+            ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: onUnlockScooterPressed)
         }
     }
     
@@ -78,7 +81,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService())
+            MapScreenView(scooterService: ScooterAPIService(), onUnlockScooterPressed: {_ in })
                 .previewDevice(device)
         }
     }
