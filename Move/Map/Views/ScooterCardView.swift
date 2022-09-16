@@ -12,9 +12,9 @@ struct ScooterCardView: View {
     
     @StateObject private var scooterCardViewModel: ScooterCardViewModel
     
-    let onUnlockScooterPressed: (Scooter) -> Void
+    let onUnlockScooterPressed: () -> Void
     
-    init(scooter: Scooter, onUnlockScooterPressed: @escaping (Scooter) -> Void) {
+    init(scooter: Scooter, onUnlockScooterPressed: @escaping () -> Void) {
         self.scooter = scooter
         self.onUnlockScooterPressed = onUnlockScooterPressed
         self._scooterCardViewModel = StateObject(wrappedValue: ScooterCardViewModel(scooter: scooter))
@@ -111,7 +111,7 @@ private extension ScooterCardView {
             Spacer()
             
             Button {
-                onUnlockScooterPressed(scooter)
+                onUnlockScooterPressed()
             } label: {
                 Text("Unlock")
                     .frame(maxWidth: .infinity)
@@ -126,7 +126,7 @@ private extension ScooterCardView {
 struct ScooterCardView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 89, location: Coordinates.ClujNapoca), onUnlockScooterPressed: { _ in })
+            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 89, location: Coordinates.ClujNapoca), onUnlockScooterPressed: {  })
                 .previewDevice(device)
         }
     }

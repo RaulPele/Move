@@ -25,19 +25,9 @@ struct MapCoordinatorView: View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .map, selection: $state) {
-                    MapScreenView(scooterService: scooterService, onUnlockScooterPressed: {  selectedScooter in
-                        
-                        self.selectedScooter = selectedScooter
-                        showUnlockSheet = true
-                    })
+                    MapScreenView(scooterService: scooterService)
                     .navigationBarHidden(true)
-                    .halfSheet(showSheet: $showUnlockSheet) {
-                        if let selectedScooter = selectedScooter {
-                            UnlockScooterBottomSheetView(scooter: selectedScooter)
-                        }
-                    } onDismiss: {
-//                        showUnlockSheet = false
-                    }
+                    
 
                 } label: {
                     EmptyView()

@@ -17,6 +17,7 @@ extension MapScreenView {
         
         @Published var selectedScooter: Scooter?
         @Published var currentLocation = "Allow location"
+        @Published var showUnlockSheet = false
         
         private var cancellables = [AnyCancellable]()
         

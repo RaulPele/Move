@@ -11,12 +11,10 @@ struct MapScreenView: View {
     let scooterService: ScooterService
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
-    let onUnlockScooterPressed: (Scooter) -> Void
-    
-    init(scooterService: ScooterService, onUnlockScooterPressed: @escaping (Scooter) -> Void) {
+    init(scooterService: ScooterService) {
         self.scooterService = scooterService
-        self.onUnlockScooterPressed = onUnlockScooterPressed
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
+
     }
     
     var body: some View {
@@ -24,6 +22,13 @@ struct MapScreenView: View {
             ScooterMapView(mapViewModel: mapScreenViewModel.scooterMapViewModel)
                 .onAppear() {
                     mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
+                }
+                .halfSheet(showSheet: $mapScreenViewModel.showUnlockSheet) {
+                    if let selectedScooter = mapScreenViewModel.selectedScooter {
+                        UnlockScooterBottomSheetView(scooter: selectedScooter)
+                    }
+                } onDismiss: {
+                    mapScreenViewModel.showUnlockSheet = false
                 }
         }
         .ignoresSafeArea()
@@ -41,7 +46,9 @@ struct MapScreenView: View {
     @ViewBuilder
     var selectedScooterView: some View {
         if let selectedScooter = mapScreenViewModel.selectedScooter {
-            ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: onUnlockScooterPressed)
+            ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: {
+                mapScreenViewModel.showUnlockSheet = true
+            })
         }
     }
     
@@ -81,7 +88,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService(), onUnlockScooterPressed: {_ in })
+            MapScreenView(scooterService: ScooterAPIService())
                 .previewDevice(device)
         }
     }
