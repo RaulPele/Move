@@ -30,7 +30,7 @@ struct ContentView: View {
 //        MainCoordinatorView(appDependencies: appDependencies)
 //        MapCoordinatorView(scooterService: appDependencies.scooterService)
 //        SerialNumberUnlockView(text: .constant("qwe"))
-        PinTextField()
+        PinTextField(numberOfDigits: 4)
     }
 }
 

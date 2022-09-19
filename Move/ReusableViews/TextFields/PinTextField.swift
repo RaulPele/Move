@@ -7,64 +7,83 @@
 
 import SwiftUI
 
-//struct DigitTextFieldStyle: TextFieldStyle {
-//
-//    func _body(configuration: TextField<Self._Label>) -> some View {
-//            configuration
-//            .background(RoundedRectangle(cornerRadius: 18)
-//                .foregroundColor( ? .neutralWhite : .neutralLightPurple)
-//            )
-//            .cornerRadius(18)
-//            .frame(width:52, height: 52)
-//
-//        }
-//}
-
 struct DigitView: View {
-    @Binding var digit: String
-    @FocusState var focusedField: Int?
-    
+    var digit: String
     let index: Int
     
     var body: some View {
-        TextField("", text: $digit)
-            .focused($focusedField, equals: index)
+        Text(digit)
             .frame(width: 52, height: 52)
             .foregroundColor(.black)
-            .multilineTextAlignment(.center)
             .background(RoundedRectangle(cornerRadius: 18)
-                .foregroundColor((focusedField == index || digit != "") ? .neutralWhite : .neutralLightPurple)
-            )
+                .foregroundColor(.neutralLightPurple))
+    }
+}
+
+class PinTextFieldViewModel: ObservableObject {
+    let limit: Int
+    
+    init(limit: Int) {
+        self.limit = limit
+    }
+    
+    
+    @Published var pinCode: String = "" {
+        didSet {
+            if pinCode.count > limit && oldValue.count <= limit {
+                pinCode = oldValue
+            }
+        }
     }
 }
 
 struct PinTextField: View {
-    let numberOfDigits = 4
-    @State var pinDigits = ["", "", "", ""]
-    @FocusState var focusedFieldIndex: Int?
+    let numberOfDigits: Int
+    @StateObject private var viewModel: PinTextFieldViewModel
+    @FocusState var isFocused: Bool
+
+    init(numberOfDigits: Int) {
+        self.numberOfDigits = numberOfDigits
+        self._viewModel = StateObject(wrappedValue: PinTextFieldViewModel(limit: numberOfDigits))
+    }
+    
     
     var body: some View {
-        pinSquaresView
+        ZStack {
+            backgroundField
+            pinSquaresView.onTapGesture {
+                isFocused = true
+            }
+        }
     }
     
 }
 
+extension StringProtocol {
+    subscript(offset: Int) -> Character {
+        self[index(startIndex, offsetBy: offset)]
+    }
+}
+
 private extension PinTextField {
+    var backgroundField: some View {
+        TextField("", text: $viewModel.pinCode)
+            .accentColor(.clear)
+//            .tint(.clear)
+            .foregroundColor(.clear)
+            .focused($isFocused)
+            .keyboardType(.numberPad)
+            
+            
+//            .hidden()
+
+    }
     
     var pinSquaresView: some View {
         HStack(spacing: 16) {
             ForEach(0..<numberOfDigits, id: \.self) { i in
-                DigitView(digit: $pinDigits[i], focusedField: _focusedFieldIndex ,index: i)
-                    .onChange(of: pinDigits[i]) { newValue in
-                        if let focusedFieldIndex = focusedFieldIndex {
-                            print(focusedFieldIndex)
-                            if newValue == "" {
-                                self.focusedFieldIndex = focusedFieldIndex - 1
-                            }else {
-                                self.focusedFieldIndex = focusedFieldIndex + 1
-                            }
-                        }
-                    }
+                let digit = i < viewModel.pinCode.count ? String(viewModel.pinCode[i]) : ""
+                DigitView(digit: digit, index: i)
             }
         }
     }
@@ -74,7 +93,7 @@ struct PinTextField_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             PurpleBackgroundView()
-            PinTextField()
+            PinTextField(numberOfDigits: 4)
         }
     }
 }
