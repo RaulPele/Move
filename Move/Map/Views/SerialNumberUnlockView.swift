@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SerialNumberUnlockView: View {
-    @Binding var text: String
+    @State var text: String = ""
     var body: some View {
         ZStack(alignment: .top) {
             PurpleBackgroundView()
@@ -16,16 +16,12 @@ struct SerialNumberUnlockView: View {
             GeometryReader { geo in
 
                 ScrollView() {
-                    
                     VStack(spacing: 55) {
                         titleBarView
                         descriptionView
 
                         Spacer()
-                        TextField("qweqwe", text: $text).frame(height: 52)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(.neutralWhite)
-                            .frame(maxHeight: .infinity, alignment: .center)
+                        PinTextField(pinCode: $text, numberOfDigits: 4)
                         
                         Spacer()
                         Spacer()
@@ -78,7 +74,7 @@ private extension SerialNumberUnlockView {
 struct SerialNumberUnlockView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SerialNumberUnlockView(text: .constant("qwe"))
+            SerialNumberUnlockView()
                 .previewDevice(device)
         }
     }

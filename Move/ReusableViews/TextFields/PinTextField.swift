@@ -16,35 +16,18 @@ struct DigitView: View {
             .frame(width: 52, height: 52)
             .foregroundColor(.black)
             .background(RoundedRectangle(cornerRadius: 18)
-                .foregroundColor(.neutralLightPurple))
-    }
-}
-
-class PinTextFieldViewModel: ObservableObject {
-    let limit: Int
-    
-    init(limit: Int) {
-        self.limit = limit
-    }
-    
-    
-    @Published var pinCode: String = "" {
-        didSet {
-            if pinCode.count > limit && oldValue.count <= limit {
-                pinCode = oldValue
-            }
-        }
+                .foregroundColor(digit.isEmpty ? .neutralLightPurple : .neutralWhite))
     }
 }
 
 struct PinTextField: View {
     let numberOfDigits: Int
-    @StateObject private var viewModel: PinTextFieldViewModel
+    @Binding var pinCode: String
     @FocusState var isFocused: Bool
 
-    init(numberOfDigits: Int) {
+    init(pinCode: Binding<String>, numberOfDigits: Int) {
         self.numberOfDigits = numberOfDigits
-        self._viewModel = StateObject(wrappedValue: PinTextFieldViewModel(limit: numberOfDigits))
+        self._pinCode = pinCode
     }
     
     
@@ -56,7 +39,6 @@ struct PinTextField: View {
             }
         }
     }
-    
 }
 
 extension StringProtocol {
@@ -67,22 +49,22 @@ extension StringProtocol {
 
 private extension PinTextField {
     var backgroundField: some View {
-        TextField("", text: $viewModel.pinCode)
+        TextField("", text: $pinCode)
             .accentColor(.clear)
-//            .tint(.clear)
             .foregroundColor(.clear)
             .focused($isFocused)
             .keyboardType(.numberPad)
-            
-            
-//            .hidden()
-
+            .onChange(of: $pinCode.wrappedValue) { newValue in
+                if newValue.count > numberOfDigits  {
+                    pinCode = String(newValue.prefix(numberOfDigits))
+                }
+            }
     }
     
     var pinSquaresView: some View {
         HStack(spacing: 16) {
             ForEach(0..<numberOfDigits, id: \.self) { i in
-                let digit = i < viewModel.pinCode.count ? String(viewModel.pinCode[i]) : ""
+                let digit = i < pinCode.count ? String(pinCode[i]) : ""
                 DigitView(digit: digit, index: i)
             }
         }
@@ -93,7 +75,7 @@ struct PinTextField_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             PurpleBackgroundView()
-            PinTextField(numberOfDigits: 4)
+            PinTextField(pinCode: .constant("1234"), numberOfDigits: 4)
         }
     }
 }

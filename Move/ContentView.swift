@@ -29,8 +29,7 @@ struct ContentView: View {
     var body: some View {
 //        MainCoordinatorView(appDependencies: appDependencies)
 //        MapCoordinatorView(scooterService: appDependencies.scooterService)
-//        SerialNumberUnlockView(text: .constant("qwe"))
-        PinTextField(numberOfDigits: 4)
+        SerialNumberUnlockView()
     }
 }
 
