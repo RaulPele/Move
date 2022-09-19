@@ -66,6 +66,9 @@ struct MapScreenView: View {
             Text(mapScreenViewModel.currentLocation)
                 .font(.heading3())
                 .foregroundColor(.primaryLight)
+                .onTapGesture {
+                    mapScreenViewModel.scooterMapViewModel.onLocationHeaderTapped()
+                }
             
             Spacer()
             

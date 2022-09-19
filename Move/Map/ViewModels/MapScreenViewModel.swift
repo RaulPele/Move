@@ -65,14 +65,13 @@ extension MapScreenView {
                     var scooterAnnotations = [ScooterAnnotation]()
                     
                     for scooter in scooters {
-                        
                         let annotation = ScooterAnnotation(coordinate: scooter.location, scooter: scooter)
                         scooterAnnotations.append(annotation)
                     }
                     
                     let selectedScooterId = self.selectedScooter?.id
-                
                     self.scooterMapViewModel.scooterAnnotations = scooterAnnotations
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.selectedScooter = scooters.first(where: { $0.id == selectedScooterId })
                         if let selectedScooter = self.selectedScooter {

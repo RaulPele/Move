@@ -25,7 +25,7 @@ struct ScooterCardView: View {
             topSectionView
             bottomSectionView
         }
-        .frame(maxWidth: UIScreen.main.bounds.width * 0.7, maxHeight: UIScreen.main.bounds.height * 0.4, alignment: .top)
+        .frame(maxWidth: UIScreen.main.bounds.width * 0.7, alignment: .top)
         .background(RoundedRectangle(cornerRadius: 30, style: .continuous)
             .foregroundColor(.neutralWhite))
         .shadow(radius: 10)
@@ -108,7 +108,7 @@ private extension ScooterCardView {
     var bottomSectionView: some View {
         return VStack(spacing: 24) {
             locationView
-            Spacer()
+                .frame(alignment: .top)
             
             Button {
                 onUnlockScooterPressed()
@@ -118,8 +118,10 @@ private extension ScooterCardView {
                 
             }
             .buttonStyle(.filledButton)
+//            .frame(alignment: .bottom)
         }
         .padding(24)
+//        .frame(maxHeight: .infinity)
     }
 }
 

@@ -54,6 +54,15 @@ class ScooterMapViewModel: NSObject, ObservableObject {
             self.mapView.addAnnotations(self.scooterAnnotations)
      }
     
+    func centerMapOnUserLocation() {
+        region = MKCoordinateRegion(center: userLocation?.coordinate ?? Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func centerMapOnCity() {
+        region = MKCoordinateRegion(center: Coordinates.ClujNapoca, latitudinalMeters: 4000, longitudinalMeters: 4000)
+    }
+    
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
@@ -70,11 +79,14 @@ class ScooterMapViewModel: NSObject, ObservableObject {
 
         switch locationManager.authorizationStatus {
         case .notDetermined:
+            centerMapOnCity()
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
             onMapLocationChanged("Location services is restricted")
+            centerMapOnCity()
         case .denied:
             onMapLocationChanged("Allow location")
+            centerMapOnCity()
             
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
@@ -84,9 +96,17 @@ class ScooterMapViewModel: NSObject, ObservableObject {
         }
     }
     
-    func centerMapOnUserLocation() {
-        region = MKCoordinateRegion(center: userLocation?.coordinate ?? Coordinates.ClujNapoca, span: .init(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        mapView.setRegion(region, animated: true)
+    func isLocationTrackingAllowed() -> Bool {
+        return locationManager?.authorizationStatus == .authorizedAlways || locationManager?.authorizationStatus == .authorizedWhenInUse
+    }
+    
+    func onLocationHeaderTapped() {
+        guard let locationManager = locationManager else { return }
+        
+        if locationManager.authorizationStatus == .denied {
+            let url = URL(string: UIApplication.openSettingsURLString)
+            UIApplication.shared.open(url!)
+        }
     }
     
     func toggleUserLocationTracking() {
@@ -134,8 +154,9 @@ class ScooterMapViewModel: NSObject, ObservableObject {
         }
         
         mapView.selectAnnotation(scooterAnnotation, animated: false)
-        
     }
+    
+    
 }
 
 
@@ -148,9 +169,9 @@ extension ScooterMapViewModel: MKMapViewDelegate {
             annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: ReuseIdentifiers.userAnnotation.rawValue)
-                annotationView!.image = UIImage(named: self.userLocation == nil ?
-                                                "user-location-arrow-unauthorized" :
-                                                    "user-location-arrow-authorized")
+                annotationView!.image = UIImage(named: self.isLocationTrackingAllowed() ?
+                                                "user-location-arrow-authorized" :
+                                                "user-location-arrow-unauthorized")
             }
             
             annotationView!.tintColor = .blue
@@ -216,7 +237,7 @@ extension ScooterMapViewModel: CLLocationManagerDelegate {
             withAnimation {
                 self.centerMapOnUserLocation()
                 self.addUserLocationAnnotation()
-                self.getMapLocationString()
+//                self.getMapLocationString()
             }
         }
     }
