@@ -31,4 +31,8 @@ class ScooterAPIService: ScooterService {
                 }
             }
     }
+    
+    func unlock(scooter: Scooter, completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        
+    }
 }
