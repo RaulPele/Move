@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-struct DigitView: View {
-    var digit: String
-    let index: Int
-    
-    var body: some View {
-        Text(digit)
-            .frame(width: 52, height: 52)
-            .foregroundColor(.black)
-            .background(RoundedRectangle(cornerRadius: 18)
-                .foregroundColor(digit.isEmpty ? .neutralLightPurple : .neutralWhite))
-    }
-}
-
 struct PinTextField: View {
     let numberOfDigits: Int
     @Binding var pinCode: String
@@ -30,7 +17,6 @@ struct PinTextField: View {
         self._pinCode = pinCode
     }
     
-    
     var body: some View {
         ZStack {
             backgroundField
@@ -38,12 +24,6 @@ struct PinTextField: View {
                 isFocused = true
             }
         }
-    }
-}
-
-extension StringProtocol {
-    subscript(offset: Int) -> Character {
-        self[index(startIndex, offsetBy: offset)]
     }
 }
 
@@ -58,6 +38,7 @@ private extension PinTextField {
                 if newValue.count > numberOfDigits  {
                     pinCode = String(newValue.prefix(numberOfDigits))
                 }
+                
             }
     }
     

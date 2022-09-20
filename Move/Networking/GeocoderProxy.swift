@@ -44,8 +44,9 @@ class GeocoderProxy {
                 if let placemarks = placemarks {
                     if allowCaching {
                         self.cachedLocations[location.coordinate] = placemarks
+                        print("Successfully cached location for: \(location.coordinate) = \(placemarks.first!.locality) \(placemarks.first!.thoroughfare)")
                     }
-                    print("Successfully cached location for: \(location.coordinate) = \(placemarks.first!.locality) \(placemarks.first!.thoroughfare)")
+                    
                 }
                 completionHandler(placemarks, error)
             }

@@ -9,10 +9,16 @@ import SwiftUI
 
 struct MapScreenView: View {
     let scooterService: ScooterService
+    
+    let onSerialNumberUnlockClicked: (Scooter) -> Void
+    
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
-    init(scooterService: ScooterService) {
+    init(scooterService: ScooterService, onSerialNumberUnlockClicked: @escaping (Scooter) -> Void) {
+        print("Map screen init called")
         self.scooterService = scooterService
+//        self.mapScreenViewModel = mapScreenViewModel
+        self.onSerialNumberUnlockClicked = onSerialNumberUnlockClicked
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
 
     }
@@ -25,7 +31,10 @@ struct MapScreenView: View {
                 }
                 .halfSheet(showSheet: $mapScreenViewModel.showUnlockSheet) {
                     if let selectedScooter = mapScreenViewModel.selectedScooter {
-                        UnlockScooterBottomSheetView(scooter: selectedScooter)
+                        UnlockScooterBottomSheetView(scooter: selectedScooter) { scooter in
+                            mapScreenViewModel.showUnlockSheet = false
+                            onSerialNumberUnlockClicked(scooter)
+                        }
                     }
                 } onDismiss: {
                     mapScreenViewModel.showUnlockSheet = false
@@ -91,7 +100,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService())
+            MapScreenView(scooterService: ScooterAPIService(), onSerialNumberUnlockClicked: { _ in })
                 .previewDevice(device)
         }
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UnlockScooterBottomSheetView: View {
     let scooter: Scooter
+    let onSerialNumberUnlockClicked: (Scooter) -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -29,13 +30,14 @@ struct UnlockScooterBottomSheetView: View {
                     
                     scooterImageView
                 }
-//                Spacer()
+                //                Spacer()
                 scanningButtonsView
             }
             .padding(.top, 28)
             .padding(.horizontal, 24)
             .padding(.bottom, 10)
         }
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -113,7 +115,7 @@ private extension UnlockScooterBottomSheetView {
             .buttonStyle(.transparentButton)
             
             Button {
-                
+                onSerialNumberUnlockClicked(scooter)
             } label: {
                 Text("123")
                     .frame(maxWidth: .infinity)
@@ -144,7 +146,7 @@ struct UnlockScooterBottomSheetView_Previews: PreviewProvider {
                 Text("present")
             }
             .halfSheet(showSheet: .constant(true)) {
-                UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
+                UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
             } onDismiss: {
                 print("Dismissed")
             }

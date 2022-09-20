@@ -22,6 +22,7 @@ extension MapScreenView {
         private var cancellables = [AnyCancellable]()
         
         init(scooterService: ScooterService) {
+            print(" MAP SCREEN VIEW MODEL CONSTRUCTOR CALLED")
             self.scooterService = scooterService
             
             scooterMapViewModel =  .init(scooterService: scooterService)
@@ -89,8 +90,5 @@ extension MapScreenView {
                 self.loadScooters()
             }
         }
-        
-        
-        
     }
 }

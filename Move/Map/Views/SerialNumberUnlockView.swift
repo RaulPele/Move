@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct SerialNumberUnlockView: View {
-    @State var text: String = ""
+    let scooter: Scooter
+    let onUnlockedSuccessfully: () -> Void
+    @StateObject private var viewModel: SerialNumberUnlockViewModel
+    
+    init(scooter: Scooter, onUnlockedSuccessfully: @escaping () -> Void) {
+        self.scooter = scooter
+        self.onUnlockedSuccessfully = onUnlockedSuccessfully
+        self._viewModel = .init(wrappedValue: .init(scooter: scooter))
+    }
+    
+    
     var body: some View {
         ZStack(alignment: .top) {
             PurpleBackgroundView()
@@ -21,10 +31,30 @@ struct SerialNumberUnlockView: View {
                         descriptionView
 
                         Spacer()
-                        PinTextField(pinCode: $text, numberOfDigits: 4)
                         
-                        Spacer()
-                        Spacer()
+                        PinTextField(pinCode: $viewModel.text, numberOfDigits: 4)
+                            .onChange(of: viewModel.text) { newValue in
+                                viewModel.validatePin {
+                                    viewModel.unlock {
+                                        onUnlockedSuccessfully()
+                                    } onError: { error in
+                                        print("error while unlocking")
+                                    }
+
+                                } onError: {
+                                    print("Invalid Pin")
+                                }
+
+                            }
+                            .overlay(ActivityIndicator(isVisible: $viewModel.isLoading, color: .accentColor)
+                                .frame(width: 100, height: 100))
+                        
+                            Spacer()
+                            Spacer()
+//                        .overlay(ActivityIndicator(isVisible: .constant(true))
+//                            .frame(width: 100, height: 100))
+                        
+                            
                         
                         Text("Alternatively you can unlock using")
                             .font(.body1())
@@ -74,7 +104,7 @@ private extension SerialNumberUnlockView {
 struct SerialNumberUnlockView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SerialNumberUnlockView()
+            SerialNumberUnlockView( scooter: .init(id: "123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 65, location: .init()), onUnlockedSuccessfully: {})
                 .previewDevice(device)
         }
     }

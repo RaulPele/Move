@@ -28,8 +28,8 @@ struct ContentView: View {
     
     var body: some View {
 //        MainCoordinatorView(appDependencies: appDependencies)
-//        MapCoordinatorView(scooterService: appDependencies.scooterService)
-        SerialNumberUnlockView()
+        MapCoordinatorView(scooterService: appDependencies.scooterService)
+//        SerialNumberUnlockView()
     }
 }
 

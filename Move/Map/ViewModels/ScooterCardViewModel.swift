@@ -20,9 +20,13 @@ extension ScooterCardView {
         func convertScooterLocation() {
             GeocoderProxy.shared.reverseGeocodeLocation(location: CLLocation(latitude: scooter.location.latitude, longitude: scooter.location.longitude), allowCaching: true,  completionHandler: { [weak self] placemarks, error in
                 
+                if let error = error {
+                    print("ERROR RETRIEVING LOCATION: \(error.localizedDescription)")
+                }
                 guard let self = self else {
                     return
                 }
+                
                 
                 guard let placemarks = placemarks,
                       let placemark = placemarks.first else {

@@ -26,7 +26,7 @@ struct ScooterDTO: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case location
-        case scooterNumber = "ScootNumber"
+        case scooterNumber = "scootNumber"
         case battery
         case bookedStatus
         case lockedStatus
@@ -35,7 +35,7 @@ struct ScooterDTO: Codable {
 
 extension ScooterDTO {
     func toScooter() -> Scooter {
-        return Scooter(id: id, scooterNumber: scooterNumber, bookedStatus: bookedStatus, lockedStatus: lockedStatus, batteryPercentage: battery, location: .init(latitude: location.coordinates[1], longitude: location.coordinates[0]))
+        return Scooter(id: id, scooterNumber: scooterNumber, bookedStatus: bookedStatus, lockedStatus: lockedStatus, batteryPercentage: battery, location: .init(latitude: location.coordinates[0], longitude: location.coordinates[1]))
     }
 }
 

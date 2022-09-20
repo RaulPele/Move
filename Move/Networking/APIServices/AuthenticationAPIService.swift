@@ -24,7 +24,7 @@ class AuthenticationAPIService: AuthenticationService {
         let parameters = ["mail": email, "password": password]
         let headers = ["Content-Type": "application/json"]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/gateway/login"), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(baseURL.appendingPathComponent("api/auth/login"), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: AuthenticationResponse.self) { response in
@@ -57,7 +57,7 @@ class AuthenticationAPIService: AuthenticationService {
             "password": password
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/gateway/register"), method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(baseURL.appendingPathComponent("api/auth/register"), method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: AuthenticationResponse.self) { response in
