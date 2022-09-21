@@ -24,13 +24,17 @@ class DrivingLicenseAPIService: DrivingLicenseService {
         
         let headers = ["Authorization": "Bearer \(sessionToken)"]
         
-        AF.upload(multipartFormData: { multipartFormData in
+        let request = AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imageData, withName: "productImage", fileName: "license.jpeg", mimeType: "image/jpeg")
         }, to: url,
                   method: .put, headers: .init(headers))
+        
+        request
+            .validate(statusCode: 200..<300)
         .responseDecodable(of: VerificationResponse.self) { response in
             switch(response.result) {
             case .success(let verificationResponse):
+                print("SUCCESS")
                 completionHandler(.success(verificationResponse.userDTO.toUser()))
             case .failure(let error):
                 if let data = response.data,

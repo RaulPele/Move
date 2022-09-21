@@ -10,6 +10,7 @@ import SwiftUI
 struct DrivingLicenseVerificationView: View {
     var errorHandler: ErrorHandler
     let drivingLicenseService: DrivingLicenseService
+    let sessionManager: SessionManager
     
     @StateObject private var verificationViewModel: DrivingLicenseVerificationViewModel
     
@@ -19,16 +20,18 @@ struct DrivingLicenseVerificationView: View {
     
     init(errorHandler: ErrorHandler,
          drivingLicenseService: DrivingLicenseService,
+         sessionManager: SessionManager,
          onVerificationPending: @escaping () -> Void,
          onVerificationFinished: @escaping () -> Void,
          onBackButtonPressed: @escaping () -> Void) {
         self.errorHandler = errorHandler
         self.drivingLicenseService = drivingLicenseService
+        self.sessionManager = sessionManager
         self.onVerificationPending = onVerificationPending
         self.onVerificationFinished = onVerificationFinished
         self.onBackButtonPressed = onBackButtonPressed
         
-        self._verificationViewModel = StateObject(wrappedValue: DrivingLicenseVerificationViewModel(drivingLicenseService: drivingLicenseService))
+        self._verificationViewModel = StateObject(wrappedValue: DrivingLicenseVerificationViewModel(drivingLicenseService: drivingLicenseService, sessionManager: sessionManager))
     }
     
     var body: some View {
@@ -144,7 +147,7 @@ private extension DrivingLicenseVerificationView {
 struct DrivingLicenseVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            DrivingLicenseVerificationView(errorHandler: SwiftMessagesErrorHandler(), drivingLicenseService: DrivingLicenseAPIService(), onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
+            DrivingLicenseVerificationView(errorHandler: SwiftMessagesErrorHandler(), drivingLicenseService: DrivingLicenseAPIService(), sessionManager: SessionManager(), onVerificationPending: {}, onVerificationFinished: {}, onBackButtonPressed: {})
                 .previewDevice(device)
         }
         .previewInterfaceOrientation(.portrait)

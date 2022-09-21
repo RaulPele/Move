@@ -50,7 +50,7 @@ class ScooterAPIService: ScooterService {
         let request = AF.request(baseURL.appendingPathComponent("api/scooters/scan"),
                                  method: .patch,
                                  parameters: parameters,
-                                 encoding: JSONEncoding.default,
+                                 encoding: URLEncoding(destination: .queryString),
                                  headers: .init(headers))
         
         request

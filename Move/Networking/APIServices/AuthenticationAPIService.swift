@@ -30,7 +30,7 @@ class AuthenticationAPIService: AuthenticationService {
             .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     case .success(let authenticationData):
-                        self.saveUserData(userData: authenticationData)
+                    try? self.sessionManager.saveUserData(userDTO: authenticationData.userDTO)
                     completionHandler(.success(authenticationData.userDTO.toUser()))
                     case .failure(let error):
                         if let data = response.data,
@@ -64,7 +64,7 @@ class AuthenticationAPIService: AuthenticationService {
                 switch response.result {
                 case .success(let authenticationData):
                     print("succesfully registered")
-                    self.saveUserData(userData: authenticationData)
+                    try? self.sessionManager.saveUserData(userDTO: authenticationData.userDTO)
                     completionHandler(.success(authenticationData.userDTO.toUser()))
                     
                 case .failure(let error):
@@ -76,13 +76,5 @@ class AuthenticationAPIService: AuthenticationService {
                     }
                 }
             }
-    }
-    
-    private func saveUserData(userData: AuthenticationResponse) {
-        let encoder = JSONEncoder()
-        let userData = try? encoder.encode(userData)
-        if let userData = userData {
-            UserDefaults.standard.set(userData, forKey: "userData")
-        }
     }
 }

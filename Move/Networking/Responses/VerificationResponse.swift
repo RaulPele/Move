@@ -11,6 +11,6 @@ struct VerificationResponse: Codable {
     let userDTO : UserDTO
     
     enum CodingKeys: String, CodingKey {
-        case userDTO = "existing_user"
+        case userDTO = "existingUser"
     }
 }

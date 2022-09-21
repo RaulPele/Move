@@ -22,7 +22,7 @@ struct UserDTO : Codable {
         case email = "mail"
         case password
         case status
-        case sessionToken = "session_token"
+        case sessionToken = "sessionToken"
         case createdAt
         case updatedAt
         case licenseImageLink = "productImage"

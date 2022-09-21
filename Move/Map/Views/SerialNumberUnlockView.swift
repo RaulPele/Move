@@ -53,6 +53,7 @@ struct SerialNumberUnlockView: View {
                         
                         PinTextField(pinCode: $viewModel.text, numberOfDigits: 4)
                             .onChange(of: viewModel.text) { newValue in
+                                print(viewModel.text)
                                 viewModel.validatePin {
                                     viewModel.unlock {
                                         onUnlockedSuccessfully()

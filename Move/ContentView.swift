@@ -28,7 +28,7 @@ struct ContentView: View {
 
     var body: some View {
         MainCoordinatorView(appDependencies: appDependencies)
-//        MapCoordinatorView(scooterService: appDependencies.scooterService)
+//        MapCoordinatorView(errorHandler: appDependencies.errorHandler, scooterService: appDependencies.scooterService, sessionManager: appDependencies.sessionManager)
 //        SerialNumberUnlockView()
         
     }
