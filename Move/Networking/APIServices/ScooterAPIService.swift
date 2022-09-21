@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import MapKit
 
 class ScooterAPIService: ScooterService {
     let baseURL = URL(string: "https://move-scooters.herokuapp.com")!
@@ -14,7 +15,7 @@ class ScooterAPIService: ScooterService {
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void) {
         let headers = ["Content-Type" : "application/json"]
         
-        let request = AF.request(baseURL.appendingPathComponent("/api/scooters/all"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(baseURL.appendingPathComponent("api/scooters/all"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
             
         request.validate(statusCode: 200..<300)
             .responseDecodable(of: GetScootersResponse.self) { response in
@@ -32,7 +33,40 @@ class ScooterAPIService: ScooterService {
             }
     }
     
-    func unlock(scooter: Scooter, completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+    func unlock(scooter: Scooter,
+                userLocation: CLLocation,
+                unlockMethod: UnlockMethod,
+                sessionToken: String,
+                completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        let parameters: [String : Any] = [
+            "method" : unlockMethod.rawValue,
+            "id" : scooter.scooterNumber,
+            "latitude" : userLocation.coordinate.latitude,
+            "longitude" : userLocation.coordinate.longitude
+        ]
         
+        let headers = ["Authorization" : "Bearer \(sessionToken)"]
+        
+        let request = AF.request(baseURL.appendingPathComponent("api/scooters/scan"),
+                                 method: .patch,
+                                 parameters: parameters,
+                                 encoding: JSONEncoding.default,
+                                 headers: .init(headers))
+        
+        request
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: UnlockScooterResponse.self) { response in
+                switch response.result {
+                case .success(let unlockScooterResponse):
+                    completionHandler(.success(unlockScooterResponse.scooterDTO.toScooter()))
+                case .failure(let error):
+                    if let data = response.data,
+                       let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+                        completionHandler(.failure(apiError))
+                    } else {
+                        completionHandler(.failure(error))
+                    }
+                }
+            }
     }
 }

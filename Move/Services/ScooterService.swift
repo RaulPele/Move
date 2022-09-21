@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import MapKit
 
 protocol ScooterService {
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void)
-    func unlock(scooter: Scooter, completionHandler: @escaping (Result<Scooter, Error>) -> Void)
+    func unlock(scooter: Scooter,
+                userLocation: CLLocation,
+                unlockMethod: UnlockMethod,
+                sessionToken: String,
+                completionHandler: @escaping (Result<Scooter, Error>) -> Void)
 }

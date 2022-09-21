@@ -6,16 +6,26 @@
 //
 
 import Foundation
-//import SwiftUI
+import MapKit
 
 extension SerialNumberUnlockView {
     class SerialNumberUnlockViewModel: ObservableObject {
         @Published var text: String = ""
         @Published var isLoading = false
         let scooter: Scooter
+        let scooterService: ScooterService
+        let sessionManager: SessionManager
+        let userLocation: CLLocation
         
-        init(scooter: Scooter) {
+        init(scooterService: ScooterService,
+             sessionManager: SessionManager,
+             scooter: Scooter,
+             userLocation: CLLocation) {
             self.scooter = scooter
+            self.scooterService = scooterService
+            self.sessionManager = sessionManager
+            self.userLocation = userLocation
+            
         }
         
         func validatePin(onSuccess: () -> Void, onError: () -> Void) {
@@ -27,15 +37,19 @@ extension SerialNumberUnlockView {
         }
         
         func unlock(onUnlockedSuccessfuly: @escaping () -> Void, onError: @escaping (Error) -> Void) {
-            print("Unlocked scooter")
-            isLoading = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                guard let self = self else {
-                    return
+            guard let sessionToken = sessionManager.getSessionToken() else { return }
+            
+            
+            scooterService.unlock(scooter: scooter, userLocation: userLocation, unlockMethod: .PIN, sessionToken: sessionToken) { result in
+                switch result {
+                case .success(let scooter):
+                    onUnlockedSuccessfuly()
+                    
+                case .failure(let error) :
+                    onError(error)
                 }
-                onUnlockedSuccessfuly()
-                self.isLoading = false
             }
+            
         }
     }
 }

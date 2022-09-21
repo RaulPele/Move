@@ -16,41 +16,48 @@ enum MapCoordinatorState {
 }
 
 struct MapCoordinatorView: View {
-    @State private var state: MapCoordinatorState? = .map
+    @StateObject private var mapCoordinatorViewModel: MapCoordinatorViewModel = .init()
     
     let scooterService: ScooterService
-    @State var selectedScooter: Scooter? = nil
+    let sessionManager: SessionManager
+    let errorHandler: ErrorHandler
     
-    init(scooterService: ScooterService) {
+    init(errorHandler: ErrorHandler,
+         scooterService: ScooterService,
+         sessionManager: SessionManager) {
         self.scooterService = scooterService
-        
+        self.errorHandler = errorHandler
+        self.sessionManager = sessionManager
     }
     
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(tag: .map, selection: $state) {
-                    MapScreenView(scooterService: scooterService, onSerialNumberUnlockClicked: { scooter in
-                        state = .unlockScooterSerialNumber
-                        self.selectedScooter = scooter
+                NavigationLink(tag: .map, selection: $mapCoordinatorViewModel.state) {
+                    MapScreenView(scooterService: scooterService, onSerialNumberUnlockClicked: { scooter, userLocation in
+                        mapCoordinatorViewModel.state = .unlockScooterSerialNumber
+                        mapCoordinatorViewModel.currentScooter = scooter
+                        mapCoordinatorViewModel.userLocation = userLocation
                     })
                         .navigationBarHidden(true)
-//                        .halfSheet(showSheet: $showUnlockSheet) {
-//                            if let selectedScooter = selectedScooter {
-//                                UnlockScooterBottomSheetView(scooter: selectedScooter)
-//                            }
-//                        } onDismiss: {
-//                            showUnlockSheet = false
-//                        }
+
 
                 } label: {
                     EmptyView()
                 }
                 
-                NavigationLink(tag: .unlockScooterSerialNumber, selection: $state) {
-                    if let selectedScooter = selectedScooter{
-                        SerialNumberUnlockView(scooter: selectedScooter, onUnlockedSuccessfully: {
-                            state = .unlockSuccessful
+                NavigationLink(tag: .unlockScooterSerialNumber, selection: $mapCoordinatorViewModel.state) {
+                    if let currentScooter = mapCoordinatorViewModel.currentScooter,
+                       let userLocation = mapCoordinatorViewModel.userLocation {
+                        SerialNumberUnlockView(errorHandler: errorHandler,
+                                               scooterService: scooterService,
+                                               sessionManager: sessionManager,
+                                               scooter: currentScooter,
+                                               userLocation: userLocation,
+                                               onUnlockedSuccessfully: {
+                            mapCoordinatorViewModel.state = .unlockSuccessful
+                        }, onClose: {
+                            mapCoordinatorViewModel.state = .map
                         })
                             .navigationBarHidden(true)
                     }
@@ -58,7 +65,7 @@ struct MapCoordinatorView: View {
                     EmptyView()
                 }
                 
-                NavigationLink(tag: .unlockSuccessful, selection: $state) {
+                NavigationLink(tag: .unlockSuccessful, selection: $mapCoordinatorViewModel.state) {
                     UnlockSuccessfulView()
                         .navigationBarHidden(true)
                 } label: {
@@ -72,6 +79,6 @@ struct MapCoordinatorView: View {
 
 struct MapCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MapCoordinatorView(scooterService: ScooterAPIService())
+        MapCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(), sessionManager: SessionManager())
     }
 }

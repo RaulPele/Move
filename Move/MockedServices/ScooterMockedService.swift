@@ -6,8 +6,17 @@
 //
 
 import Foundation
+import MapKit
 
 class ScooterMockedService: ScooterService {
+    func unlock(scooter: Scooter,
+                userLocation: CLLocation,
+                unlockMethod: UnlockMethod,
+                sessionToken: String,
+                completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        
+    }
+    
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void) {
         completionHandler(.success([
             Scooter(id: "#AAAA", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: .init(latitude: 46.779, longitude: 23.6)),

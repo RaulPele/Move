@@ -73,7 +73,9 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .map, selection: $state) {
-                    MapCoordinatorView(scooterService: appDependencies.scooterService)
+                    MapCoordinatorView(errorHandler: appDependencies.errorHandler,
+                                       scooterService: appDependencies.scooterService,
+                                       sessionManager: appDependencies.sessionManager)
                         .navigationBarHidden(true)
                 } label: {
                     EmptyView()

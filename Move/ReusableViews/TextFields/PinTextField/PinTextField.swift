@@ -53,10 +53,11 @@ private extension PinTextField {
 }
 
 struct PinTextField_Previews: PreviewProvider {
+    @State static var text = "123"
     static var previews: some View {
         ZStack {
             PurpleBackgroundView()
-            PinTextField(pinCode: .constant("1234"), numberOfDigits: 4)
+            PinTextField(pinCode: $text, numberOfDigits: 4)
         }
     }
 }

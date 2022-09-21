@@ -25,11 +25,12 @@ struct AppDependencies {
 
 struct ContentView: View {
     let appDependencies = AppDependencies()
-    
+
     var body: some View {
-//        MainCoordinatorView(appDependencies: appDependencies)
-        MapCoordinatorView(scooterService: appDependencies.scooterService)
+        MainCoordinatorView(appDependencies: appDependencies)
+//        MapCoordinatorView(scooterService: appDependencies.scooterService)
 //        SerialNumberUnlockView()
+        
     }
 }
 

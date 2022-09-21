@@ -6,30 +6,49 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SerialNumberUnlockView: View {
     let scooter: Scooter
+    let userLocation: CLLocation
+
     let onUnlockedSuccessfully: () -> Void
+    let onClose: () -> Void
+    
+    let errorHandler: ErrorHandler
+    let scooterService: ScooterService
+    let sessionManager: SessionManager
+    
     @StateObject private var viewModel: SerialNumberUnlockViewModel
     
-    init(scooter: Scooter, onUnlockedSuccessfully: @escaping () -> Void) {
+    init(errorHandler: ErrorHandler,
+         scooterService: ScooterService,
+         sessionManager: SessionManager,
+         scooter: Scooter,
+         userLocation: CLLocation,
+         onUnlockedSuccessfully: @escaping () -> Void,
+         onClose: @escaping () -> Void) {
+        self.errorHandler = errorHandler
+        self.scooterService = scooterService
+        self.sessionManager = sessionManager
         self.scooter = scooter
+        self.userLocation = userLocation
         self.onUnlockedSuccessfully = onUnlockedSuccessfully
-        self._viewModel = .init(wrappedValue: .init(scooter: scooter))
+        self.onClose = onClose
+        self._viewModel = .init(wrappedValue: .init(scooterService: scooterService, sessionManager: sessionManager, scooter: scooter, userLocation: userLocation))
     }
     
     
     var body: some View {
         ZStack(alignment: .top) {
             PurpleBackgroundView()
-
+            
             GeometryReader { geo in
-
                 ScrollView() {
                     VStack(spacing: 55) {
                         titleBarView
                         descriptionView
-
+                        
                         Spacer()
                         
                         PinTextField(pinCode: $viewModel.text, numberOfDigits: 4)
@@ -38,31 +57,25 @@ struct SerialNumberUnlockView: View {
                                     viewModel.unlock {
                                         onUnlockedSuccessfully()
                                     } onError: { error in
-                                        print("error while unlocking")
+                                        errorHandler.handle(error: error, title: "Cannot unlock scooter!")
                                     }
-
+                                    
                                 } onError: {
                                     print("Invalid Pin")
                                 }
-
+                                
                             }
                             .overlay(ActivityIndicator(isVisible: $viewModel.isLoading, color: .accentColor)
                                 .frame(width: 100, height: 100))
                         
-                            Spacer()
-                            Spacer()
-//                        .overlay(ActivityIndicator(isVisible: .constant(true))
-//                            .frame(width: 100, height: 100))
-                        
-                            
+                        Spacer()
+                        Spacer()
                         
                         Text("Alternatively you can unlock using")
                             .font(.body1())
                             .foregroundColor(.neutralWhite)
-//                            .frame(maxHeight:.infinity, alignment: .bottom)
+                        //                            .frame(maxHeight:.infinity, alignment: .bottom)
                             .padding(.bottom, 100)
-                            
-                        
                     }
                     .padding(.horizontal, 24)
                     .frame(minHeight: geo.size.height)
@@ -75,8 +88,12 @@ struct SerialNumberUnlockView: View {
 private extension SerialNumberUnlockView {
     var titleBarView: some View {
         return HStack(spacing: 0) {
-            Image("close-icon")
-                
+            Button {
+                onClose()
+            } label: {
+                Image("close-icon")
+            }
+            
             Spacer()
             Text("Enter serial number")
                 .font(.heading3())
@@ -104,7 +121,7 @@ private extension SerialNumberUnlockView {
 struct SerialNumberUnlockView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SerialNumberUnlockView( scooter: .init(id: "123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 65, location: .init()), onUnlockedSuccessfully: {})
+            SerialNumberUnlockView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(), sessionManager: SessionManager(), scooter: .init(id: "1234", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: .init()), userLocation: .init(), onUnlockedSuccessfully: {}, onClose: {})
                 .previewDevice(device)
         }
     }

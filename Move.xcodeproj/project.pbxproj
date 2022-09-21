@@ -56,6 +56,8 @@
 		DE39E5E528D34B440069C71D /* MySheetHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E428D34B440069C71D /* MySheetHostingController.swift */; };
 		DE39E5E728D352100069C71D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E628D352100069C71D /* BatteryView.swift */; };
 		DE39E5E928D48C410069C71D /* SerialNumberUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */; };
+		DE3DC3A228DB3FE5005122B5 /* MapCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC3A128DB3FE5005122B5 /* MapCoordinatorViewModel.swift */; };
+		DE3DC3A428DB6F18005122B5 /* UnlockScooterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -154,6 +156,8 @@
 		DE39E5E428D34B440069C71D /* MySheetHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySheetHostingController.swift; sourceTree = "<group>"; };
 		DE39E5E628D352100069C71D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberUnlockView.swift; sourceTree = "<group>"; };
+		DE3DC3A128DB3FE5005122B5 /* MapCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScooterResponse.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
 		DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationView.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 				DE28ECDD28C228D6007AA04C /* AuthenticationResponse.swift */,
 				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
 				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
+				DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				DE4AABB728C8C578004AC99F /* ScooterMapViewModel.swift */,
 				DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */,
 				DE717B8928D9E44800D0E3FD /* SerialNumberUnlockViewModel.swift */,
+				DE3DC3A128DB3FE5005122B5 /* MapCoordinatorViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -702,6 +708,7 @@
 				DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
+				DE3DC3A428DB6F18005122B5 /* UnlockScooterResponse.swift in Sources */,
 				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
@@ -746,6 +753,7 @@
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,
 				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,
+				DE3DC3A228DB3FE5005122B5 /* MapCoordinatorViewModel.swift in Sources */,
 				DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
 				DE39E5E028D339360069C71D /* BorderedRoundedIconButton.swift in Sources */,

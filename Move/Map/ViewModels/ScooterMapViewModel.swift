@@ -18,7 +18,7 @@ class ScooterMapViewModel: NSObject, ObservableObject {
     var onMapLocationChanged: (String) -> Void = { _ in}
     
     private var locationManager: CLLocationManager? = nil
-    private var userLocation: CLLocation? = nil
+    var userLocation: CLLocation? = nil
     private var previousMapCenter: CLLocation?
     private var currentMapCenter: CLLocation?
     
