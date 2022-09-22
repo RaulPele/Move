@@ -37,7 +37,7 @@ struct UnlockScooterBottomSheetView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 10)
         }
-        .edgesIgnoringSafeArea(.bottom)
+//        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -140,16 +140,29 @@ extension View {
 struct UnlockScooterBottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            Button {
-                
-            } label: {
-                Text("present")
+            ZStack {
+                Color.red
+                Button {
+                    
+                } label: {
+                    Text("present")
+                }
+                .halfSheet(showSheet: .constant(true)) {
+                    UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
+                    
+                } onDismiss: {
+                    print("Dismissed")
+                }
             }
-            .halfSheet(showSheet: .constant(true)) {
-                UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
-            } onDismiss: {
-                print("Dismissed")
-            }
+//
+//            ZStack {
+//                Color.primaryLight
+//
+//                Sheet(showSheet: .constant(true), sheetMode: .half, content: {
+//                    UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
+//                })
+//            }
+            
             .previewDevice(device)
 
                 

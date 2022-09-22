@@ -11,7 +11,10 @@ import MapKit
 extension MapCoordinatorView {
     class MapCoordinatorViewModel: ObservableObject {
         @Published var state: MapCoordinatorState? = .map
+        @Published var showUnlockSheet = false
+        @Published var showStartRideSheet = false
         var currentScooter: Scooter? = nil
         var userLocation: CLLocation? = nil
+        
     }
 }

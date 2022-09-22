@@ -10,13 +10,17 @@ import MapKit
 struct MapScreenView: View {
     let scooterService: ScooterService
     
-    let onSerialNumberUnlockClicked: (Scooter, CLLocation?) -> Void
+    let onSerialNumberUnlockClicked: () -> Void
+    let onScooterSelectedForUnlock: (Scooter, CLLocation?) -> Void
     
     @StateObject private var mapScreenViewModel : MapScreenViewModel
     
-    init(scooterService: ScooterService, onSerialNumberUnlockClicked: @escaping (Scooter, CLLocation?) -> Void) {
+    init(scooterService: ScooterService,
+         onSerialNumberUnlockClicked: @escaping () -> Void,
+         onScooterSelectedForUnlock: @escaping (Scooter, CLLocation?) -> Void) {
         self.scooterService = scooterService
         self.onSerialNumberUnlockClicked = onSerialNumberUnlockClicked
+        self.onScooterSelectedForUnlock = onScooterSelectedForUnlock
         self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
     }
     
@@ -26,16 +30,16 @@ struct MapScreenView: View {
                 .onAppear() {
                     mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
                 }
-                .halfSheet(showSheet: $mapScreenViewModel.showUnlockSheet) {
-                    if let selectedScooter = mapScreenViewModel.selectedScooter {
-                        UnlockScooterBottomSheetView(scooter: selectedScooter) { scooter in
-                            mapScreenViewModel.showUnlockSheet = false
-                            onSerialNumberUnlockClicked(scooter, mapScreenViewModel.scooterMapViewModel.userLocation)
-                        }
-                    }
-                } onDismiss: {
-                    mapScreenViewModel.showUnlockSheet = false
-                }
+//                .halfSheet(showSheet: $mapScreenViewModel.showUnlockSheet) {
+//                    if let selectedScooter = mapScreenViewModel.selectedScooter {
+//                        UnlockScooterBottomSheetView(scooter: selectedScooter) { scooter in
+//                            mapScreenViewModel.showUnlockSheet = false
+//                            onSerialNumberUnlockClicked()
+//                        }
+//                    }
+//                } onDismiss: {
+//                    mapScreenViewModel.showUnlockSheet = false
+//                }
         }
         .ignoresSafeArea()
         .onAppear {
@@ -53,7 +57,8 @@ struct MapScreenView: View {
     var selectedScooterView: some View {
         if let selectedScooter = mapScreenViewModel.selectedScooter {
             ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: {
-                mapScreenViewModel.showUnlockSheet = true
+//                mapScreenViewModel.showUnlockSheet = true
+                onScooterSelectedForUnlock(selectedScooter, mapScreenViewModel.scooterMapViewModel.userLocation)
             })
         }
     }
@@ -97,7 +102,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService(), onSerialNumberUnlockClicked: { _,_  in })
+            MapScreenView(scooterService: ScooterAPIService(), onSerialNumberUnlockClicked: {  }, onScooterSelectedForUnlock: { _, _ in })
                 .previewDevice(device)
         }
     }
