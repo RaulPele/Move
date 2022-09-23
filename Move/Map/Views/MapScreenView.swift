@@ -102,7 +102,7 @@ struct MapScreenView: View {
 struct MapScreenView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService(), onSerialNumberUnlockClicked: {  }, onScooterSelectedForUnlock: { _, _ in })
+            MapScreenView(scooterService: ScooterAPIService(sessionManager: .init()), onSerialNumberUnlockClicked: {  }, onScooterSelectedForUnlock: { _, _ in })
                 .previewDevice(device)
         }
     }

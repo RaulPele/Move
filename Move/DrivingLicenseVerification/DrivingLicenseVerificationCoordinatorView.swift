@@ -16,7 +16,6 @@ enum DrivingLicenseVerificationCoordinatorState {
 struct DrivingLicenseVerificationCoordinatorView: View {
     let errorHandler: ErrorHandler
     let drivingLicenseService: DrivingLicenseService
-    let sessionManager: SessionManager
     
     @State private var state: DrivingLicenseVerificationCoordinatorState? = .verification
     let onBackButtonPressed: () -> Void
@@ -26,7 +25,7 @@ struct DrivingLicenseVerificationCoordinatorView: View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .verification, selection: $state) {
-                    DrivingLicenseVerificationView(errorHandler: errorHandler, drivingLicenseService: drivingLicenseService, sessionManager: sessionManager, onVerificationPending: {
+                    DrivingLicenseVerificationView(errorHandler: errorHandler, drivingLicenseService: drivingLicenseService, onVerificationPending: {
                         state = .pending
                     }, onVerificationFinished: {
                         state = .valid
@@ -60,6 +59,6 @@ struct DrivingLicenseVerificationCoordinatorView: View {
 
 struct DrivingLicenseVerificationCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        DrivingLicenseVerificationCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), drivingLicenseService: DrivingLicenseAPIService(), sessionManager: SessionManager(), onBackButtonPressed: {}, onVerificationFinished: {})
+        DrivingLicenseVerificationCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), drivingLicenseService: DrivingLicenseAPIService(sessionManager: .init()), onBackButtonPressed: {}, onVerificationFinished: {})
     }
 }

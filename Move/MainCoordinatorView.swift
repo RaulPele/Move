@@ -17,7 +17,6 @@ enum MainCoordinatorState {
 
 struct MainCoordinatorView: View {
     let appDependencies: AppDependencies
-    
     @State private var state: MainCoordinatorState? = MainCoordinatorState.start
     
     init(appDependencies: AppDependencies) {
@@ -61,7 +60,7 @@ struct MainCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .drivingLicenseVerification, selection: $state) {
-                    DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler, drivingLicenseService: appDependencies.drivingLicenseService, sessionManager: appDependencies.sessionManager) {
+                    DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler, drivingLicenseService: appDependencies.drivingLicenseService) {
                         state = .authentication
                     } onVerificationFinished: {
                         state = .map
@@ -74,8 +73,7 @@ struct MainCoordinatorView: View {
                 
                 NavigationLink(tag: .map, selection: $state) {
                     MapCoordinatorView(errorHandler: appDependencies.errorHandler,
-                                       scooterService: appDependencies.scooterService,
-                                       sessionManager: appDependencies.sessionManager)
+                                       scooterService: appDependencies.scooterService)
                         .navigationBarHidden(true)
                 } label: {
                     EmptyView()

@@ -9,17 +9,17 @@ import SwiftUI
 
 struct AppDependencies {
     let errorHandler: ErrorHandler
-    let sessionManager: SessionManager
     let authenticationService: AuthenticationService
     let scooterService: ScooterService
+    let sessionManager: SessionManager
     let drivingLicenseService: DrivingLicenseService
     
     init() {
         self.errorHandler = SwiftMessagesErrorHandler()
         self.sessionManager = SessionManager()
         self.authenticationService = AuthenticationAPIService(sessionManager: sessionManager)
-        self.scooterService = ScooterAPIService()
-        self.drivingLicenseService = DrivingLicenseAPIService()
+        self.scooterService = ScooterAPIService(sessionManager: sessionManager)
+        self.drivingLicenseService = DrivingLicenseAPIService(sessionManager: sessionManager)
     }
 }
 

@@ -58,15 +58,11 @@ struct SheetTest: View {
                 Text("Show sheet")
                     .foregroundColor(.white)
             }
-            
-//            .ignoresSafeArea()
         }
         .overlay {
             if showSheet {
                 Sheet(showSheet: $showSheet) {
                     UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
-//                    Color.blue
-//                        .frame(height: 200)
                 }
             }
         }

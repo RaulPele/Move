@@ -10,15 +10,17 @@ import UIKit
 import Alamofire
 
 class DrivingLicenseAPIService: DrivingLicenseService {
-    var url = URL(string: "https://move-scooters.herokuapp.com/api/users/addImage")!
+    private let url = URL(string: "https://move-scooters.herokuapp.com/api/users/addImage")!
+    private let sessionManager: SessionManager
     
-//    init(url: String) {
-//        self.url = URL(string: url)!
-//    }
+    init(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
+    }
     
-    func verifyLicense(image: UIImage, sessionToken: String,
+    func verifyLicense(image: UIImage,
                        completionHandler: @escaping (Result<User, Error>) -> Void) {
-        guard let imageData = image.jpegData(compressionQuality: 0.85)else {
+        guard let imageData = image.jpegData(compressionQuality: 0.85),
+            let sessionToken = sessionManager.getSessionToken() else {
             return
         }
         

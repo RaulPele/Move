@@ -17,25 +17,23 @@ struct SerialNumberUnlockView: View {
     
     let errorHandler: ErrorHandler
     let scooterService: ScooterService
-    let sessionManager: SessionManager
     
     @StateObject private var viewModel: SerialNumberUnlockViewModel
     
     init(errorHandler: ErrorHandler,
          scooterService: ScooterService,
-         sessionManager: SessionManager,
          scooter: Scooter,
          userLocation: CLLocation,
          onUnlockedSuccessfully: @escaping () -> Void,
          onClose: @escaping () -> Void) {
+        
         self.errorHandler = errorHandler
         self.scooterService = scooterService
-        self.sessionManager = sessionManager
         self.scooter = scooter
         self.userLocation = userLocation
         self.onUnlockedSuccessfully = onUnlockedSuccessfully
         self.onClose = onClose
-        self._viewModel = .init(wrappedValue: .init(scooterService: scooterService, sessionManager: sessionManager, scooter: scooter, userLocation: userLocation))
+        self._viewModel = .init(wrappedValue: .init(scooterService: scooterService, scooter: scooter, userLocation: userLocation))
     }
     
     
@@ -122,7 +120,7 @@ private extension SerialNumberUnlockView {
 struct SerialNumberUnlockView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SerialNumberUnlockView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(), sessionManager: SessionManager(), scooter: .init(id: "1234", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: .init()), userLocation: .init(), onUnlockedSuccessfully: {}, onClose: {})
+            SerialNumberUnlockView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), scooter: .init(id: "1234", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: .init()), userLocation: .init(), onUnlockedSuccessfully: {}, onClose: {})
                 .previewDevice(device)
         }
     }

@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 protocol DrivingLicenseService {
-    func verifyLicense(image: UIImage, sessionToken: String, completionHandler: @escaping (Result<User, Error>) -> Void)
+    func verifyLicense(image: UIImage, completionHandler: @escaping (Result<User, Error>) -> Void)
 }

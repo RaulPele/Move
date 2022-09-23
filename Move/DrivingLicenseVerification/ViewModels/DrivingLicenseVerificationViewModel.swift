@@ -15,20 +15,18 @@ extension DrivingLicenseVerificationView {
         @Published var showActionSheet = false
         @Published var showScanner = false
         
-        let drivingLicenseService: DrivingLicenseService
-        let sessionManager: SessionManager
+        private let drivingLicenseService: DrivingLicenseService
         
-        init(drivingLicenseService: DrivingLicenseService, sessionManager: SessionManager) {
+        init(drivingLicenseService: DrivingLicenseService) {
             self.drivingLicenseService = drivingLicenseService
-            self.sessionManager = sessionManager
         }
         
         func verifyLicense(onVerificationFinished: @escaping () -> Void, onError: @escaping (Error) -> Void) {
             //TODO: Session service
 
-            guard let sessionToken = sessionManager.getSessionToken(),
-            let image = image else { return }
-            drivingLicenseService.verifyLicense(image: image, sessionToken: sessionToken) { result in
+            guard let image = image else { return }
+            
+            drivingLicenseService.verifyLicense(image: image) { result in
             switch result {
                 case .success(_):
                     onVerificationFinished()

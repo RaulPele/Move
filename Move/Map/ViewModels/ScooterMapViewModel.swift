@@ -198,8 +198,10 @@ extension ScooterMapViewModel: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        onScooterDeselected()
-        view.image = UIImage(named: "unselected-pin-fill")
+        if view.annotation is ScooterAnnotation {
+            onScooterDeselected()
+            view.image = UIImage(named: "unselected-pin-fill")
+        }
 
     }
     

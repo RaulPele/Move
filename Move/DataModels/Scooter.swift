@@ -10,6 +10,7 @@ import MapKit
 
 enum BookedStatus: String, Codable {
     case free //no one is riding, battery > 10%
+    case scanned
     case booked // else
 }
 

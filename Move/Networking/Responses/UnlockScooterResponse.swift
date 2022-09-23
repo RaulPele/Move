@@ -12,7 +12,7 @@ struct UnlockScooterResponse: Codable {
     let userDTO: UserDTO
     
     enum CodingKeys: String, CodingKey {
-        case scooterDTO = "updated_scooter"
+        case scooterDTO = "updatedScooter"
         case userDTO = "updatedUser"
     }
 }

@@ -10,10 +10,22 @@ import Alamofire
 import MapKit
 
 class ScooterAPIService: ScooterService {
-    let baseURL = URL(string: "https://move-scooters.herokuapp.com")!
+    private let baseURL = URL(string: "https://move-scooters.herokuapp.com")!
+    private let sessionManager: SessionManager
+    
+    init(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
+    }
     
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void) {
-        let headers = ["Content-Type" : "application/json"]
+        guard let sessionToken = sessionManager.getSessionToken() else {
+            return
+        }
+        
+        let headers = [
+            "Content-Type" : "application/json",
+            "Authorization" : "Bearer \(sessionToken)"
+        ]
         
         let request = AF.request(baseURL.appendingPathComponent("api/scooters/all"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
             
@@ -36,15 +48,17 @@ class ScooterAPIService: ScooterService {
     func unlock(scooter: Scooter,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
-                sessionToken: String, //add session service
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        guard let sessionToken = sessionManager.getSessionToken() else {
+            return
+        }
+        
         let parameters: [String : Any] = [
             "method" : unlockMethod.rawValue,
             "id" : scooter.scooterNumber,
             "latitude" : userLocation.coordinate.latitude,
             "longitude" : userLocation.coordinate.longitude
         ]
-        
         let headers = ["Authorization" : "Bearer \(sessionToken)"]
         
         let request = AF.request(baseURL.appendingPathComponent("api/scooters/scan"),

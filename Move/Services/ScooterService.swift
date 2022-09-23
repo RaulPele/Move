@@ -13,6 +13,5 @@ protocol ScooterService {
     func unlock(scooter: Scooter,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
-                sessionToken: String,
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void)
 }
