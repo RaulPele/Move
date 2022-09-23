@@ -36,7 +36,7 @@ class ScooterAPIService: ScooterService {
     func unlock(scooter: Scooter,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
-                sessionToken: String,
+                sessionToken: String, //add session service
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
         let parameters: [String : Any] = [
             "method" : unlockMethod.rawValue,

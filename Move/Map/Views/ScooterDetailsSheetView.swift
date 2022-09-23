@@ -14,15 +14,13 @@ struct ScooterDetailsSheetView: View {
         ZStack(alignment: .top) {
             Color.neutralWhite
             
-            VStack(spacing: 0) {
-                //scooter details and image
+            VStack(spacing: 20) {
                 HStack(alignment: .center, spacing: 0) {
                     scooterDetailsView
                     Spacer()
                     scooterImageView
                 }
-//                .frame(maxHeight: .infinity)
-                Spacer()
+                
                 Button {
                     
                 } label: {
@@ -30,18 +28,16 @@ struct ScooterDetailsSheetView: View {
                         .frame(maxWidth:.infinity)
                 }
                 .buttonStyle(.filledButton)
-                .frame(alignment: .bottom)
-//                .frame(maxHeight: .infinity, alignment: .bottom)
+
                 
             }
             .padding(.horizontal, 24)
             .padding(.top, 32)
             .padding(.bottom, 46)
-            .frame(maxHeight: .infinity)
-//            .background(.red)
-            .edgesIgnoringSafeArea(.bottom)
+//            .frame(maxHeight: .infinity)
+//            .edgesIgnoringSafeArea(.bottom)
         }
-        
+        Spacer()
     }
 }
 
@@ -74,23 +70,23 @@ private extension ScooterDetailsSheetView {
 struct ScooterDetailsSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ZStack {
-
-            }
-            .halfSheet(showSheet: .constant(true)) {
-                ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
-            } onDismiss: {
-
-            }
-            .previewDevice(device)
-            
 //            ZStack {
-//                Color.red
-//                Sheet(showSheet: .constant(true), sheetMode: .half) {
-//                    ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
-//                }
+//
+//            }
+//            .halfSheet(showSheet: .constant(true)) {
+//                ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
+//            } onDismiss: {
+//
 //            }
 //            .previewDevice(device)
+            
+            ZStack {
+                Color.red
+                Sheet(showSheet: .constant(true)) {
+                    ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
+                }
+            }
+            .previewDevice(device)
         }
     }
 }

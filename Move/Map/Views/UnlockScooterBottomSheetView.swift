@@ -13,8 +13,6 @@ struct UnlockScooterBottomSheetView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Color.neutralWhite
-            
             VStack(spacing: 20) {
                 Text("You can unlock this scooter through these methods: ")
                     .font(.baiJamjureeBold(size: 16))
@@ -30,14 +28,15 @@ struct UnlockScooterBottomSheetView: View {
                     
                     scooterImageView
                 }
-                //                Spacer()
                 scanningButtonsView
             }
             .padding(.top, 28)
             .padding(.horizontal, 24)
             .padding(.bottom, 10)
         }
-//        .edgesIgnoringSafeArea(.bottom)
+        .background(RoundedRectangle(cornerRadius: 32)
+            .foregroundColor(.neutralWhite)
+            .ignoresSafeArea())
     }
 }
 
@@ -142,26 +141,10 @@ struct UnlockScooterBottomSheetView_Previews: PreviewProvider {
         ForEach(devices) { device in
             ZStack {
                 Color.red
-                Button {
-                    
-                } label: {
-                    Text("present")
-                }
-                .halfSheet(showSheet: .constant(true)) {
+                Sheet(showSheet: .constant(true), content: {
                     UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
-                    
-                } onDismiss: {
-                    print("Dismissed")
-                }
+                })
             }
-//
-//            ZStack {
-//                Color.primaryLight
-//
-//                Sheet(showSheet: .constant(true), sheetMode: .half, content: {
-//                    UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
-//                })
-//            }
             
             .previewDevice(device)
 
