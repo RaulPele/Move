@@ -10,7 +10,7 @@ import MapKit
 
 protocol ScooterService {
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void)
-    func unlock(scooter: Scooter,
+    func unlock(scooterPin: Int,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void)

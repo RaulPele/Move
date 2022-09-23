@@ -45,7 +45,7 @@ class ScooterAPIService: ScooterService {
             }
     }
     
-    func unlock(scooter: Scooter,
+    func unlock(scooterPin: Int,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
@@ -55,7 +55,7 @@ class ScooterAPIService: ScooterService {
         
         let parameters: [String : Any] = [
             "method" : unlockMethod.rawValue,
-            "id" : scooter.scooterNumber,
+            "id" : scooterPin,
             "latitude" : userLocation.coordinate.latitude,
             "longitude" : userLocation.coordinate.longitude
         ]

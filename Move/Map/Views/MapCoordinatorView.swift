@@ -63,13 +63,12 @@ struct MapCoordinatorView: View {
                 }
                 
                 NavigationLink(tag: .unlockScooterSerialNumber, selection: $mapCoordinatorViewModel.state) {
-                    if let currentScooter = mapCoordinatorViewModel.currentScooter,
-                       let userLocation = mapCoordinatorViewModel.userLocation {
+                    if let userLocation = mapCoordinatorViewModel.userLocation {
                         SerialNumberUnlockView(errorHandler: errorHandler,
                                                scooterService: scooterService,
-                                               scooter: currentScooter,
                                                userLocation: userLocation,
-                                               onUnlockedSuccessfully: {
+                                               onUnlockedSuccessfully: { unlockedScooter in
+                            mapCoordinatorViewModel.currentScooter = unlockedScooter
                             mapCoordinatorViewModel.state = .unlockSuccessful
                         }, onClose: {
                             mapCoordinatorViewModel.state = .map
@@ -84,7 +83,7 @@ struct MapCoordinatorView: View {
                     UnlockSuccessfulView()
                         .navigationBarHidden(true)
                         .onAppear() {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                 mapCoordinatorViewModel.state = .map
                                 mapCoordinatorViewModel.showStartRideSheet = true
                             }

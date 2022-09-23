@@ -9,10 +9,9 @@ import SwiftUI
 import MapKit
 
 struct SerialNumberUnlockView: View {
-    let scooter: Scooter
     let userLocation: CLLocation
 
-    let onUnlockedSuccessfully: () -> Void
+    let onUnlockedSuccessfully: (Scooter) -> Void
     let onClose: () -> Void
     
     let errorHandler: ErrorHandler
@@ -22,18 +21,16 @@ struct SerialNumberUnlockView: View {
     
     init(errorHandler: ErrorHandler,
          scooterService: ScooterService,
-         scooter: Scooter,
          userLocation: CLLocation,
-         onUnlockedSuccessfully: @escaping () -> Void,
+         onUnlockedSuccessfully: @escaping (Scooter) -> Void,
          onClose: @escaping () -> Void) {
         
         self.errorHandler = errorHandler
         self.scooterService = scooterService
-        self.scooter = scooter
         self.userLocation = userLocation
         self.onUnlockedSuccessfully = onUnlockedSuccessfully
         self.onClose = onClose
-        self._viewModel = .init(wrappedValue: .init(scooterService: scooterService, scooter: scooter, userLocation: userLocation))
+        self._viewModel = .init(wrappedValue: .init(scooterService: scooterService, userLocation: userLocation))
     }
     
     
@@ -53,8 +50,8 @@ struct SerialNumberUnlockView: View {
                             .onChange(of: viewModel.text) { newValue in
                                 print(viewModel.text)
                                 viewModel.validatePin {
-                                    viewModel.unlock {
-                                        onUnlockedSuccessfully()
+                                    viewModel.unlock { unlockedScooter in
+                                        onUnlockedSuccessfully(unlockedScooter)
                                     } onError: { error in
                                         errorHandler.handle(error: error, title: "Cannot unlock scooter!")
                                     }
@@ -120,7 +117,7 @@ private extension SerialNumberUnlockView {
 struct SerialNumberUnlockView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            SerialNumberUnlockView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), scooter: .init(id: "1234", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 100, location: .init()), userLocation: .init(), onUnlockedSuccessfully: {}, onClose: {})
+            SerialNumberUnlockView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), userLocation: .init(), onUnlockedSuccessfully: { _ in }, onClose: {})
                 .previewDevice(device)
         }
     }

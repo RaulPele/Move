@@ -12,14 +12,11 @@ extension SerialNumberUnlockView {
     class SerialNumberUnlockViewModel: ObservableObject {
         @Published var text: String = ""
         @Published var isLoading = false
-        let scooter: Scooter
         let scooterService: ScooterService
         let userLocation: CLLocation
         
         init(scooterService: ScooterService,
-             scooter: Scooter,
              userLocation: CLLocation) {
-            self.scooter = scooter
             self.scooterService = scooterService
             self.userLocation = userLocation
             
@@ -33,12 +30,15 @@ extension SerialNumberUnlockView {
             }
         }
         
-        func unlock(onUnlockedSuccessfuly: @escaping () -> Void, onError: @escaping (Error) -> Void) {
-            scooterService.unlock(scooter: scooter, userLocation: userLocation, unlockMethod: .PIN) { result in
+        func unlock(onUnlockedSuccessfuly: @escaping (Scooter) -> Void, onError: @escaping (Error) -> Void) {
+            guard let scooterPin = Int(text) else {
+                return
+            }
+            
+            scooterService.unlock(scooterPin: scooterPin, userLocation: userLocation, unlockMethod: .PIN) { result in
                 switch result {
                 case .success(let scooter):
-                    onUnlockedSuccessfuly()
-                    
+                    onUnlockedSuccessfuly(scooter)
                 case .failure(let error) :
                     onError(error)
                 }

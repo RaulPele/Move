@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 class ScooterMockedService: ScooterService {
-    func unlock(scooter: Scooter,
+    func unlock(scooterPin: Int,
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
