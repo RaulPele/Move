@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UnlockScooterResponse: Codable {
+struct ScooterInteractionResponse: Codable {
     let scooterDTO: ScooterDTO
     let userDTO: UserDTO
     

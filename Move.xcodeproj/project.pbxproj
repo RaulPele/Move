@@ -15,7 +15,7 @@
 		DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0ACF0C28A39BC900F32C36 /* SplashView.swift */; };
 		DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */; };
 		DE116A0028DC7A6100C659B9 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1169FF28DC7A6100C659B9 /* Sheet.swift */; };
-		DE116A0228DCBD0900C659B9 /* ScooterDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE116A0128DCBD0900C659B9 /* ScooterDetailsSheetView.swift */; };
+		DE116A0228DCBD0900C659B9 /* StartRideSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */; };
 		DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */; };
 		DE1B96BF28D0B261007D8FD6 /* GeocoderProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */; };
 		DE1FEB5828AB9C840019CE5A /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FEB5728AB9C840019CE5A /* FilledButton.swift */; };
@@ -59,7 +59,7 @@
 		DE39E5E728D352100069C71D /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E628D352100069C71D /* BatteryView.swift */; };
 		DE39E5E928D48C410069C71D /* SerialNumberUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */; };
 		DE3DC3A228DB3FE5005122B5 /* MapCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC3A128DB3FE5005122B5 /* MapCoordinatorViewModel.swift */; };
-		DE3DC3A428DB6F18005122B5 /* UnlockScooterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */; };
+		DE3DC3A428DB6F18005122B5 /* ScooterInteractionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */; };
 		DE43FCD028B78BC100CBD130 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCCF28B78BC100CBD130 /* User.swift */; };
 		DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */; };
 		DE43FCD828BCAAC900CBD130 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE43FCD728BCAAC900CBD130 /* Alamofire */; };
@@ -118,7 +118,7 @@
 		DE0ACF0C28A39BC900F32C36 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		DE0D3F3D28D0684F00ED20F1 /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
 		DE1169FF28DC7A6100C659B9 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
-		DE116A0128DCBD0900C659B9 /* ScooterDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterDetailsSheetView.swift; sourceTree = "<group>"; };
+		DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideSheetView.swift; sourceTree = "<group>"; };
 		DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderProxy.swift; sourceTree = "<group>"; };
 		DE1FEB5728AB9C840019CE5A /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		DE39E5E628D352100069C71D /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberUnlockView.swift; sourceTree = "<group>"; };
 		DE3DC3A128DB3FE5005122B5 /* MapCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinatorViewModel.swift; sourceTree = "<group>"; };
-		DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScooterResponse.swift; sourceTree = "<group>"; };
+		DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterInteractionResponse.swift; sourceTree = "<group>"; };
 		DE43FCCF28B78BC100CBD130 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
 		DE46BC2628C232630061F800 /* DrivingLicensePendingVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicensePendingVerificationView.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 				DE28ECDD28C228D6007AA04C /* AuthenticationResponse.swift */,
 				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
 				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
-				DE3DC3A328DB6F17005122B5 /* UnlockScooterResponse.swift */,
+				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 				DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */,
 				DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */,
 				DE717B8B28D9E63B00D0E3FD /* UnlockSuccessfulView.swift */,
-				DE116A0128DCBD0900C659B9 /* ScooterDetailsSheetView.swift */,
+				DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -707,7 +707,7 @@
 				DE717B8C28D9E63B00D0E3FD /* UnlockSuccessfulView.swift in Sources */,
 				DE4AABC028C9F56D004AC99F /* RoundedIconButton.swift in Sources */,
 				DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */,
-				DE116A0228DCBD0900C659B9 /* ScooterDetailsSheetView.swift in Sources */,
+				DE116A0228DCBD0900C659B9 /* StartRideSheetView.swift in Sources */,
 				DE46BC2928C232F20061F800 /* DrivingLicensePendingVerificationViewModel.swift in Sources */,
 				DE46BC3328C604BA0061F800 /* UserDTO.swift in Sources */,
 				DE28ECD128C1E5C3007AA04C /* LoadingBehaviour.swift in Sources */,
@@ -716,7 +716,7 @@
 				DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
-				DE3DC3A428DB6F18005122B5 /* UnlockScooterResponse.swift in Sources */,
+				DE3DC3A428DB6F18005122B5 /* ScooterInteractionResponse.swift in Sources */,
 				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,

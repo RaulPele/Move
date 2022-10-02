@@ -14,18 +14,25 @@ enum SheetState {
 
 struct Sheet<Content: View>: View {
     let content: () -> Content
+    let onDismiss: () -> Void
     @State private var sheetState: SheetState = .hidden
     @Binding var showSheet: Bool
     
     init(showSheet: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
         self._showSheet = showSheet
         self.content = content
+        self.onDismiss = { }
+    }
+    
+    init(showSheet: Binding<Bool>, @ViewBuilder content: @escaping () -> Content, onDismiss: @escaping () -> Void) {
+        self._showSheet = showSheet
+        self.content = content
+        self.onDismiss = onDismiss
     }
 
 
     var body: some View {
         content()
-//            .clipShape(RoundedRectangle(cornerRadius: 32))
             .offset(x: 0, y: sheetState == .visible ? 0 : 300)
             .opacity(sheetState == .visible ? 1 : 0)
             .animation(.easeInOut(duration: 0.3), value: sheetState)
@@ -35,6 +42,7 @@ struct Sheet<Content: View>: View {
                     sheetState = .hidden
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         showSheet = false
+                        onDismiss()
                     }
                 }
                 .ignoresSafeArea()

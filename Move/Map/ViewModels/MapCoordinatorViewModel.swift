@@ -15,6 +15,7 @@ extension MapCoordinatorView {
         @Published var showStartRideSheet = false
         var currentScooter: Scooter? = nil
         var userLocation: CLLocation? = nil
-        
     }
+    
+    
 }

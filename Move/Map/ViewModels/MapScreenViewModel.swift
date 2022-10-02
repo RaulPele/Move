@@ -17,7 +17,6 @@ extension MapScreenView {
         
         @Published var selectedScooter: Scooter?
         @Published var currentLocation = "Allow location"
-        @Published var showUnlockSheet = false
         
         private var cancellables = [AnyCancellable]()
         
@@ -34,9 +33,8 @@ extension MapScreenView {
             scooterMapViewModel.onScooterSelected = { [weak self] scooter in
                 guard let self = self else {
                     return
-                    
                 }
-                self.selectedScooter = scooter                            
+                self.selectedScooter = scooter
             }
             
             scooterMapViewModel.onScooterDeselected = { [weak self] in
@@ -90,5 +88,7 @@ extension MapScreenView {
                 self.loadScooters()
             }
         }
+        
+        
     }
 }

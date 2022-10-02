@@ -69,10 +69,44 @@ class ScooterAPIService: ScooterService {
         
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: UnlockScooterResponse.self) { response in
+            .responseDecodable(of: ScooterInteractionResponse.self) { response in
                 switch response.result {
                 case .success(let unlockScooterResponse):
                     completionHandler(.success(unlockScooterResponse.scooterDTO.toScooter()))
+                case .failure(let error):
+                    if let data = response.data,
+                       let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+                        completionHandler(.failure(apiError))
+                    } else {
+                        completionHandler(.failure(error))
+                    }
+                }
+            }
+    }
+    
+    func cancelScan(scooterPin: Int, completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        guard let sessionToken = sessionManager.getSessionToken() else {
+            return
+        }
+        
+        let headers = ["Authorization" : "Bearer \(sessionToken)"]
+        let parameters: [String: Any] = [
+            "id" : scooterPin
+        ]
+        
+        let request = AF.request(baseURL.appendingPathComponent("api/scooters/cancel"),
+                                 method: .patch,
+                                 parameters: parameters,
+                                 encoding: URLEncoding(destination: .queryString),
+                                 headers: .init(headers))
+        
+        request
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: ScooterInteractionResponse.self) { response in
+                switch response.result {
+                case .success(let cancelScanResponse):
+                    completionHandler(.success(cancelScanResponse.scooterDTO.toScooter()))
+                    
                 case .failure(let error):
                     if let data = response.data,
                        let apiError = try? JSONDecoder().decode(APIError.self, from: data) {

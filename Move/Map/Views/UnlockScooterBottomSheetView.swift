@@ -124,18 +124,6 @@ private extension UnlockScooterBottomSheetView {
     }
 }
 
-extension View {
-    func halfSheet<SheetView: View>(showSheet: Binding<Bool>,
-                                    @ViewBuilder sheetView: @escaping () -> SheetView,
-                                    onDismiss: @escaping () -> Void) -> some View {
-        
-        return self
-            .background(
-                HalfSheet(sheetView: sheetView(), showSheet: showSheet, onDismiss: onDismiss)
-            )
-    }
-}
-
 struct UnlockScooterBottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in

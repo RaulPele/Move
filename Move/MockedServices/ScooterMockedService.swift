@@ -16,6 +16,10 @@ class ScooterMockedService: ScooterService {
         
     }
     
+    func cancelScan(scooterPin: Int, completionHandler: @escaping (Result<Scooter, Error>) -> Void) {
+        
+    }
+    
     func getAllScooters(completionHandler: @escaping (Result<[Scooter], Error>) -> Void) {
         completionHandler(.success([
             Scooter(id: "#AAAA", scooterNumber: 1234, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 100, location: .init(latitude: 46.779, longitude: 23.6)),

@@ -14,4 +14,6 @@ protocol ScooterService {
                 userLocation: CLLocation,
                 unlockMethod: UnlockMethod,
                 completionHandler: @escaping (Result<Scooter, Error>) -> Void)
+    func cancelScan(scooterPin: Int,
+                    completionHandler: @escaping (Result<Scooter, Error>) -> Void)
 }

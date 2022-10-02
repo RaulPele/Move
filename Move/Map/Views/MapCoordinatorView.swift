@@ -51,12 +51,28 @@ struct MapCoordinatorView: View {
                                 UnlockScooterBottomSheetView(scooter: currentScooter) { scooter in
                                     mapCoordinatorViewModel.showUnlockSheet = false
                                     mapCoordinatorViewModel.state = .unlockScooterSerialNumber
-                                    
                                 }
-
                             })
                         }
                     }
+                    .overlay {
+                        if let unlockedScooter = mapCoordinatorViewModel.currentScooter,
+                           mapCoordinatorViewModel.showStartRideSheet {
+                            Sheet(showSheet: $mapCoordinatorViewModel.showStartRideSheet) {
+                                StartRideSheetView(scooter: unlockedScooter)
+                            } onDismiss: {
+                                scooterService.cancelScan(scooterPin: unlockedScooter.scooterNumber) { result in
+                                    switch result {
+                                    case .success(let success):
+                                        mapCoordinatorViewModel.showStartRideSheet = false
+                                        mapCoordinatorViewModel.currentScooter = nil
+                                    case .failure(let failure):
+                                        print("failure cancelling scan")
+                                    }}
+                                }
+                            }
+                        }
+                    
                 } label: {
                     EmptyView()
                 }

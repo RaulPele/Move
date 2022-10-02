@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScooterDetailsSheetView: View {
+struct StartRideSheetView: View {
     let scooter: Scooter
     
     var body: some View {
@@ -37,7 +37,7 @@ struct ScooterDetailsSheetView: View {
     }
 }
 
-private extension ScooterDetailsSheetView {
+private extension StartRideSheetView {
     var scooterDetailsView: some View {
         VStack(alignment: .leading,spacing: 4 ) {
             Text("Scooter")
@@ -72,7 +72,7 @@ struct ScooterDetailsSheetView_Previews: PreviewProvider {
             }
             .overlay {
                 Sheet(showSheet: .constant(true)) {
-                    ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
+                    StartRideSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
                 }
             }
             .previewDevice(device)
