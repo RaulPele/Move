@@ -30,16 +30,6 @@ struct MapScreenView: View {
                 .onAppear() {
                     mapScreenViewModel.scooterMapViewModel.checkIfLocationServicesIsEnabled()
                 }
-//                .halfSheet(showSheet: $mapScreenViewModel.showUnlockSheet) {
-//                    if let selectedScooter = mapScreenViewModel.selectedScooter {
-//                        UnlockScooterBottomSheetView(scooter: selectedScooter) { scooter in
-//                            mapScreenViewModel.showUnlockSheet = false
-//                            onSerialNumberUnlockClicked()
-//                        }
-//                    }
-//                } onDismiss: {
-//                    mapScreenViewModel.showUnlockSheet = false
-//                }
         }
         .ignoresSafeArea()
         .onAppear {
@@ -57,7 +47,6 @@ struct MapScreenView: View {
     var selectedScooterView: some View {
         if let selectedScooter = mapScreenViewModel.selectedScooter {
             ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: {
-//                mapScreenViewModel.showUnlockSheet = true
                 onScooterSelectedForUnlock(selectedScooter, mapScreenViewModel.scooterMapViewModel.userLocation)
             })
         }

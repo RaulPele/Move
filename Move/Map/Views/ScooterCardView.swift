@@ -118,17 +118,15 @@ private extension ScooterCardView {
                 
             }
             .buttonStyle(.filledButton)
-//            .frame(alignment: .bottom)
         }
         .padding(24)
-//        .frame(maxHeight: .infinity)
     }
 }
 
 struct ScooterCardView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 89, location: Coordinates.ClujNapoca), onUnlockScooterPressed: {  })
+            ScooterCardView(scooter: .init(id: "1231432123", scooterNumber: 1234, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 89, location: Coordinates.ClujNapoca), onUnlockScooterPressed: {  })
                 .previewDevice(device)
         }
     }

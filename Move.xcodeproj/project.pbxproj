@@ -242,13 +242,13 @@
 		DE0ACEFA28A266EF00F32C36 /* Move */ = {
 			isa = PBXGroup;
 			children = (
-				DE4AABAA28C7654C004AC99F /* MockedServices */,
 				DE0ACF0E28A3B19B00F32C36 /* Splash */,
 				DE9E3F4F28BF906B00B98FEE /* Onboarding */,
 				DE9E3F4C28BF8F6500B98FEE /* Authentication */,
 				DE9E3F5028BF90DF00B98FEE /* DrivingLicenseVerification */,
 				DE46BC3B28C613D50061F800 /* Map */,
 				DE46BC2D28C5E0EC0061F800 /* Services */,
+				DE4AABAA28C7654C004AC99F /* MockedServices */,
 				DE28ECD828C1FAE1007AA04C /* Networking */,
 				DE28ECD228C1F227007AA04C /* ErrorHandling */,
 				DE9E3F5428C07D3D00B98FEE /* DataModels */,

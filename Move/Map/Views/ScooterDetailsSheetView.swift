@@ -12,15 +12,13 @@ struct ScooterDetailsSheetView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Color.neutralWhite
-            
-            VStack(spacing: 20) {
+            VStack(spacing: 25) {
                 HStack(alignment: .center, spacing: 0) {
                     scooterDetailsView
                     Spacer()
                     scooterImageView
                 }
-                
+
                 Button {
                     
                 } label: {
@@ -28,16 +26,14 @@ struct ScooterDetailsSheetView: View {
                         .frame(maxWidth:.infinity)
                 }
                 .buttonStyle(.filledButton)
-
-                
             }
             .padding(.horizontal, 24)
             .padding(.top, 32)
             .padding(.bottom, 46)
-//            .frame(maxHeight: .infinity)
-//            .edgesIgnoringSafeArea(.bottom)
         }
-        Spacer()
+        .background(RoundedRectangle(cornerRadius: 32)
+            .foregroundColor(.neutralWhite)
+            .ignoresSafeArea())
     }
 }
 
@@ -70,20 +66,13 @@ private extension ScooterDetailsSheetView {
 struct ScooterDetailsSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-//            ZStack {
-//
-//            }
-//            .halfSheet(showSheet: .constant(true)) {
-//                ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
-//            } onDismiss: {
-//
-//            }
-//            .previewDevice(device)
-            
             ZStack {
                 Color.red
+                
+            }
+            .overlay {
                 Sheet(showSheet: .constant(true)) {
-                    ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()))
+                    ScooterDetailsSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
                 }
             }
             .previewDevice(device)

@@ -9,15 +9,16 @@ import Foundation
 import MapKit
 
 enum BookedStatus: String, Codable {
-    case free //no one is riding, battery > 10%
+    case available
     case scanned
-    case booked // else
+    case booked
+    case locked
+    case disabled
 }
 
 enum LockedStatus: String, Codable {
-    case available //if no one is riding or locked it, no problems with it, battery > 10 %
-    case disabled // if battery low, its missing, something broke, technical issues
-    case locked // locked if someone started a ride with it and didn't yet finish it
+    case locked
+    case unlocked
 }
 
 enum UnlockMethod: String, Codable {
@@ -25,7 +26,7 @@ enum UnlockMethod: String, Codable {
 }
 
 struct Scooter: Identifiable, Equatable {
-    let id: String
+    let id: String 
     let scooterNumber: Int
     var bookedStatus: BookedStatus
     var lockedStatus: LockedStatus

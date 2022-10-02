@@ -141,8 +141,11 @@ struct UnlockScooterBottomSheetView_Previews: PreviewProvider {
         ForEach(devices) { device in
             ZStack {
                 Color.red
+                
+            }
+            .overlay {
                 Sheet(showSheet: .constant(true), content: {
-                    UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .free, lockedStatus: .available, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
+                    UnlockScooterBottomSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()), onSerialNumberUnlockClicked: { _ in })
                 })
             }
             

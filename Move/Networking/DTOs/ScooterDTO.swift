@@ -13,7 +13,6 @@ struct LocationDTO: Codable {
     let coordinates: [Double] //longitude, latitude
 }
 
-
 //TODO: rename
 struct ScooterDTO: Codable {
     let location: LocationDTO

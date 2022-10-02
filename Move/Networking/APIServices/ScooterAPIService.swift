@@ -27,7 +27,7 @@ class ScooterAPIService: ScooterService {
             "Authorization" : "Bearer \(sessionToken)"
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/scooters/all"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(baseURL.appendingPathComponent("api/scooters"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
             
         request.validate(statusCode: 200..<300)
             .responseDecodable(of: GetScootersResponse.self) { response in

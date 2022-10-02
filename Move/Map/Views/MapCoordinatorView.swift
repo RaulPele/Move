@@ -31,7 +31,6 @@ struct MapCoordinatorView: View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .map, selection: $mapCoordinatorViewModel.state) {
-//                    ZStack {
                         
                     MapScreenView(scooterService: scooterService, onSerialNumberUnlockClicked: {
                         mapCoordinatorViewModel.state = .unlockScooterSerialNumber
