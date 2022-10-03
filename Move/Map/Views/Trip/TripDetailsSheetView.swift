@@ -10,6 +10,7 @@ import SwiftUI
 struct TripDetailsSheetView: View {
     @ObservedObject var viewModel: TripDetailsViewModel
     let errorHandler: ErrorHandler
+    let onEndRide: (Scooter, Trip) -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -102,7 +103,12 @@ private extension TripDetailsSheetView {
             .buttonStyle(.transparentButton)
             
             Button {
-                
+                viewModel.endRide { scooter, trip in
+                    onEndRide(scooter, trip)
+                } onError: { error in
+                    errorHandler.handle(error: error, title: "Couldn't end ride!")
+                }
+
             } label: {
                 Text("End ride")
                     .frame(maxWidth: .infinity)
@@ -116,7 +122,7 @@ struct TripDetailsSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
             Sheet(showSheet: .constant(true)) {
-                TripDetailsSheetView(viewModel: .init(), errorHandler: SwiftMessagesErrorHandler())
+                TripDetailsSheetView(viewModel: .init(), errorHandler: SwiftMessagesErrorHandler(), onEndRide: {_, _ in })
             }
             .previewDevice(device)
 

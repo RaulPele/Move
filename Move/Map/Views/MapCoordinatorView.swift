@@ -32,7 +32,6 @@ struct MapCoordinatorView: View {
         self.errorHandler = errorHandler
         self.rideService = rideService
         self._mapScreenViewModel = .init(wrappedValue: .init(scooterService: scooterService))
-        
     }
     
     var body: some View {
@@ -103,7 +102,11 @@ struct MapCoordinatorView: View {
                         if mapCoordinatorViewModel.showTripDetailsSheet {
                             if mapCoordinatorViewModel.showTripDetailsSheet {
                                 Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
-                                    TripDetailsSheetView(viewModel: tripDetailsViewModel, errorHandler: errorHandler)
+                                    TripDetailsSheetView(viewModel: tripDetailsViewModel,
+                                                         errorHandler: errorHandler) { scooter, trip in
+                                        mapCoordinatorViewModel.showTripDetailsSheet = false
+                                        print("Ride ended")
+                                    }
                                 }
                             }
                         }

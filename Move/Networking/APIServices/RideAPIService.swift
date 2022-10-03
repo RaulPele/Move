@@ -68,14 +68,16 @@ class RideAPIService: RideService {
         
         let url = baseURL.appendingPathComponent("trips/end/\(scooterId)")
         let request = AF.request(url,
-                                 method: .post,
+                                 method: .patch,
                                  parameters: bodyParameters,
                                  encoding: JSONEncoding.default,
                                  headers: .init(headers))
         
         request
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: EndTripResponse.self) { response in
+        print(request.error)
+
+            request.responseDecodable(of: EndTripResponse.self) { response in
                 switch response.result {
                 case .success(let tripResponse):
                     let tripData: TripData = .init(trip: tripResponse.tripDTO.toTrip(), scooter: tripResponse.scooterDTO.toScooter())
