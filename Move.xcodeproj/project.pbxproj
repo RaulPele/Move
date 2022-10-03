@@ -52,6 +52,7 @@
 		DE2C849328EADC33002A83CF /* RideAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849228EADC33002A83CF /* RideAPIService.swift */; };
 		DE2C849528EADDC0002A83CF /* StartRideSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */; };
 		DE2C849728EAFA40002A83CF /* EndTripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849628EAFA40002A83CF /* EndTripResponse.swift */; };
+		DE2C849B28EB77C2002A83CF /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849A28EB77C2002A83CF /* MenuView.swift */; };
 		DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* MainCoordinatorView.swift */; };
 		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
@@ -166,6 +167,7 @@
 		DE2C849228EADC33002A83CF /* RideAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAPIService.swift; sourceTree = "<group>"; };
 		DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideSheetViewModel.swift; sourceTree = "<group>"; };
 		DE2C849628EAFA40002A83CF /* EndTripResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTripResponse.swift; sourceTree = "<group>"; };
+		DE2C849A28EB77C2002A83CF /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DE2F523428A63574007762BA /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				DE9E3F4C28BF8F6500B98FEE /* Authentication */,
 				DE9E3F5028BF90DF00B98FEE /* DrivingLicenseVerification */,
 				DE46BC3B28C613D50061F800 /* Map */,
+				DE2C849828EB7791002A83CF /* Menu */,
 				DE46BC2D28C5E0EC0061F800 /* Services */,
 				DE4AABAA28C7654C004AC99F /* MockedServices */,
 				DE28ECD828C1FAE1007AA04C /* Networking */,
@@ -394,6 +397,22 @@
 				DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */,
 			);
 			path = Trip;
+			sourceTree = "<group>";
+		};
+		DE2C849828EB7791002A83CF /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DE2C849928EB77B6002A83CF /* Views */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		DE2C849928EB77B6002A83CF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE2C849A28EB77C2002A83CF /* MenuView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DE39E5E128D34AD40069C71D /* UIKitWrappers */ = {
@@ -797,6 +816,7 @@
 				DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */,
 				DE9E3F4728BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift in Sources */,
 				DE46BC2B28C2355F0061F800 /* ValidLicenseView.swift in Sources */,
+				DE2C849B28EB77C2002A83CF /* MenuView.swift in Sources */,
 				DE2C848B28EAD2C7002A83CF /* TripDTO.swift in Sources */,
 				DE4AABA928C76504004AC99F /* ScooterAPIService.swift in Sources */,
 				DE46BC3628C608AC0061F800 /* VerificationResponse.swift in Sources */,
