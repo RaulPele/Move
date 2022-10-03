@@ -17,6 +17,8 @@ enum MapCoordinatorState {
 
 struct MapCoordinatorView: View {
     @StateObject private var mapCoordinatorViewModel: MapCoordinatorViewModel = .init()
+    @StateObject private var mapScreenViewModel: MapScreenView.MapScreenViewModel
+    @StateObject private var tripDetailsViewModel: TripDetailsViewModel = .init()
     
     let scooterService: ScooterService
     let rideService: RideService
@@ -25,9 +27,12 @@ struct MapCoordinatorView: View {
     init(errorHandler: ErrorHandler,
          scooterService: ScooterService,
          rideService: RideService) {
+        
         self.scooterService = scooterService
         self.errorHandler = errorHandler
         self.rideService = rideService
+        self._mapScreenViewModel = .init(wrappedValue: .init(scooterService: scooterService))
+        
     }
     
     var body: some View {
@@ -35,7 +40,7 @@ struct MapCoordinatorView: View {
             ZStack {
                 NavigationLink(tag: .map, selection: $mapCoordinatorViewModel.state) {
                     
-                    MapScreenView(scooterService: scooterService,
+                    MapScreenView(viewModel: mapScreenViewModel,
                                   onSerialNumberUnlockClicked: {
                         mapCoordinatorViewModel.state = .unlockScooterSerialNumber
                     }, onScooterSelectedForUnlock: { scooter, userLocation in
@@ -71,8 +76,15 @@ struct MapCoordinatorView: View {
                                     
                                     mapCoordinatorViewModel.currentScooter = scooter
                                     mapCoordinatorViewModel.showStartRideSheet = false
+                                    
+                                    //TODO: Definetly change this
+                                    tripDetailsViewModel.trip = trip
+                                    tripDetailsViewModel.scooter = scooter
+                                    tripDetailsViewModel.scooterMapViewModel = mapScreenViewModel.scooterMapViewModel
+                                    tripDetailsViewModel.rideService = rideService
+                                    
                                     mapCoordinatorViewModel.showTripDetailsSheet = true
-                                    //also update trip
+                                    
                                 }
                             } onDismiss: {
                                 scooterService.cancelScan(scooterPin: unlockedScooter.scooterNumber) { result in
@@ -88,14 +100,12 @@ struct MapCoordinatorView: View {
                         }
                     }
                     .overlay {
-                        if mapCoordinatorViewModel.showTripDetailsSheet,
-                           let currentScooter = mapCoordinatorViewModel.currentScooter {
-                            Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
-                                TripDetailsSheetView(scooter: currentScooter)
-                            } onDismiss: {
-                                
+                        if mapCoordinatorViewModel.showTripDetailsSheet {
+                            if mapCoordinatorViewModel.showTripDetailsSheet {
+                                Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
+                                    TripDetailsSheetView(viewModel: tripDetailsViewModel, errorHandler: errorHandler)
+                                }
                             }
-
                         }
                     }
                     
@@ -134,7 +144,28 @@ struct MapCoordinatorView: View {
                 }
             }
         }
+        
+//        func getTripDetailsSheetView() -> some View {
+//            if let tripDetailsViewModel = mapCoordinatorViewModel.tripDetailsViewModel {
+//                return Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
+//                    TripDetailsSheetView(viewModel: tripDetailsViewModel, errorHandler: errorHandler)
+//                } onDismiss: {
+//                    
+//                }
+//
+//            }else {
+//                mapCoordinatorViewModel.tripDetailsViewModel = .init(rideService: rideService, scooterMapViewModel: mapScreenViewModel.scooterMapViewModel)
+//                return Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
+//                    TripDetailsSheetView(viewModel: mapCoordinatorViewModel.tripDetailsViewModel!, errorHandler: errorHandler)
+//                } onDismiss: {
+//                    
+//                }
+//
+//            }
+//        }
     }
+    
+    
 }
 
 struct MapCoordinatorView_Previews: PreviewProvider {

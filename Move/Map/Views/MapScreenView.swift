@@ -8,20 +8,18 @@
 import SwiftUI
 import MapKit
 struct MapScreenView: View {
-    let scooterService: ScooterService
-    
     let onSerialNumberUnlockClicked: () -> Void
     let onScooterSelectedForUnlock: (Scooter, CLLocation?) -> Void
     
-    @StateObject private var mapScreenViewModel : MapScreenViewModel
+    @ObservedObject  var mapScreenViewModel : MapScreenViewModel
     
-    init(scooterService: ScooterService,
+    init(
+        viewModel: MapScreenViewModel,
          onSerialNumberUnlockClicked: @escaping () -> Void,
          onScooterSelectedForUnlock: @escaping (Scooter, CLLocation?) -> Void) {
-        self.scooterService = scooterService
         self.onSerialNumberUnlockClicked = onSerialNumberUnlockClicked
         self.onScooterSelectedForUnlock = onScooterSelectedForUnlock
-        self._mapScreenViewModel = StateObject(wrappedValue: MapScreenViewModel(scooterService: scooterService))
+        self.mapScreenViewModel = viewModel
     }
     
     var body: some View {
@@ -37,7 +35,6 @@ struct MapScreenView: View {
         }
         .overlay(
             selectedScooterView
-                .id(UUID())
                 .transition(.opacity.animation(.easeInOut))
             , alignment: .bottom)
         .overlay(topBar, alignment: .top)
@@ -49,6 +46,7 @@ struct MapScreenView: View {
             ScooterCardView(scooter: selectedScooter, onUnlockScooterPressed: {
                 onScooterSelectedForUnlock(selectedScooter, mapScreenViewModel.scooterMapViewModel.userLocation)
             })
+            .id(selectedScooter.id)
         }
     }
     
@@ -88,11 +86,11 @@ struct MapScreenView: View {
 }
 
 
-struct MapScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(devices) { device in
-            MapScreenView(scooterService: ScooterAPIService(sessionManager: .init()), onSerialNumberUnlockClicked: {  }, onScooterSelectedForUnlock: { _, _ in })
-                .previewDevice(device)
-        }
-    }
-}
+//struct MapScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(devices) { device in
+//            MapScreenView(scooterService: ScooterAPIService(sessionManager: .init()), onSerialNumberUnlockClicked: {  }, onScooterSelectedForUnlock: { _, _ in })
+//                .previewDevice(device)
+//        }
+//    }
+//}

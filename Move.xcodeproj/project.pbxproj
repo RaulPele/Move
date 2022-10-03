@@ -51,6 +51,7 @@
 		DE2C849128EADC10002A83CF /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849028EADC10002A83CF /* RideService.swift */; };
 		DE2C849328EADC33002A83CF /* RideAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849228EADC33002A83CF /* RideAPIService.swift */; };
 		DE2C849528EADDC0002A83CF /* StartRideSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */; };
+		DE2C849728EAFA40002A83CF /* EndTripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849628EAFA40002A83CF /* EndTripResponse.swift */; };
 		DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* MainCoordinatorView.swift */; };
 		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
@@ -164,6 +165,7 @@
 		DE2C849028EADC10002A83CF /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		DE2C849228EADC33002A83CF /* RideAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAPIService.swift; sourceTree = "<group>"; };
 		DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideSheetViewModel.swift; sourceTree = "<group>"; };
+		DE2C849628EAFA40002A83CF /* EndTripResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTripResponse.swift; sourceTree = "<group>"; };
 		DE2F523428A63574007762BA /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
 				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
 				DE2C848C28EAD88D002A83CF /* TripResponse.swift */,
+				DE2C849628EAFA40002A83CF /* EndTripResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				DE4AABC628CA27C7004AC99F /* GetScootersResponse.swift in Sources */,
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,
+				DE2C849728EAFA40002A83CF /* EndTripResponse.swift in Sources */,
 				DE2C848728EAC66D002A83CF /* TripDetailsViewModel.swift in Sources */,
 				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,
 				DE3DC3A228DB3FE5005122B5 /* MapCoordinatorViewModel.swift in Sources */,

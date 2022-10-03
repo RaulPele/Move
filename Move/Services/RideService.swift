@@ -12,4 +12,8 @@ protocol RideService {
     func startRide(scooterNumber: Int,
                    userLocation: CLLocation,
                    completionHandler: @escaping (Result<TripData, Error>) -> Void)
+    
+    func endRide(scooterId: String,
+                 userLocation: CLLocation,
+                 completionHandler: @escaping (Result<TripData, Error>) -> Void)
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 extension MapCoordinatorView {
     class MapCoordinatorViewModel: ObservableObject {
@@ -14,6 +15,7 @@ extension MapCoordinatorView {
         @Published var showUnlockSheet = false
         @Published var showStartRideSheet = false
         @Published var showTripDetailsSheet = false
+        @Published var currentTrip: Trip?
         
         var currentScooter: Scooter? = nil
         var userLocation: CLLocation? = nil

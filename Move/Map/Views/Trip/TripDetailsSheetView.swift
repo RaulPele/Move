@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TripDetailsSheetView: View {
-    let scooter: Scooter
+    @ObservedObject var viewModel: TripDetailsViewModel
+    let errorHandler: ErrorHandler
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -21,7 +22,7 @@ struct TripDetailsSheetView: View {
                     .padding(.bottom, 16)
                 
                 HStack(spacing: 0) {
-                    BatteryView(batteryPercentage: scooter.batteryPercentage)
+                    BatteryView(batteryPercentage: viewModel.scooter!.batteryPercentage)
                     Spacer()
                     
                 }
@@ -110,15 +111,15 @@ private extension TripDetailsSheetView {
         }
     }
 }
-
+//
 struct TripDetailsSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
             Sheet(showSheet: .constant(true)) {
-                TripDetailsSheetView(scooter: .init(id: "1234123", scooterNumber: 1234, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
+                TripDetailsSheetView(viewModel: .init(), errorHandler: SwiftMessagesErrorHandler())
             }
             .previewDevice(device)
-                
+
         }
     }
 }

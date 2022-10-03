@@ -23,7 +23,7 @@ extension MapScreenView {
         init(scooterService: ScooterService) {
             print(" MAP SCREEN VIEW MODEL CONSTRUCTOR CALLED")
             self.scooterService = scooterService
-            
+//            scooterCardViewModel = .init()
             scooterMapViewModel =  .init(scooterService: scooterService)
             
             scooterMapViewModel.objectWillChange.sink { _ in
