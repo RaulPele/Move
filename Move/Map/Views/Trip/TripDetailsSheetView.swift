@@ -33,7 +33,7 @@ struct TripDetailsSheetView: View {
             }
             .padding(.top, 20)
             .padding(.horizontal, 24)
-            .padding(.bottom, 46)
+            .padding(.bottom, 24)
         }
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 32)
@@ -116,7 +116,6 @@ struct TripDetailsSheetView_Previews: PreviewProvider {
         ForEach(devices) { device in
             Sheet(showSheet: .constant(true)) {
                 TripDetailsSheetView(scooter: .init(id: "1234123", scooterNumber: 1234, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
-
             }
             .previewDevice(device)
                 

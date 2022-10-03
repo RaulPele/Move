@@ -43,6 +43,14 @@
 		DE2B22A428A50CFC00BAE7F5 /* BaiJamjuree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229728A50CFC00BAE7F5 /* BaiJamjuree-SemiBold.ttf */; };
 		DE2B22A528A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229828A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf */; };
 		DE2B22A628A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */; };
+		DE2C848728EAC66D002A83CF /* TripDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C848628EAC66D002A83CF /* TripDetailsViewModel.swift */; };
+		DE2C848928EAC795002A83CF /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C848828EAC795002A83CF /* Trip.swift */; };
+		DE2C848B28EAD2C7002A83CF /* TripDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C848A28EAD2C7002A83CF /* TripDTO.swift */; };
+		DE2C848D28EAD88D002A83CF /* TripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C848C28EAD88D002A83CF /* TripResponse.swift */; };
+		DE2C848F28EADAB8002A83CF /* TripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C848E28EADAB8002A83CF /* TripData.swift */; };
+		DE2C849128EADC10002A83CF /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849028EADC10002A83CF /* RideService.swift */; };
+		DE2C849328EADC33002A83CF /* RideAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849228EADC33002A83CF /* RideAPIService.swift */; };
+		DE2C849528EADDC0002A83CF /* StartRideSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */; };
 		DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* MainCoordinatorView.swift */; };
 		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
@@ -51,6 +59,7 @@
 		DE33D17E28C0E681008A8EA2 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DE33D17D28C0E681008A8EA2 /* ActivityIndicatorView */; };
 		DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */; };
 		DE37F51028E9B4B1002C7C9A /* TripDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE37F50F28E9B4B1002C7C9A /* TripDetailsSheetView.swift */; };
+		DE37F51228E9C44C002C7C9A /* TripDetailsFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE37F51128E9C44C002C7C9A /* TripDetailsFullScreenView.swift */; };
 		DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */; };
 		DE39E5DC28D313510069C71D /* MapCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5DB28D313510069C71D /* MapCoordinatorView.swift */; };
 		DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */; };
@@ -147,6 +156,14 @@
 		DE2B229828A50CFC00BAE7F5 /* BaiJamjuree-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BaiJamjuree-BoldItalic.ttf"; sourceTree = "<group>"; };
 		DE2B229928A50CFC00BAE7F5 /* BaiJamjuree-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BaiJamjuree-Medium.ttf"; sourceTree = "<group>"; };
 		DE2B22A728A5108F00BAE7F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DE2C848628EAC66D002A83CF /* TripDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailsViewModel.swift; sourceTree = "<group>"; };
+		DE2C848828EAC795002A83CF /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		DE2C848A28EAD2C7002A83CF /* TripDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDTO.swift; sourceTree = "<group>"; };
+		DE2C848C28EAD88D002A83CF /* TripResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripResponse.swift; sourceTree = "<group>"; };
+		DE2C848E28EADAB8002A83CF /* TripData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripData.swift; sourceTree = "<group>"; };
+		DE2C849028EADC10002A83CF /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
+		DE2C849228EADC33002A83CF /* RideAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideAPIService.swift; sourceTree = "<group>"; };
+		DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideSheetViewModel.swift; sourceTree = "<group>"; };
 		DE2F523428A63574007762BA /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
@@ -154,6 +171,7 @@
 		DE33D17A28C08A37008A8EA2 /* AuthenticationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHeaderView.swift; sourceTree = "<group>"; };
 		DE33D18128C0E91B008A8EA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DE37F50F28E9B4B1002C7C9A /* TripDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailsSheetView.swift; sourceTree = "<group>"; };
+		DE37F51128E9C44C002C7C9A /* TripDetailsFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailsFullScreenView.swift; sourceTree = "<group>"; };
 		DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterCardViewModel.swift; sourceTree = "<group>"; };
 		DE39E5DB28D313510069C71D /* MapCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinatorView.swift; sourceTree = "<group>"; };
 		DE39E5DD28D314510069C71D /* UnlockScooterBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockScooterBottomSheetView.swift; sourceTree = "<group>"; };
@@ -358,6 +376,24 @@
 			path = "Bai-Jamjuree-Fonts";
 			sourceTree = "<group>";
 		};
+		DE2C848428EAC628002A83CF /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				DE37F50F28E9B4B1002C7C9A /* TripDetailsSheetView.swift */,
+				DE37F51128E9C44C002C7C9A /* TripDetailsFullScreenView.swift */,
+			);
+			path = Trip;
+			sourceTree = "<group>";
+		};
+		DE2C848528EAC64D002A83CF /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				DE2C848628EAC66D002A83CF /* TripDetailsViewModel.swift */,
+				DE2C849428EADDC0002A83CF /* StartRideSheetViewModel.swift */,
+			);
+			path = Trip;
+			sourceTree = "<group>";
+		};
 		DE39E5E128D34AD40069C71D /* UIKitWrappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +410,7 @@
 				DE46BC3028C5E1250061F800 /* DrivingLicenseService.swift */,
 				DE4AABA328C763F2004AC99F /* ScooterService.swift */,
 				DE4AABAF28C77A7F004AC99F /* SessionManager.swift */,
+				DE2C849028EADC10002A83CF /* RideService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -385,6 +422,7 @@
 				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
 				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
 				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
+				DE2C848C28EAD88D002A83CF /* TripResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -426,6 +464,7 @@
 				DE43FCD228B78F7A00CBD130 /* AuthenticationAPIService.swift */,
 				DE9E3F4828BF397800B98FEE /* DrivingLicenseAPIService.swift */,
 				DE4AABA828C76504004AC99F /* ScooterAPIService.swift */,
+				DE2C849228EADC33002A83CF /* RideAPIService.swift */,
 			);
 			path = APIServices;
 			sourceTree = "<group>";
@@ -450,6 +489,7 @@
 		DE4AABB628C8C553004AC99F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DE2C848528EAC64D002A83CF /* Trip */,
 				DE4AABA128C76354004AC99F /* MapScreenViewModel.swift */,
 				DE4AABB728C8C578004AC99F /* ScooterMapViewModel.swift */,
 				DE39E5D928D302190069C71D /* ScooterCardViewModel.swift */,
@@ -462,6 +502,7 @@
 		DE4AABB928C8E0F9004AC99F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DE2C848428EAC628002A83CF /* Trip */,
 				DE4AAB9F28C61430004AC99F /* ScooterMapView.swift */,
 				DE4AABB128C88EED004AC99F /* MapScreenView.swift */,
 				DE4AABBA28C8E120004AC99F /* ScooterCardView.swift */,
@@ -470,7 +511,6 @@
 				DE39E5E828D48C410069C71D /* SerialNumberUnlockView.swift */,
 				DE717B8B28D9E63B00D0E3FD /* UnlockSuccessfulView.swift */,
 				DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */,
-				DE37F50F28E9B4B1002C7C9A /* TripDetailsSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -501,6 +541,7 @@
 			children = (
 				DE46BC3228C604BA0061F800 /* UserDTO.swift */,
 				DE4AABC328CA2337004AC99F /* ScooterDTO.swift */,
+				DE2C848A28EAD2C7002A83CF /* TripDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -590,6 +631,8 @@
 			children = (
 				DE43FCCF28B78BC100CBD130 /* User.swift */,
 				DE4AABA528C76451004AC99F /* Scooter.swift */,
+				DE2C848828EAC795002A83CF /* Trip.swift */,
+				DE2C848E28EADAB8002A83CF /* TripData.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -697,11 +740,14 @@
 				DE39E5E928D48C410069C71D /* SerialNumberUnlockView.swift in Sources */,
 				DE4AABA628C76451004AC99F /* Scooter.swift in Sources */,
 				DE4AABAE28C76911004AC99F /* Coordinates.swift in Sources */,
+				DE2C849128EADC10002A83CF /* RideService.swift in Sources */,
+				DE2C849528EADDC0002A83CF /* StartRideSheetViewModel.swift in Sources */,
 				DE9E3F3628BCDD6700B98FEE /* Validation.swift in Sources */,
 				DE4AABBE28C9F4CC004AC99F /* TransparentButton.swift in Sources */,
 				DE882D5128ACE00000C8DA17 /* SignUpViewModel.swift in Sources */,
 				DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */,
 				DE1FEB5828AB9C840019CE5A /* FilledButton.swift in Sources */,
+				DE2C848928EAC795002A83CF /* Trip.swift in Sources */,
 				DE116A0028DC7A6100C659B9 /* Sheet.swift in Sources */,
 				DE39E5E728D352100069C71D /* BatteryView.swift in Sources */,
 				DE9E3F3B28BCE7C500B98FEE /* DrivingLicenseVerificationView.swift in Sources */,
@@ -720,6 +766,7 @@
 				DE46BC3128C5E1250061F800 /* DrivingLicenseService.swift in Sources */,
 				DE0ACF0A28A2737E00F32C36 /* ColorExtension.swift in Sources */,
 				DE882D5C28AE659B00C8DA17 /* LoginViewModel.swift in Sources */,
+				DE2C848F28EADAB8002A83CF /* TripData.swift in Sources */,
 				DE3DC3A428DB6F18005122B5 /* ScooterInteractionResponse.swift in Sources */,
 				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
@@ -734,23 +781,27 @@
 				DE4AABB228C88EED004AC99F /* MapScreenView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,
 				DE4AABA228C76354004AC99F /* MapScreenViewModel.swift in Sources */,
+				DE2C849328EADC33002A83CF /* RideAPIService.swift in Sources */,
 				DE33D18228C0E91B008A8EA2 /* ActivityIndicator.swift in Sources */,
 				DE2B228828A4F39200BAE7F5 /* OnboardingCoordinatorView.swift in Sources */,
 				DE4AABBB28C8E120004AC99F /* ScooterCardView.swift in Sources */,
 				DE9E3F3F28BE2D0900B98FEE /* ImagePicker.swift in Sources */,
 				DE9E3F5328BF934400B98FEE /* FloatingSecureField.swift in Sources */,
 				DE882D5628AD14E000C8DA17 /* AuthenticationCoordinatorView.swift in Sources */,
+				DE37F51228E9C44C002C7C9A /* TripDetailsFullScreenView.swift in Sources */,
 				DE28ECD428C1F23A007AA04C /* ErrorHandler.swift in Sources */,
 				DE46BC2F28C5E1050061F800 /* AuthenticationService.swift in Sources */,
 				DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */,
 				DE9E3F4728BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift in Sources */,
 				DE46BC2B28C2355F0061F800 /* ValidLicenseView.swift in Sources */,
+				DE2C848B28EAD2C7002A83CF /* TripDTO.swift in Sources */,
 				DE4AABA928C76504004AC99F /* ScooterAPIService.swift in Sources */,
 				DE46BC3628C608AC0061F800 /* VerificationResponse.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
 				DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */,
 				DE4AABA428C763F2004AC99F /* ScooterService.swift in Sources */,
 				DE4AABB528C890E9004AC99F /* ScooterAnnotation.swift in Sources */,
+				DE2C848D28EAD88D002A83CF /* TripResponse.swift in Sources */,
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
 				DE8388C628A5143400A0908D /* FontExtension.swift in Sources */,
 				DE882D5928AE613300C8DA17 /* LoginView.swift in Sources */,
@@ -764,6 +815,7 @@
 				DE4AABC628CA27C7004AC99F /* GetScootersResponse.swift in Sources */,
 				DE33D17B28C08A37008A8EA2 /* AuthenticationHeaderView.swift in Sources */,
 				DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */,
+				DE2C848728EAC66D002A83CF /* TripDetailsViewModel.swift in Sources */,
 				DE46BC2728C232630061F800 /* DrivingLicensePendingVerificationView.swift in Sources */,
 				DE3DC3A228DB3FE5005122B5 /* MapCoordinatorViewModel.swift in Sources */,
 				DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */,

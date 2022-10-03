@@ -13,6 +13,8 @@ extension MapCoordinatorView {
         @Published var state: MapCoordinatorState? = .map
         @Published var showUnlockSheet = false
         @Published var showStartRideSheet = false
+        @Published var showTripDetailsSheet = false
+        
         var currentScooter: Scooter? = nil
         var userLocation: CLLocation? = nil
     }

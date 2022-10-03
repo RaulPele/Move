@@ -19,20 +19,24 @@ struct MapCoordinatorView: View {
     @StateObject private var mapCoordinatorViewModel: MapCoordinatorViewModel = .init()
     
     let scooterService: ScooterService
+    let rideService: RideService
     let errorHandler: ErrorHandler
     
     init(errorHandler: ErrorHandler,
-         scooterService: ScooterService) {
+         scooterService: ScooterService,
+         rideService: RideService) {
         self.scooterService = scooterService
         self.errorHandler = errorHandler
+        self.rideService = rideService
     }
     
     var body: some View {
         NavigationView {
             ZStack {
                 NavigationLink(tag: .map, selection: $mapCoordinatorViewModel.state) {
-                        
-                    MapScreenView(scooterService: scooterService, onSerialNumberUnlockClicked: {
+                    
+                    MapScreenView(scooterService: scooterService,
+                                  onSerialNumberUnlockClicked: {
                         mapCoordinatorViewModel.state = .unlockScooterSerialNumber
                     }, onScooterSelectedForUnlock: { scooter, userLocation in
                         mapCoordinatorViewModel.currentScooter = scooter
@@ -57,9 +61,19 @@ struct MapCoordinatorView: View {
                     }
                     .overlay {
                         if let unlockedScooter = mapCoordinatorViewModel.currentScooter,
+                           let userLocation = mapCoordinatorViewModel.userLocation,
                            mapCoordinatorViewModel.showStartRideSheet {
                             Sheet(showSheet: $mapCoordinatorViewModel.showStartRideSheet) {
-                                StartRideSheetView(scooter: unlockedScooter)
+                                StartRideSheetView(errorHandler: errorHandler,
+                                                   scooter: unlockedScooter,
+                                                   userLocation: userLocation,
+                                                   rideService: rideService) { scooter, trip in
+                                    
+                                    mapCoordinatorViewModel.currentScooter = scooter
+                                    mapCoordinatorViewModel.showStartRideSheet = false
+                                    mapCoordinatorViewModel.showTripDetailsSheet = true
+                                    //also update trip
+                                }
                             } onDismiss: {
                                 scooterService.cancelScan(scooterPin: unlockedScooter.scooterNumber) { result in
                                     switch result {
@@ -68,10 +82,22 @@ struct MapCoordinatorView: View {
                                         mapCoordinatorViewModel.currentScooter = nil
                                     case .failure(let failure):
                                         print("failure cancelling scan")
-                                    }}
+                                    }
                                 }
                             }
                         }
+                    }
+                    .overlay {
+                        if mapCoordinatorViewModel.showTripDetailsSheet,
+                           let currentScooter = mapCoordinatorViewModel.currentScooter {
+                            Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
+                                TripDetailsSheetView(scooter: currentScooter)
+                            } onDismiss: {
+                                
+                            }
+
+                        }
+                    }
                     
                 } label: {
                     EmptyView()
@@ -88,7 +114,7 @@ struct MapCoordinatorView: View {
                         }, onClose: {
                             mapCoordinatorViewModel.state = .map
                         })
-                            .navigationBarHidden(true)
+                        .navigationBarHidden(true)
                     }
                 } label: {
                     EmptyView()
@@ -113,6 +139,6 @@ struct MapCoordinatorView: View {
 
 struct MapCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MapCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()))
+        MapCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), rideService: RideAPIService(sessionManager: .init()))
     }
 }

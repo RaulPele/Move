@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
-
+import MapKit
 struct StartRideSheetView: View {
-    let scooter: Scooter
+    let errorHandler: ErrorHandler
+    let onStartRide: (Scooter, Trip) -> Void
+    
+    @StateObject private var viewModel: StartRideSheetViewModel
+    
+    init(errorHandler: ErrorHandler, scooter: Scooter, userLocation: CLLocation, rideService: RideService, onStartRide: @escaping (Scooter, Trip) -> Void) {
+        self.errorHandler = errorHandler
+        self.onStartRide = onStartRide
+        self._viewModel = .init(wrappedValue: .init(scooter: scooter, userLocation: userLocation, rideService: rideService))
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -20,7 +29,12 @@ struct StartRideSheetView: View {
                 }
 
                 Button {
-                    
+                    viewModel.startRide { scooter, trip in
+                        onStartRide(scooter, trip)
+                    } onError: { error in
+                        errorHandler.handle(error: error, title: "Cannot start ride!")
+                    }
+
                 } label: {
                     Text("Start ride")
                         .frame(maxWidth:.infinity)
@@ -29,7 +43,7 @@ struct StartRideSheetView: View {
             }
             .padding(.horizontal, 24)
             .padding(.top, 32)
-            .padding(.bottom, 46)
+            .padding(.bottom, 24)
         }
         .background(RoundedRectangle(cornerRadius: 32)
             .foregroundColor(.neutralWhite)
@@ -44,11 +58,11 @@ private extension StartRideSheetView {
                 .font(.heading4())
                 .foregroundColor(.primaryDark.opacity(0.6))
             
-            Text(verbatim: "#\(scooter.scooterNumber)")
+            Text(verbatim: "#\(viewModel.scooter.scooterNumber)")
                 .font(.heading1())
                 .foregroundColor(.primaryDark)
             
-            BatteryView(batteryPercentage: scooter.batteryPercentage)
+            BatteryView(batteryPercentage: viewModel.scooter.batteryPercentage)
         }
     }
     
@@ -72,7 +86,7 @@ struct ScooterDetailsSheetView_Previews: PreviewProvider {
             }
             .overlay {
                 Sheet(showSheet: .constant(true)) {
-                    StartRideSheetView(scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()))
+                    StartRideSheetView(errorHandler: SwiftMessagesErrorHandler(), scooter: .init(id: "12313", scooterNumber: 1893, bookedStatus: .available, lockedStatus: .unlocked, batteryPercentage: 82, location: .init()), userLocation: .init(), rideService: RideAPIService(sessionManager: SessionManager()), onStartRide: { _, _ in })
                 }
             }
             .previewDevice(device)

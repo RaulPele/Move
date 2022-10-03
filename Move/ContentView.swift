@@ -13,6 +13,7 @@ struct AppDependencies {
     let scooterService: ScooterService
     let sessionManager: SessionManager
     let drivingLicenseService: DrivingLicenseService
+    let rideService: RideService
     
     init() {
         self.errorHandler = SwiftMessagesErrorHandler()
@@ -20,6 +21,7 @@ struct AppDependencies {
         self.authenticationService = AuthenticationAPIService(sessionManager: sessionManager)
         self.scooterService = ScooterAPIService(sessionManager: sessionManager)
         self.drivingLicenseService = DrivingLicenseAPIService(sessionManager: sessionManager)
+        self.rideService = RideAPIService(sessionManager: sessionManager)
     }
 }
 
