@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 protocol RideService {
-    func startRide(scooterNumber: Int,
+    func startRide(scooterId: String,
                    userLocation: CLLocation,
                    completionHandler: @escaping (Result<TripData, Error>) -> Void)
     

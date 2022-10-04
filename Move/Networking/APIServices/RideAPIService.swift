@@ -17,17 +17,18 @@ class RideAPIService: RideService {
         self.sessionManager = sessionManager
     }
     
-    func startRide(scooterNumber: Int, userLocation: CLLocation, completionHandler: @escaping (Result<TripData, Error>) -> Void) {
+    func startRide(scooterId: String, userLocation: CLLocation, completionHandler: @escaping (Result<TripData, Error>) -> Void) {
         guard let sessionToken = sessionManager.getSessionToken() else { return }
         
         let headers = ["Authorization" : "Bearer \(sessionToken)"]
         let parameters: [String : Any] = [
-            "scootNumber" : scooterNumber,
             "latitude" : userLocation.coordinate.latitude,
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("trips"),
+        let url = baseURL.appendingPathComponent("trips/\(scooterId)")
+        
+        let request = AF.request(url,
                                  method: .post,
                                  parameters: parameters,
                                  encoding: JSONEncoding.default,

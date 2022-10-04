@@ -224,7 +224,6 @@ extension ScooterMapViewModel: MKMapViewDelegate {
         if distanceScrolled > 500 {
             getMapLocationString()
         }
-        
     }
 }
 

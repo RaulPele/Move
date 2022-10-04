@@ -23,7 +23,7 @@ struct TripDetailsSheetView: View {
                     .padding(.bottom, 16)
                 
                 HStack(spacing: 0) {
-                    BatteryView(batteryPercentage: viewModel.scooter!.batteryPercentage)
+                    BatteryView(batteryPercentage: viewModel.scooter?.batteryPercentage ?? 0)
                     Spacer()
                     
                 }
@@ -54,7 +54,7 @@ private extension TripDetailsSheetView {
                     .font(.heading4())
             }
             
-            Text("00:12 ")
+            Text("\(viewModel.duration.convertToHoursAndMinutesFormat()) ")
                 .foregroundColor(.primaryDark)
                 .font(.heading1())
             
@@ -117,7 +117,6 @@ private extension TripDetailsSheetView {
         }
     }
 }
-//
 struct TripDetailsSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in

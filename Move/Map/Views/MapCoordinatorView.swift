@@ -82,6 +82,8 @@ struct MapCoordinatorView: View {
                                     tripDetailsViewModel.scooterMapViewModel = mapScreenViewModel.scooterMapViewModel
                                     tripDetailsViewModel.rideService = rideService
                                     
+                                    tripDetailsViewModel.startMonitorizingRide()
+                                    
                                     mapCoordinatorViewModel.showTripDetailsSheet = true
                                     
                                 }

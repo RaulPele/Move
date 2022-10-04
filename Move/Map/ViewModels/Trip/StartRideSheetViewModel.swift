@@ -21,7 +21,8 @@ extension StartRideSheetView {
         }
         
         func startRide(onSuccess: @escaping (Scooter, Trip) -> Void, onError : @escaping (Error) -> Void) {
-            rideService.startRide(scooterNumber: scooter.scooterNumber, userLocation: userLocation) { result in
+            print("scooter id: \(scooter.id)")
+            rideService.startRide(scooterId: scooter.id, userLocation: userLocation) { result in
                 switch result {
                 case .success(let tripData):
                     onSuccess(tripData.scooter, tripData.trip)

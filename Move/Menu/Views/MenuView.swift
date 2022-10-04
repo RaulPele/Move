@@ -23,7 +23,6 @@ struct MenuView: View {
                 Image("MenuScooter")
                     .resizable()
                     .scaledToFit()
-                    
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 10)
