@@ -54,7 +54,9 @@ class FlowManager {
         
         userService.getUser { result in
             switch result {
-            case .success(let user):
+            case .success(let userDetails):
+                let user = userDetails.user
+                
                 if let licenseImageLink = user.licenseImageLink {
                     if licenseImageLink.isEmpty {
                         completionHandler(.drivingLicenseVerification)

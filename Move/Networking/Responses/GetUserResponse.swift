@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct UserResponse: Codable {
+struct GetUserResponse: Codable {
     let userDTO: UserDTO
+    let numberOfTrips: Int
     
     enum CodingKeys: String, CodingKey {
         case userDTO = "existingUser"
+        case numberOfTrips = "nrOfTrips"
     }
 }

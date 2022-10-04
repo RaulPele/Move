@@ -9,17 +9,19 @@ import Foundation
 import MapKit
 
 struct TripDTO: Codable {
+    let id: String
     let startLocation: LocationDTO
     let endLocation: LocationDTO
     let userId: String
     let scooterId: String
     let status: TripStatus
     let distance: Int
-    let duration: Double
+    let duration: Int
     let cost: Double
     let allLocations: Array<LocationDTO>
     
     enum CodingKeys: String, CodingKey {
+        case id = "_id"
         case startLocation
         case endLocation
         case userId
@@ -42,6 +44,6 @@ struct TripDTO: Codable {
             endLocation = CLLocation(latitude: self.endLocation.coordinates[1], longitude:  self.endLocation.coordinates[0])
         }
         
-        return .init(startLocation: .init(latitude: startLocation.coordinates[1], longitude: startLocation.coordinates[0]), endLocation: endLocation, userId: userId, scooterId: scooterId, status: status, distance: distance, duration: duration, allLocations: allLocations, cost: cost)
+        return .init(id: id, startLocation: .init(latitude: startLocation.coordinates[1], longitude: startLocation.coordinates[0]), endLocation: endLocation, userId: userId, scooterId: scooterId, status: status, distance: distance, duration: duration, allLocations: allLocations, cost: cost)
     }
 }

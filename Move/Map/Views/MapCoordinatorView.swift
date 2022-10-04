@@ -12,7 +12,6 @@ enum MapCoordinatorState {
     case unlockScooterSheet
     case unlockScooterSerialNumber
     case unlockSuccessful
-    
 }
 
 struct MapCoordinatorView: View {
@@ -22,15 +21,26 @@ struct MapCoordinatorView: View {
     
     let scooterService: ScooterService
     let rideService: RideService
+    let userService: UserService
+    let authenticationService: AuthenticationService
+    
     let errorHandler: ErrorHandler
+    let onLogout: () -> Void
     
     init(errorHandler: ErrorHandler,
          scooterService: ScooterService,
-         rideService: RideService) {
+         rideService: RideService,
+         userService: UserService,
+         authenticationService: AuthenticationService,
+         onLogout: @escaping () -> Void) {
         
         self.scooterService = scooterService
         self.errorHandler = errorHandler
         self.rideService = rideService
+        self.userService = userService
+        self.onLogout = onLogout
+        self.authenticationService = authenticationService
+        
         self._mapScreenViewModel = .init(wrappedValue: .init(scooterService: scooterService))
     }
     
@@ -42,6 +52,7 @@ struct MapCoordinatorView: View {
                     MapScreenView(viewModel: mapScreenViewModel,
                                   onSerialNumberUnlockClicked: {
                         mapCoordinatorViewModel.state = .unlockScooterSerialNumber
+                        
                     }, onScooterSelectedForUnlock: { scooter, userLocation in
                         mapCoordinatorViewModel.currentScooter = scooter
                         mapCoordinatorViewModel.userLocation = userLocation
@@ -50,7 +61,11 @@ struct MapCoordinatorView: View {
                             mapCoordinatorViewModel.showUnlockSheet = true
                         }
                         
-                    })
+                    },
+                        onMenuButtonClicked: {
+                            mapCoordinatorViewModel.showMenu = true
+
+                        })
                     .navigationBarHidden(true)
                     .overlay {
                         if let currentScooter = mapCoordinatorViewModel.currentScooter,
@@ -118,6 +133,18 @@ struct MapCoordinatorView: View {
                             }
                         }
                     }
+                    .overlay {
+                        if mapCoordinatorViewModel.showMenu {
+                            MenuView(errorHandler: errorHandler, userService: userService, authenticationService: authenticationService) {
+                                    mapCoordinatorViewModel.showMenu = false
+                            } onSeeHistory: {
+                                
+                            } onLogout: {
+                                onLogout()
+                            }
+                            .transition(.opacity.animation(.default))
+                        }
+                    }
                     
                 } label: {
                     EmptyView()
@@ -161,6 +188,6 @@ struct MapCoordinatorView: View {
 
 struct MapCoordinatorView_Previews: PreviewProvider {
     static var previews: some View {
-        MapCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), rideService: RideAPIService(sessionManager: .init()))
+        MapCoordinatorView(errorHandler: SwiftMessagesErrorHandler(), scooterService: ScooterAPIService(sessionManager: .init()), rideService: RideAPIService(sessionManager: .init()), userService: UserAPIService(sessionManager: .init()), authenticationService: AuthenticationAPIService(sessionManager: .init()), onLogout: {})
     }
 }

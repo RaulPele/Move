@@ -10,15 +10,18 @@ import MapKit
 struct MapScreenView: View {
     let onSerialNumberUnlockClicked: () -> Void
     let onScooterSelectedForUnlock: (Scooter, CLLocation?) -> Void
+    let onMenuButtonClicked: () -> Void
     
     @ObservedObject  var mapScreenViewModel : MapScreenViewModel
     
     init(
         viewModel: MapScreenViewModel,
          onSerialNumberUnlockClicked: @escaping () -> Void,
-         onScooterSelectedForUnlock: @escaping (Scooter, CLLocation?) -> Void) {
+         onScooterSelectedForUnlock: @escaping (Scooter, CLLocation?) -> Void,
+        onMenuButtonClicked: @escaping () -> Void) {
         self.onSerialNumberUnlockClicked = onSerialNumberUnlockClicked
         self.onScooterSelectedForUnlock = onScooterSelectedForUnlock
+        self.onMenuButtonClicked = onMenuButtonClicked
         self.mapScreenViewModel = viewModel
     }
     
@@ -53,7 +56,7 @@ struct MapScreenView: View {
     var topBar: some View {
         HStack {
             Button {
-                
+                onMenuButtonClicked()
             } label: {
                 Image("menu-icon")
             }

@@ -8,5 +8,7 @@
 import Foundation
 
 protocol UserService {
-    func getUser(completionHandler: @escaping (Result<User, Error>) -> Void )
+    func getUser(completionHandler: @escaping (Result<UserDetails, Error>) -> Void )
+    func getUserTrips(completionHandler: @escaping (Result<[Trip], Error>) -> Void)
+//    func getUserDetails(completionHandler: @escaping (Result<Int, Error>) -> Void)
 }

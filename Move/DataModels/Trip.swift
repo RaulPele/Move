@@ -15,13 +15,14 @@ enum TripStatus: String, Codable {
 }
 
 struct Trip {
+    let id: String
     let startLocation: CLLocation
     let endLocation: CLLocation
     let userId: String
     let scooterId: String
     let status: TripStatus
     let distance: Int
-    let duration: Double
+    let duration: Int
     let allLocations: Array<CLLocation>
     let cost: Double
 

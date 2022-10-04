@@ -8,9 +8,36 @@
 import SwiftUI
 
 struct MenuView: View {
+    let errorHandler: ErrorHandler
+    let userService: UserService
+    let authenticationService: AuthenticationService
+    let onBackButtonClicked: () -> Void
+    let onSeeHistory: () -> Void
+    let onLogout: () -> Void
+    
+    @StateObject private var viewModel: ViewModel
+    
+    init(errorHandler: ErrorHandler,
+         userService: UserService,
+         authenticationService: AuthenticationService,
+         onBackButtonClicked: @escaping () -> Void,
+         onSeeHistory: @escaping () -> Void,
+         onLogout: @escaping () -> Void) {
+        self.errorHandler = errorHandler
+        self.userService = userService
+        self.authenticationService = authenticationService
+        self.onBackButtonClicked = onBackButtonClicked
+        self.onSeeHistory = onSeeHistory
+        self.onLogout = onLogout
+        
+        self._viewModel = .init(wrappedValue: .init(userService: userService, authenticationService: authenticationService))
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color.neutralWhite
+                .ignoresSafeArea()
+            
             VStack(spacing: 32) {
                 titleBarView
                     .padding(.bottom, 20)
@@ -24,9 +51,16 @@ struct MenuView: View {
                     .resizable()
                     .scaledToFit()
             }
+
             .padding(.horizontal, 24)
             .padding(.vertical, 10)
+
             
+        }
+        .onAppear {
+            viewModel.getUserDetails { error in
+                errorHandler.handle(error: error, title: "Couldn't get user details!")
+            }
         }
     }
 }
@@ -34,15 +68,20 @@ struct MenuView: View {
 private extension MenuView {
     var titleBarView: some View {
         HStack(spacing: 0) {
-            Image("chevron-left")
+            Button {
+                onBackButtonClicked()
+            } label: {
+                Image("chevron-left")
+            }
             
             Spacer()
             
-            Text("Hi Conor!")
+            Text("Hi \(viewModel.user?.username ?? "")!")
                 .foregroundColor(.primaryDark)
                 .font(.heading3())
             
             Spacer()
+            logoutView
         }
     }
     
@@ -54,7 +93,7 @@ private extension MenuView {
                     .font(.button1())
                     .padding(.vertical, 2)
                 
-                Text("Total rides: 12")
+                Text("Total rides: \(viewModel.numberOfTrips)")
                     .foregroundColor(.neutralLightPurple)
                     .font(.heading4())
                     .padding(.vertical, 2)
@@ -62,7 +101,7 @@ private extension MenuView {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             Button {
-                
+                onSeeHistory()
             } label: {
                 HStack(spacing: 0) {
                     Text("See all")
@@ -160,6 +199,18 @@ private extension MenuView {
         }
     }
     
+    var logoutView: some View {
+        Button {
+            viewModel.logout {
+                onLogout()
+            }
+        } label: {
+            Text("Log out")
+                .foregroundColor(.accentColor)
+                .font(.button1())
+        }
+    }
+    
     var menuSectionsView: some View {
         VStack(alignment: .leading,spacing: 0) {
             generalSettingsView
@@ -174,7 +225,9 @@ private extension MenuView {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(devices) { device in
-            MenuView()
+            MenuView(errorHandler: SwiftMessagesErrorHandler(), userService: UserAPIService(sessionManager: .init()), authenticationService: AuthenticationAPIService(sessionManager: .init()), onBackButtonClicked: {}, onSeeHistory: {}, onLogout: {
+                
+            })
                 .previewDevice(device)
         }
     }

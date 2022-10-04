@@ -15,6 +15,7 @@ extension MapCoordinatorView {
         @Published var showUnlockSheet = false
         @Published var showStartRideSheet = false
         @Published var showTripDetailsSheet = false
+        @Published var showMenu = false
         @Published var currentTrip: Trip?
         
         var currentScooter: Scooter? = nil
