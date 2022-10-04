@@ -57,7 +57,8 @@ class AuthenticationAPIService: AuthenticationService {
             "password": password
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/auth/register"), method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(baseURL.appendingPathComponent("api/auth/register"),
+                                 method: .post, parameters: parameters, encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: AuthenticationResponse.self) { response in

@@ -14,7 +14,7 @@ struct TripDTO: Codable {
     let userId: String
     let scooterId: String
     let status: TripStatus
-    let distance: Double
+    let distance: Int
     let duration: Double
     let cost: Double
     let allLocations: Array<LocationDTO>

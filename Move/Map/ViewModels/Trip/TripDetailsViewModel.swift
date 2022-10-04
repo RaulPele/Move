@@ -13,6 +13,7 @@ class TripDetailsViewModel: ObservableObject {
     @Published var duration: Int = 0
     @Published private var isTravelTimerRunning = false
     @Published private var isRideInformationTimerRunning = false
+    var rideInformationTimer: Timer?
     
     var rideService: RideService?
     var scooterMapViewModel: ScooterMapViewModel?
@@ -50,15 +51,28 @@ class TripDetailsViewModel: ObservableObject {
     }
     
     private func startRideInformationTimer() {
+        guard let rideService = rideService,
+        let trip = trip else { return }
+        
         self.isRideInformationTimerRunning = true
         
-        let rideInformationTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
-            // request information data
+        rideInformationTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+            rideService.getRideInformation(scooterId: trip.scooterId) { result in
+                switch result {
+                case .success(let tripData):
+                    self.trip = tripData.trip
+                    self.scooter = tripData.scooter
+                    
+                case .failure(let error):
+                    print("ERROR while getting trip information: \(error.localizedDescription)") // TODO: handle error
+                }
+            }
         }
     }
     
     private func stopRideInformationTimer() {
         self.isRideInformationTimerRunning = false
+        rideInformationTimer?.invalidate()
     }
     
     func startMonitorizingRide() {

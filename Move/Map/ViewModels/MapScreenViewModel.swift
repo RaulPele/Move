@@ -96,9 +96,9 @@ extension MapScreenView {
         
         func enterRideMode(currentScooterId: String) {
             stopReloadingScootersTimer()
-            scooterMapViewModel.scooterAnnotations.removeAll { annotation in
-                return annotation.scooter.id != currentScooterId
-            }
+//            scooterMapViewModel.scooterAnnotations.removeAll { annotation in
+//                return annotation.scooter.id != currentScooterId
+//            }
         }
         
         func exitRideMode() {

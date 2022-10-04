@@ -12,7 +12,7 @@ struct AuthenticationResponse: Codable {
     var token: String
     
     enum CodingKeys: String, CodingKey {
-        case userDTO = "user"
+        case userDTO = "registeredUser"
         case token
     }
 }

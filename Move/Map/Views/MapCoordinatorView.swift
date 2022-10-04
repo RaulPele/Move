@@ -55,12 +55,13 @@ struct MapCoordinatorView: View {
                     .overlay {
                         if let currentScooter = mapCoordinatorViewModel.currentScooter,
                            mapCoordinatorViewModel.showUnlockSheet {
-                            Sheet(showSheet: $mapCoordinatorViewModel.showUnlockSheet, content: {
+                            Sheet(showSheet: $mapCoordinatorViewModel.showUnlockSheet,content: {
                                 UnlockScooterBottomSheetView(scooter: currentScooter) { scooter in
                                     mapCoordinatorViewModel.showUnlockSheet = false
                                     mapCoordinatorViewModel.state = .unlockScooterSerialNumber
                                 }
                             })
+                            
                         }
                     }
                     .overlay {
@@ -104,7 +105,8 @@ struct MapCoordinatorView: View {
                     .overlay {
                         if mapCoordinatorViewModel.showTripDetailsSheet {
                             if mapCoordinatorViewModel.showTripDetailsSheet {
-                                Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
+                                Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet,
+                                isDismissableByTapGesture: false) {
                                     TripDetailsSheetView(viewModel: tripDetailsViewModel,
                                                          errorHandler: errorHandler) { scooter, trip in
                                         mapCoordinatorViewModel.showTripDetailsSheet = false

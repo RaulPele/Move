@@ -94,4 +94,33 @@ class RideAPIService: RideService {
                 }
             }
     }
+    
+    func getRideInformation(scooterId: String, completionHandler: @escaping (Result<TripData, Error>) -> Void) {
+        guard let sessionToken = sessionManager.getSessionToken() else { return }
+        
+        let headers = ["Authorization": "Bearer \(sessionToken)"]
+        let url = baseURL.appendingPathComponent("trips/current/\(scooterId)")
+        
+        let request = AF.request(url,
+                                 method:.get,
+                                 headers: .init(headers))
+        
+        request
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: GetTripResponse.self) { response in
+                switch response.result {
+                case .success(let tripResponse):
+                    let tripData: TripData = .init(trip: tripResponse.tripDTO.toTrip(), scooter: tripResponse.scooterDTO.toScooter())
+                    completionHandler(.success(tripData))
+                    
+                case .failure(let error):
+                    if let data = response.data,
+                       let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+                        completionHandler(.failure(apiError))
+                    } else {
+                        completionHandler(.failure(error))
+                    }
+                }
+            }
+    }
 }

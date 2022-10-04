@@ -20,7 +20,7 @@ struct Trip {
     let userId: String
     let scooterId: String
     let status: TripStatus
-    let distance: Double
+    let distance: Int
     let duration: Double
     let allLocations: Array<CLLocation>
     let cost: Double

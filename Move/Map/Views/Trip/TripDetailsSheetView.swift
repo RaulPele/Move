@@ -72,7 +72,7 @@ private extension TripDetailsSheetView {
                     .font(.heading4())
             }
             
-            Text("2.7 ")
+            Text("\(viewModel.trip?.distance.convertToKilometersFormat() ?? "0.0") ")
                 .foregroundColor(.primaryDark)
                 .font(.heading1())
             

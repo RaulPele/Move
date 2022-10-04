@@ -15,19 +15,45 @@ enum SheetState {
 struct Sheet<Content: View>: View {
     let content: () -> Content
     let onDismiss: () -> Void
+    var isDismissableByTapGesture = true
+    
     @State private var sheetState: SheetState = .hidden
     @Binding var showSheet: Bool
     
-    init(showSheet: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    init(showSheet: Binding<Bool>,
+         @ViewBuilder content: @escaping () -> Content) {
         self._showSheet = showSheet
         self.content = content
         self.onDismiss = { }
+        self.isDismissableByTapGesture = true
     }
     
-    init(showSheet: Binding<Bool>, @ViewBuilder content: @escaping () -> Content, onDismiss: @escaping () -> Void) {
+    init(showSheet: Binding<Bool>,
+         isDismissableByTapGesture: Bool,
+         @ViewBuilder content: @escaping () -> Content) {
+        self._showSheet = showSheet
+        self.content = content
+        self.onDismiss = { }
+        self.isDismissableByTapGesture = isDismissableByTapGesture
+    }
+    
+    init(showSheet: Binding<Bool>,
+         isDismissableByTapGesture: Bool,
+         @ViewBuilder content: @escaping () -> Content,
+         onDismiss: @escaping () -> Void) {
         self._showSheet = showSheet
         self.content = content
         self.onDismiss = onDismiss
+        self.isDismissableByTapGesture = isDismissableByTapGesture
+    }
+    
+    init(showSheet: Binding<Bool>,
+         @ViewBuilder content: @escaping () -> Content,
+         onDismiss: @escaping () -> Void) {
+        self._showSheet = showSheet
+        self.content = content
+        self.onDismiss = onDismiss
+
     }
 
 
@@ -39,10 +65,12 @@ struct Sheet<Content: View>: View {
             .frame(maxHeight: .infinity, alignment: .bottom)
             .background(Color.black.opacity(0.2)
                 .onTapGesture {
-                    sheetState = .hidden
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        showSheet = false
-                        onDismiss()
+                    if isDismissableByTapGesture {
+                        sheetState = .hidden
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            showSheet = false
+                            onDismiss()
+                        }
                     }
                 }
                 .ignoresSafeArea()
