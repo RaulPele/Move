@@ -125,6 +125,8 @@
 		DE9E3F4728BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */; };
 		DE9E3F4928BF397800B98FEE /* DrivingLicenseAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F4828BF397800B98FEE /* DrivingLicenseAPIService.swift */; };
 		DE9E3F5328BF934400B98FEE /* FloatingSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9E3F5228BF934400B98FEE /* FloatingSecureField.swift */; };
+		DECB2DB028ECA14E003FF10A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECB2DAF28ECA14E003FF10A /* HistoryView.swift */; };
+		DECB2DB228ECA297003FF10A /* TripListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECB2DB128ECA297003FF10A /* TripListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +249,8 @@
 		DE9E3F4628BF38F900B98FEE /* DrivingLicenseVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseVerificationViewModel.swift; sourceTree = "<group>"; };
 		DE9E3F4828BF397800B98FEE /* DrivingLicenseAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseAPIService.swift; sourceTree = "<group>"; };
 		DE9E3F5228BF934400B98FEE /* FloatingSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingSecureField.swift; sourceTree = "<group>"; };
+		DECB2DAF28ECA14E003FF10A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		DECB2DB128ECA297003FF10A /* TripListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,6 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				DE2C849A28EB77C2002A83CF /* MenuView.swift */,
+				DECB2DAF28ECA14E003FF10A /* HistoryView.swift */,
+				DECB2DB128ECA297003FF10A /* TripListItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -782,6 +788,7 @@
 				DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */,
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
 				DE2C84A328EC5051002A83CF /* UserDefaultsKeys.swift in Sources */,
+				DECB2DB028ECA14E003FF10A /* HistoryView.swift in Sources */,
 				DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */,
 				DE4AABAC28C7655B004AC99F /* ScooterMockedService.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
@@ -840,6 +847,7 @@
 				DE9E3F5328BF934400B98FEE /* FloatingSecureField.swift in Sources */,
 				DE882D5628AD14E000C8DA17 /* AuthenticationCoordinatorView.swift in Sources */,
 				DE37F51228E9C44C002C7C9A /* TripDetailsFullScreenView.swift in Sources */,
+				DECB2DB228ECA297003FF10A /* TripListItemView.swift in Sources */,
 				DE28ECD428C1F23A007AA04C /* ErrorHandler.swift in Sources */,
 				DE46BC2F28C5E1050061F800 /* AuthenticationService.swift in Sources */,
 				DE43FCD328B78F7A00CBD130 /* AuthenticationAPIService.swift in Sources */,
