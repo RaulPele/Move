@@ -11,20 +11,6 @@ struct User {
     let email: String
     var username: String? = nil
     let password: String
+    var licenseImageLink: String?
     
-    enum CodingKeys: String, CodingKey {
-        case email = "mail"
-        case username = "name"
-        case password
-    }
 }
-
-extension User: Codable {
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(email, forKey: .email)
-        try container.encode(password, forKey: .password)
-    }
-}
-
-

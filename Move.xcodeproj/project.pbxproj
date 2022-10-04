@@ -54,6 +54,11 @@
 		DE2C849728EAFA40002A83CF /* EndTripResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849628EAFA40002A83CF /* EndTripResponse.swift */; };
 		DE2C849B28EB77C2002A83CF /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849A28EB77C2002A83CF /* MenuView.swift */; };
 		DE2C849D28EC1D15002A83CF /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C849C28EC1D15002A83CF /* IntExtension.swift */; };
+		DE2C84A128EC5036002A83CF /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C84A028EC5036002A83CF /* FlowManager.swift */; };
+		DE2C84A328EC5051002A83CF /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C84A228EC5051002A83CF /* UserDefaultsKeys.swift */; };
+		DE2C84A628EC5586002A83CF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C84A528EC5586002A83CF /* UserService.swift */; };
+		DE2C84A828EC55CE002A83CF /* UserAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C84A728EC55CE002A83CF /* UserAPIService.swift */; };
+		DE2C84AA28EC56CA002A83CF /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C84A928EC56CA002A83CF /* UserResponse.swift */; };
 		DE2F523528A63574007762BA /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523428A63574007762BA /* MainCoordinatorView.swift */; };
 		DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */; };
 		DE2F523B28A64541007762BA /* MainCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */; };
@@ -172,6 +177,11 @@
 		DE2C849C28EC1D15002A83CF /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		DE2C849E28EC32A3002A83CF /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		DE2C849F28EC32F0002A83CF /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = ../../../Location.gpx; sourceTree = "<group>"; };
+		DE2C84A028EC5036002A83CF /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManager.swift; sourceTree = "<group>"; };
+		DE2C84A228EC5051002A83CF /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		DE2C84A528EC5586002A83CF /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		DE2C84A728EC55CE002A83CF /* UserAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIService.swift; sourceTree = "<group>"; };
+		DE2C84A928EC56CA002A83CF /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		DE2F523428A63574007762BA /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		DE2F523728A64511007762BA /* OnboardingCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		DE2F523A28A64541007762BA /* MainCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorViewModel.swift; sourceTree = "<group>"; };
@@ -438,6 +448,9 @@
 				DE4AABA328C763F2004AC99F /* ScooterService.swift */,
 				DE4AABAF28C77A7F004AC99F /* SessionManager.swift */,
 				DE2C849028EADC10002A83CF /* RideService.swift */,
+				DE2C84A028EC5036002A83CF /* FlowManager.swift */,
+				DE2C84A228EC5051002A83CF /* UserDefaultsKeys.swift */,
+				DE2C84A528EC5586002A83CF /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -451,6 +464,7 @@
 				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
 				DE2C848C28EAD88D002A83CF /* TripResponse.swift */,
 				DE2C849628EAFA40002A83CF /* EndTripResponse.swift */,
+				DE2C84A928EC56CA002A83CF /* UserResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -493,6 +507,7 @@
 				DE9E3F4828BF397800B98FEE /* DrivingLicenseAPIService.swift */,
 				DE4AABA828C76504004AC99F /* ScooterAPIService.swift */,
 				DE2C849228EADC33002A83CF /* RideAPIService.swift */,
+				DE2C84A728EC55CE002A83CF /* UserAPIService.swift */,
 			);
 			path = APIServices;
 			sourceTree = "<group>";
@@ -763,6 +778,7 @@
 				DE28ECDE28C228D6007AA04C /* AuthenticationResponse.swift in Sources */,
 				DE882D5428AD03B700C8DA17 /* OnboardingDataModel.swift in Sources */,
 				DE0ACEFE28A266EF00F32C36 /* ContentView.swift in Sources */,
+				DE2C84A328EC5051002A83CF /* UserDefaultsKeys.swift in Sources */,
 				DE0D3F3E28D0684F00ED20F1 /* ReuseIdentifiers.swift in Sources */,
 				DE4AABAC28C7655B004AC99F /* ScooterMockedService.swift in Sources */,
 				DE0ACF0D28A39BC900F32C36 /* SplashView.swift in Sources */,
@@ -799,9 +815,11 @@
 				DE2C848F28EADAB8002A83CF /* TripData.swift in Sources */,
 				DE3DC3A428DB6F18005122B5 /* ScooterInteractionResponse.swift in Sources */,
 				DE4AABC428CA2337004AC99F /* ScooterDTO.swift in Sources */,
+				DE2C84A128EC5036002A83CF /* FlowManager.swift in Sources */,
 				DE28ECDA28C1FB04007AA04C /* APIConfig.swift in Sources */,
 				DE0ACEFC28A266EF00F32C36 /* MoveApp.swift in Sources */,
 				DE717B8828D9A5DB00D0E3FD /* StringExtension.swift in Sources */,
+				DE2C84A628EC5586002A83CF /* UserService.swift in Sources */,
 				DE39E5E328D34B140069C71D /* HalfSheet.swift in Sources */,
 				DE4AABB028C77A7F004AC99F /* SessionManager.swift in Sources */,
 				DE717B8A28D9E44800D0E3FD /* SerialNumberUnlockViewModel.swift in Sources */,
@@ -831,6 +849,7 @@
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
 				DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */,
 				DE4AABA428C763F2004AC99F /* ScooterService.swift in Sources */,
+				DE2C84A828EC55CE002A83CF /* UserAPIService.swift in Sources */,
 				DE4AABB528C890E9004AC99F /* ScooterAnnotation.swift in Sources */,
 				DE2C848D28EAD88D002A83CF /* TripResponse.swift in Sources */,
 				DE2B228328A3B27000BAE7F5 /* OnboardingView.swift in Sources */,
@@ -853,6 +872,7 @@
 				DE39E5DE28D314510069C71D /* UnlockScooterBottomSheetView.swift in Sources */,
 				DE43FCD028B78BC100CBD130 /* User.swift in Sources */,
 				DE39E5E028D339360069C71D /* BorderedRoundedIconButton.swift in Sources */,
+				DE2C84AA28EC56CA002A83CF /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

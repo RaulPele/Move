@@ -31,6 +31,6 @@ struct UserDTO : Codable {
 
 extension UserDTO {
     func toUser() -> User {
-        return User(email: email, username: username, password: password)
+        return User(email: email, username: username, password: password, licenseImageLink: licenseImageLink)
     }
 }

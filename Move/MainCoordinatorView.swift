@@ -18,9 +18,11 @@ enum MainCoordinatorState {
 struct MainCoordinatorView: View {
     let appDependencies: AppDependencies
     @State private var state: MainCoordinatorState? = MainCoordinatorState.start
+    let flowManager: FlowManager
     
     init(appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
+        self.flowManager = appDependencies.flowManager
     }
     
     var body: some View {
@@ -29,7 +31,11 @@ struct MainCoordinatorView: View {
                 NavigationLink(tag: .start, selection: $state) {
                     SplashView() {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            state = .onboarding
+                            
+//                            state = .onboarding
+                            flowManager.getApplicationFlow { state in
+                                self.state = state
+                            }
                             //manage session
                         }
                     }
@@ -40,6 +46,8 @@ struct MainCoordinatorView: View {
 
                 NavigationLink(tag: .onboarding, selection: $state) {
                     OnboardingCoordinatorView() {
+                        flowManager.markAsOnboarded()
+                        
                         state = .authentication
                     }
                     .navigationBarHidden(true)
@@ -49,9 +57,13 @@ struct MainCoordinatorView: View {
                 
                 NavigationLink(tag: .authentication, selection: $state) {
                     AuthenticationCoordinatorView(errorHandler: appDependencies.errorHandler, authenticationService: appDependencies.authenticationService) {
-                        state = .drivingLicenseVerification
+                        flowManager.getApplicationFlow(completionHandler: { state in
+                            self.state = state
+                        })
                     } onRegisterCompleted: {
-                        state = .drivingLicenseVerification
+                        flowManager.getApplicationFlow(completionHandler: { state in
+                            self.state = state
+                        })
                     }
                     .navigationBarHidden(true)
 
@@ -63,6 +75,7 @@ struct MainCoordinatorView: View {
                     DrivingLicenseVerificationCoordinatorView(errorHandler: appDependencies.errorHandler, drivingLicenseService: appDependencies.drivingLicenseService) {
                         state = .authentication
                     } onVerificationFinished: {
+                        flowManager.markAsDrivingLicenseVerified()
                         state = .map
                     }
                     .navigationBarHidden(true)

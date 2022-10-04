@@ -30,7 +30,7 @@ class AuthenticationAPIService: AuthenticationService {
             .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     case .success(let authenticationData):
-                    try? self.sessionManager.saveUserData(userDTO: authenticationData.userDTO)
+                    try? self.sessionManager.saveSession(token: authenticationData.userDTO.sessionToken ?? "")
                     completionHandler(.success(authenticationData.userDTO.toUser()))
                     case .failure(let error):
                         if let data = response.data,
@@ -64,7 +64,7 @@ class AuthenticationAPIService: AuthenticationService {
                 switch response.result {
                 case .success(let authenticationData):
                     print("succesfully registered")
-                    try? self.sessionManager.saveUserData(userDTO: authenticationData.userDTO)
+                    try? self.sessionManager.saveSession(token: authenticationData.userDTO.sessionToken ?? "")
                     completionHandler(.success(authenticationData.userDTO.toUser()))
                     
                 case .failure(let error):
