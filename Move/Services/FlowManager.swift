@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class FlowManager {
     let sessionManager: SessionManager
     let userService: UserService
@@ -29,7 +28,6 @@ class FlowManager {
         let onboardingFlag = UserDefaults.standard.bool(forKey: UserDefaultsKeys.onboardingState.rawValue)
         
         if onboardingFlag {
-            print("Onboarding status: \(onboardingFlag)")
             return true
         }
         return false
@@ -42,7 +40,6 @@ class FlowManager {
            return false
        }
     }
-    
     
     func getApplicationFlow(completionHandler: @escaping (MainCoordinatorState) -> Void){
         if !userIsOnboard() {
@@ -67,7 +64,7 @@ class FlowManager {
                 } else {
                     completionHandler(.drivingLicenseVerification)
                 }
-            case .failure(let failure):
+            case .failure(_):
                 completionHandler(.authentication)
             }
         }

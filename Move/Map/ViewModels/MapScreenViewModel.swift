@@ -17,6 +17,7 @@ extension MapScreenView {
         
         @Published var selectedScooter: Scooter?
         @Published var currentLocation = "Allow location"
+        private var reloadScootersTimer: Timer?
         
         private var cancellables = [AnyCancellable]()
         
@@ -84,11 +85,25 @@ extension MapScreenView {
         }
         
         func startReloadingScootersTimer() {
-            let reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+            reloadScootersTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 self.loadScooters()
             }
         }
         
+        func stopReloadingScootersTimer() {
+            reloadScootersTimer?.invalidate()
+        }
         
+        func enterRideMode(currentScooterId: String) {
+            stopReloadingScootersTimer()
+            scooterMapViewModel.scooterAnnotations.removeAll { annotation in
+                return annotation.scooter.id != currentScooterId
+            }
+        }
+        
+        func exitRideMode() {
+            loadScooters()
+            startReloadingScootersTimer()
+        }
     }
 }

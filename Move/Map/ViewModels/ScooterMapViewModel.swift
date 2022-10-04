@@ -156,7 +156,6 @@ class ScooterMapViewModel: NSObject, ObservableObject {
         mapView.selectAnnotation(scooterAnnotation, animated: false)
     }
     
-    
 }
 
 

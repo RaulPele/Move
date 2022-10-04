@@ -31,12 +31,9 @@ struct MainCoordinatorView: View {
                 NavigationLink(tag: .start, selection: $state) {
                     SplashView() {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            
-//                            state = .onboarding
                             flowManager.getApplicationFlow { state in
                                 self.state = state
                             }
-                            //manage session
                         }
                     }
                     .navigationBarHidden(true)
@@ -47,7 +44,6 @@ struct MainCoordinatorView: View {
                 NavigationLink(tag: .onboarding, selection: $state) {
                     OnboardingCoordinatorView() {
                         flowManager.markAsOnboarded()
-                        
                         state = .authentication
                     }
                     .navigationBarHidden(true)

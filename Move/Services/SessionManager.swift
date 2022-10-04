@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum CodingError: Error {
-    case userEncodingError(String)
-    case userDecodingError(String)
-}
-
 class SessionManager {
     func saveSession(token: String) throws {
         if !token.isEmpty {

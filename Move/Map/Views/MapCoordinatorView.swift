@@ -85,6 +85,7 @@ struct MapCoordinatorView: View {
                                     tripDetailsViewModel.startMonitorizingRide()
                                     
                                     mapCoordinatorViewModel.showTripDetailsSheet = true
+                                    mapScreenViewModel.enterRideMode(currentScooterId: unlockedScooter.id)
                                     
                                 }
                             } onDismiss: {
@@ -107,6 +108,8 @@ struct MapCoordinatorView: View {
                                     TripDetailsSheetView(viewModel: tripDetailsViewModel,
                                                          errorHandler: errorHandler) { scooter, trip in
                                         mapCoordinatorViewModel.showTripDetailsSheet = false
+                                        mapScreenViewModel.exitRideMode()
+
                                         print("Ride ended")
                                     }
                                 }
@@ -149,25 +152,6 @@ struct MapCoordinatorView: View {
                 }
             }
         }
-        
-//        func getTripDetailsSheetView() -> some View {
-//            if let tripDetailsViewModel = mapCoordinatorViewModel.tripDetailsViewModel {
-//                return Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
-//                    TripDetailsSheetView(viewModel: tripDetailsViewModel, errorHandler: errorHandler)
-//                } onDismiss: {
-//                    
-//                }
-//
-//            }else {
-//                mapCoordinatorViewModel.tripDetailsViewModel = .init(rideService: rideService, scooterMapViewModel: mapScreenViewModel.scooterMapViewModel)
-//                return Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet) {
-//                    TripDetailsSheetView(viewModel: mapCoordinatorViewModel.tripDetailsViewModel!, errorHandler: errorHandler)
-//                } onDismiss: {
-//                    
-//                }
-//
-//            }
-//        }
     }
     
     
