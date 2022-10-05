@@ -28,7 +28,7 @@ struct HistoryView: View {
             VStack(spacing: 44) {
                 titleBarView
                 
-                ScrollView{
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 12) {
                         ForEach(viewModel.trips, id: \.id) { formattedTripData in
                             TripListItemView(formattedTripData: formattedTripData)
@@ -37,7 +37,12 @@ struct HistoryView: View {
                 }
             }
             .padding(.top, 10)
-            .padding([.horizontal, .bottom], 24)
+            .padding(.horizontal, 24)
+        }
+        .onAppear {
+            viewModel.getHistory { error in
+                errorHandler.handle(error: error, title: "Couldn't get history!")
+            }
         }
     }
 }

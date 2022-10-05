@@ -10,30 +10,26 @@ import MapKit
 
 extension HistoryView {
     class ViewModel: ObservableObject {
-        private let geocoderProxy: GeocoderProxy = .init()
-        
         let userService: UserService
-        var trips = [FormattedTripData]()
+        @Published var trips = [FormattedTripData]()
         
         init(userService: UserService) {
-            self.userService = userService
+            self.userService = UserMockedService()
         }
         
-//        func getHistory(onError: @escaping (Error) -> Void) {
-//            userService.getUserTrips { [weak self] result in
-//                guard let self = self else { return }
-//
-//                switch result {
-//                case .success(let trips):
-//                    for trip in trips {
-//                        self.trips.append(self.getFormattedTrip(trip))
-//                    }
-//
-//                case .failure(let error):
-//                    onError(error)
-//                }
-//            }
-//        }
+        func getHistory(onError: @escaping (Error) -> Void) {
+            userService.getUserTrips { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let trips):
+                    self.trips = trips
+
+                case .failure(let error):
+                    onError(error)
+                }
+            }
+        }
 //
 //        private func getFormattedTrip(_ trip: Trip, completionHandler: @escaping (Result<FormattedTripData, Error>) -> Void) {
 //

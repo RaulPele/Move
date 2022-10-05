@@ -17,6 +17,7 @@
 		DE0DB33628ECE0EC004037EF /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DB33528ECE0EC004037EF /* HistoryViewModel.swift */; };
 		DE0DB33828ECE148004037EF /* FormattedTripData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DB33728ECE148004037EF /* FormattedTripData.swift */; };
 		DE0DB33A28ECE4D6004037EF /* GetUserTripsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DB33928ECE4D6004037EF /* GetUserTripsResponse.swift */; };
+		DE0DB33E28ED55A7004037EF /* UserMockedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0DB33D28ED55A7004037EF /* UserMockedService.swift */; };
 		DE116A0028DC7A6100C659B9 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1169FF28DC7A6100C659B9 /* Sheet.swift */; };
 		DE116A0228DCBD0900C659B9 /* StartRideSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */; };
 		DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */; };
@@ -147,6 +148,7 @@
 		DE0DB33528ECE0EC004037EF /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		DE0DB33728ECE148004037EF /* FormattedTripData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedTripData.swift; sourceTree = "<group>"; };
 		DE0DB33928ECE4D6004037EF /* GetUserTripsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserTripsResponse.swift; sourceTree = "<group>"; };
+		DE0DB33D28ED55A7004037EF /* UserMockedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMockedService.swift; sourceTree = "<group>"; };
 		DE1169FF28DC7A6100C659B9 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		DE116A0128DCBD0900C659B9 /* StartRideSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideSheetView.swift; sourceTree = "<group>"; };
 		DE156DDA28B36D7A001C6A44 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4AABAB28C7655B004AC99F /* ScooterMockedService.swift */,
+				DE0DB33D28ED55A7004037EF /* UserMockedService.swift */,
 			);
 			path = MockedServices;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				DE717B8A28D9E44800D0E3FD /* SerialNumberUnlockViewModel.swift in Sources */,
 				DE2F523E28A6462E007762BA /* PurpleBackgroundView.swift in Sources */,
 				DE39E5DA28D302190069C71D /* ScooterCardViewModel.swift in Sources */,
+				DE0DB33E28ED55A7004037EF /* UserMockedService.swift in Sources */,
 				DE39E5E528D34B440069C71D /* MySheetHostingController.swift in Sources */,
 				DE4AABB228C88EED004AC99F /* MapScreenView.swift in Sources */,
 				DE156DDB28B36D7A001C6A44 /* ForgotPasswordView.swift in Sources */,

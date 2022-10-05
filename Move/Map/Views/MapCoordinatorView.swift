@@ -138,13 +138,21 @@ struct MapCoordinatorView: View {
                             MenuView(errorHandler: errorHandler, userService: userService, authenticationService: authenticationService) {
                                     mapCoordinatorViewModel.showMenu = false
                             } onSeeHistory: {
-                                
+                                mapCoordinatorViewModel.showHistory = true
                             } onLogout: {
                                 onLogout()
+                            }
+                            .overlay {
+                                if mapCoordinatorViewModel.showHistory {
+                                    HistoryView(errorHandler: errorHandler, userService: userService) {
+                                        mapCoordinatorViewModel.showHistory = false
+                                    }
+                                }
                             }
                             .transition(.opacity.animation(.default))
                         }
                     }
+                   
                     
                 } label: {
                     EmptyView()
