@@ -85,7 +85,7 @@ private extension ScooterCardView {
             .buttonStyle(.roundedIconButton)
             
             Button {
-                
+                scooterCardViewModel.navigateToScooter()
             } label: {
                 Image("location-arrow")
             }

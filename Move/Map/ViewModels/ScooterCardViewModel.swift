@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
 
 extension ScooterCardView {
     class ScooterCardViewModel: ObservableObject {
@@ -42,6 +43,14 @@ extension ScooterCardView {
                 self.scooterAddress = "Str. \(street) \(number)"
                 print("ADDRESS: \(self.scooterAddress)")
             })
+        }
+        
+        func navigateToScooter() {
+            let url = URL(string: "maps://?saddr=&daddr=\(scooter.location.latitude),\(scooter.location.longitude)")
+            
+            if UIApplication.shared.canOpenURL(url!) {
+                UIApplication.shared.open(url!)
+            }
         }
         
     }
