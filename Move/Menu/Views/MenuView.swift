@@ -171,8 +171,8 @@ private extension MenuView {
                 Button {
                     
                 } label: {
-                    Text("Terms and conditions")
-                        .foregroundColor(.primaryDark)
+                    Text("[Terms and Conditions](https://tapptitude.com)")
+                        .accentColor(.primaryDark)
                         .font(.button2())
                         .padding(.vertical, 20)
                 }
@@ -180,8 +180,8 @@ private extension MenuView {
                 Button {
                     
                 } label: {
-                    Text("Privacy policy")
-                        .foregroundColor(.primaryDark)
+                    Text("[Privacy policy](https://tapptitude.com)")
+                        .accentColor(.primaryDark)
                         .font(.button2())
                         .padding(.vertical, 20)
                 }
