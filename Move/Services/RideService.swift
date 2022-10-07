@@ -19,4 +19,12 @@ protocol RideService {
     
     func getRideInformation(scooterId: String,
                             completionHandler: @escaping (Result<TripData, Error>) -> Void)
+    
+    func lockRide(scooterId: String,
+                  userLocation: CLLocation,
+                  completionHandler: @escaping (Result<TripData, Error>) -> Void)
+    
+    func unlockRide(scooterId: String,
+                    userLocation: CLLocation,
+                    completionHandler: @escaping (Result<TripData, Error>) -> Void)
 }

@@ -34,7 +34,7 @@ struct ScooterDTO: Codable {
 
 extension ScooterDTO {
     func toScooter() -> Scooter {
-        return Scooter(id: id, scooterNumber: scooterNumber, bookedStatus: bookedStatus, lockedStatus: lockedStatus, batteryPercentage: battery, location: .init(latitude: location.coordinates[0], longitude: location.coordinates[1]))
+        return Scooter(id: id, scooterNumber: scooterNumber, bookedStatus: bookedStatus, lockedStatus: lockedStatus, batteryPercentage: battery, location: .init(latitude: location.coordinates[1], longitude: location.coordinates[0]))
     }
 }
 

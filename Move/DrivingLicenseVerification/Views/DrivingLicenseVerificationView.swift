@@ -113,6 +113,7 @@ private extension DrivingLicenseVerificationView {
             } onScanError: { error in
                 print("Error")
             }
+            .ignoresSafeArea()
         }
         .actionSheet(isPresented: $verificationViewModel.showActionSheet) { () -> ActionSheet in
             ActionSheet(title: Text("Choose uploading mode"), message:  Text("Please choose a way to upload a license picture"), buttons: [

@@ -134,6 +134,7 @@
 		DED89E8B28ECBE1100585C91 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED89E8A28ECBE1100585C91 /* MenuViewModel.swift */; };
 		DED89E8D28ECC39400585C91 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED89E8C28ECC39400585C91 /* UserDetails.swift */; };
 		DED89E8F28ECCBBE00585C91 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED89E8E28ECCBBE00585C91 /* LoginResponse.swift */; };
+		DEE1136528F00EDC00CF038D /* LockRideResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE1136428F00EDC00CF038D /* LockRideResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -265,6 +266,7 @@
 		DED89E8A28ECBE1100585C91 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		DED89E8C28ECC39400585C91 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DED89E8E28ECCBBE00585C91 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		DEE1136428F00EDC00CF038D /* LockRideResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockRideResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,16 +483,11 @@
 		DE46BC3428C608940061F800 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				DE28ECDD28C228D6007AA04C /* RegisterResponse.swift */,
-				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
-				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
-				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
-				DE2C848C28EAD88D002A83CF /* TripResponse.swift */,
-				DE2C849628EAFA40002A83CF /* EndTripResponse.swift */,
+				DEE1136328F00E8900CF038D /* Rides */,
+				DEE1136228F00E6E00CF038D /* Scooters */,
+				DEE1136128F00E2700CF038D /* DrivingLicense */,
+				DEE1136028F00E0D00CF038D /* Authentication */,
 				DE2C84A928EC56CA002A83CF /* GetUserResponse.swift */,
-				DE2C84AB28EC781D002A83CF /* GetTripResponse.swift */,
-				DED89E8E28ECCBBE00585C91 /* LoginResponse.swift */,
-				DE0DB33928ECE4D6004037EF /* GetUserTripsResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -719,6 +716,44 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		DEE1136028F00E0D00CF038D /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DE28ECDD28C228D6007AA04C /* RegisterResponse.swift */,
+				DED89E8E28ECCBBE00585C91 /* LoginResponse.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DEE1136128F00E2700CF038D /* DrivingLicense */ = {
+			isa = PBXGroup;
+			children = (
+				DE46BC3528C608AC0061F800 /* VerificationResponse.swift */,
+			);
+			path = DrivingLicense;
+			sourceTree = "<group>";
+		};
+		DEE1136228F00E6E00CF038D /* Scooters */ = {
+			isa = PBXGroup;
+			children = (
+				DE4AABC528CA27C7004AC99F /* GetScootersResponse.swift */,
+				DE3DC3A328DB6F17005122B5 /* ScooterInteractionResponse.swift */,
+			);
+			path = Scooters;
+			sourceTree = "<group>";
+		};
+		DEE1136328F00E8900CF038D /* Rides */ = {
+			isa = PBXGroup;
+			children = (
+				DE2C848C28EAD88D002A83CF /* TripResponse.swift */,
+				DE2C849628EAFA40002A83CF /* EndTripResponse.swift */,
+				DE2C84AB28EC781D002A83CF /* GetTripResponse.swift */,
+				DE0DB33928ECE4D6004037EF /* GetUserTripsResponse.swift */,
+				DEE1136428F00EDC00CF038D /* LockRideResponse.swift */,
+			);
+			path = Rides;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -889,6 +924,7 @@
 				DE2C848B28EAD2C7002A83CF /* TripDTO.swift in Sources */,
 				DE4AABA928C76504004AC99F /* ScooterAPIService.swift in Sources */,
 				DE46BC3628C608AC0061F800 /* VerificationResponse.swift in Sources */,
+				DEE1136528F00EDC00CF038D /* LockRideResponse.swift in Sources */,
 				DE2F523828A64511007762BA /* OnboardingCoordinatorViewModel.swift in Sources */,
 				DE1FEB5A28ABB2380019CE5A /* SignUpView.swift in Sources */,
 				DE4AABA428C763F2004AC99F /* ScooterService.swift in Sources */,
