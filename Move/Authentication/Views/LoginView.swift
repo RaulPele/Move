@@ -78,7 +78,6 @@ struct LoginView: View {
     }
 }
 
-
 private extension LoginView {
     var loginTextFieldsView: some View {
         return VStack(spacing: 26) {

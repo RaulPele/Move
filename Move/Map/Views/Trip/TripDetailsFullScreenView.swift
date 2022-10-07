@@ -18,7 +18,6 @@ struct TripDetailsFullScreenView: View {
             .padding(.horizontal, 24)
             .padding(.top, 10)
         }
-
     }
 }
 
@@ -34,14 +33,6 @@ private extension TripDetailsFullScreenView {
                 .foregroundColor(.primaryDark)
             
             Spacer()
-        }
-    }
-    
-    var batteryView: some View {
-        VStack {
-//            HStack(spacing: 7) {
-//                Image(
-//            }
         }
     }
     
