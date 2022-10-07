@@ -92,15 +92,32 @@ private extension TripDetailsSheetView {
     var scooterButtonsView: some View {
         HStack(spacing: 21) {
             Button {
+                viewModel.isLoading = true
                 
+                if viewModel.scooter!.isLocked {
+                    viewModel.unlockRide {
+                        viewModel.isLoading = false
+                    } onError: { error in
+                        errorHandler.handle(error: error, title: "Couldn't lock scooter!")
+                    }
+                } else {
+                    viewModel.lockRide {
+                        viewModel.isLoading = false
+                    } onError: { error in
+                        errorHandler.handle(error: error, title: "Couldn't unlock scooter!")
+                    }
+
+                }
+
             } label: {
                 HStack(spacing: 4) {
-                    Image("lock-icon")
+                    Image(viewModel.scooter!.isLocked ? "open-lock-icon" : "lock-icon")
                     Text("Lock")
                 }
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(.transparentButton)
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isLoading)
             
             Button {
                 viewModel.endRide { scooter, trip in

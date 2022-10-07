@@ -42,6 +42,10 @@ struct Scooter: Identifiable, Equatable {
         self.location = location
     }
     
+    var isLocked: Bool {
+        return self.bookedStatus == .locked
+    }
+    
     static func == (lhs: Scooter, rhs: Scooter) -> Bool {
         return lhs.id == rhs.id
     }

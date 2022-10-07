@@ -267,6 +267,8 @@
 		DED89E8C28ECC39400585C91 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DED89E8E28ECCBBE00585C91 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		DEE1136428F00EDC00CF038D /* LockRideResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockRideResponse.swift; sourceTree = "<group>"; };
+		DEE1136628F01AC400CF038D /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = ../../../Location.gpx; sourceTree = "<group>"; };
+		DEE1136728F01AEB00CF038D /* Office-Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Office-Location.gpx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,8 +288,10 @@
 		DE0ACEEF28A266EF00F32C36 = {
 			isa = PBXGroup;
 			children = (
+				DEE1136728F01AEB00CF038D /* Office-Location.gpx */,
 				DE2C849E28EC32A3002A83CF /* Location.gpx */,
 				DE2C849F28EC32F0002A83CF /* Location.gpx */,
+				DEE1136628F01AC400CF038D /* Location.gpx */,
 				DE0ACEFA28A266EF00F32C36 /* Move */,
 				DE0ACEF928A266EF00F32C36 /* Products */,
 			);

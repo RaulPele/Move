@@ -13,6 +13,8 @@ class TripDetailsViewModel: ObservableObject {
     @Published var duration: Int = 0
     @Published private var isTravelTimerRunning = false
     @Published private var isRideInformationTimerRunning = false
+    @Published var isLoading = false
+    
     var rideInformationTimer: Timer?
     
     var rideService: RideService?
@@ -84,4 +86,42 @@ class TripDetailsViewModel: ObservableObject {
         stopTravelTimer()
         stopRideInformationTimer()
     }
+    
+    func lockRide(onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+        guard let rideService = rideService,
+        let userLocation = scooterMapViewModel?.userLocation,
+        let scooter = scooter else { return }
+        
+        rideService.lockRide(scooterId: scooter.id, userLocation: userLocation) { result in
+            switch result {
+            case .success(let tripData):
+                self.scooter = tripData.scooter
+                self.trip = tripData.trip
+                
+                onSuccess()
+            case .failure(let error):
+                onError(error)
+            }
+        }
+    }
+    
+    func unlockRide(onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+        guard let rideService = rideService,
+        let userLocation = scooterMapViewModel?.userLocation,
+        let scooter = scooter else { return }
+        
+        rideService.unlockRide(scooterId: scooter.id, userLocation: userLocation) { result in
+            switch result {
+            case .success(let tripData):
+                self.scooter = tripData.scooter
+                self.trip = tripData.trip
+                
+                onSuccess()
+            case .failure(let error):
+                onError(error)
+            }
+        }
+    }
+    
+
 }

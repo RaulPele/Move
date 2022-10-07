@@ -48,7 +48,7 @@ struct SerialNumberUnlockView: View {
                         
                         PinTextField(pinCode: $viewModel.text, numberOfDigits: 4)
                             .onChange(of: viewModel.text) { newValue in
-                                print(viewModel.text)
+                                
                                 viewModel.validatePin {
                                     viewModel.unlock { unlockedScooter in
                                         onUnlockedSuccessfully(unlockedScooter)
@@ -70,7 +70,6 @@ struct SerialNumberUnlockView: View {
                         Text("Alternatively you can unlock using")
                             .font(.body1())
                             .foregroundColor(.neutralWhite)
-                        //                            .frame(maxHeight:.infinity, alignment: .bottom)
                             .padding(.bottom, 100)
                     }
                     .padding(.horizontal, 24)
