@@ -92,11 +92,14 @@ class TripDetailsViewModel: ObservableObject {
         let userLocation = scooterMapViewModel?.userLocation,
         let scooter = scooter else { return }
         
-        rideService.lockRide(scooterId: scooter.id, userLocation: userLocation) { result in
+        rideService.lockRide(scooterId: scooter.id, userLocation: userLocation) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let tripData):
                 self.scooter = tripData.scooter
                 self.trip = tripData.trip
+                self.stopRideInformationTimer()
                 
                 onSuccess()
             case .failure(let error):
@@ -110,11 +113,14 @@ class TripDetailsViewModel: ObservableObject {
         let userLocation = scooterMapViewModel?.userLocation,
         let scooter = scooter else { return }
         
-        rideService.unlockRide(scooterId: scooter.id, userLocation: userLocation) { result in
+        rideService.unlockRide(scooterId: scooter.id, userLocation: userLocation) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let tripData):
                 self.scooter = tripData.scooter
                 self.trip = tripData.trip
+                self.startRideInformationTimer()
                 
                 onSuccess()
             case .failure(let error):

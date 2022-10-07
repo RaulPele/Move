@@ -26,7 +26,7 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = baseURL.appendingPathComponent("trips/\(scooterId)")
+        let url = baseURL.appendingPathComponent("trips/start/\(scooterId)")
         
         let request = AF.request(url,
                                  method: .post,

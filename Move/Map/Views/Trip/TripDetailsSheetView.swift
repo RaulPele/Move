@@ -112,12 +112,14 @@ private extension TripDetailsSheetView {
             } label: {
                 HStack(spacing: 4) {
                     Image(viewModel.scooter!.isLocked ? "open-lock-icon" : "lock-icon")
-                    Text("Lock")
+                    Text(viewModel.scooter!.isLocked ? "Unlock" : "Lock")
                 }
                 .frame(maxWidth: .infinity)
+                .opacity(viewModel.isLoading ? 0 : 1)
+
             }
             .buttonStyle(.transparentButton)
-            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isLoading)
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isLoading, indicatorColor: .accent)
             
             Button {
                 viewModel.endRide { scooter, trip in
