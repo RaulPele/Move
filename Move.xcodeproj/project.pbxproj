@@ -385,10 +385,10 @@
 		DE28ECD828C1FAE1007AA04C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				DEF8AC7F28F4182200A9EDEA /* APIConfig */,
 				DE4AABC228CA2322004AC99F /* DTOs */,
 				DE4AABA728C764F2004AC99F /* APIServices */,
 				DE46BC3428C608940061F800 /* Responses */,
-				DE28ECD928C1FB04007AA04C /* APIConfig.swift */,
 				DE28ECDB28C1FB40007AA04C /* APIError.swift */,
 				DE1B96BE28D0B261007D8FD6 /* GeocoderProxy.swift */,
 			);
@@ -756,6 +756,14 @@
 				DEE1136428F00EDC00CF038D /* LockRideResponse.swift */,
 			);
 			path = Rides;
+			sourceTree = "<group>";
+		};
+		DEF8AC7F28F4182200A9EDEA /* APIConfig */ = {
+			isa = PBXGroup;
+			children = (
+				DE28ECD928C1FB04007AA04C /* APIConfig.swift */,
+			);
+			path = APIConfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

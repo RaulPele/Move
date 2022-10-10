@@ -10,7 +10,7 @@ import Alamofire
 import MapKit
 
 class ScooterAPIService: ScooterService {
-    private let baseURL = URL(string: "https://move-scooters.herokuapp.com")!
+    private let apiConfig: APIConfig = .init(baseUrlString: "https://move-scooters.herokuapp.com/api")
     private let sessionManager: SessionManager
     
     init(sessionManager: SessionManager) {
@@ -27,7 +27,7 @@ class ScooterAPIService: ScooterService {
             "Authorization" : "Bearer \(sessionToken)"
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/scooters"), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(apiConfig.getUrl(for: .getAllScooters), method: .get, encoding: JSONEncoding.default, headers: .init(headers))
             
         request.validate(statusCode: 200..<300)
             .responseDecodable(of: GetScootersResponse.self) { response in
@@ -61,7 +61,7 @@ class ScooterAPIService: ScooterService {
         ]
         let headers = ["Authorization" : "Bearer \(sessionToken)"]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/scooters/scan"),
+        let request = AF.request(apiConfig.getUrl(for: .scanScooter),
                                  method: .patch,
                                  parameters: parameters,
                                  encoding: URLEncoding(destination: .queryString),
@@ -94,7 +94,7 @@ class ScooterAPIService: ScooterService {
             "id" : scooterPin
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/scooters/cancel"),
+        let request = AF.request(apiConfig.getUrl(for: .cancelScan),
                                  method: .patch,
                                  parameters: parameters,
                                  encoding: URLEncoding(destination: .queryString),

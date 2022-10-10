@@ -10,7 +10,7 @@ import Alamofire
 import MapKit
 
 class RideAPIService: RideService {
-    let baseURL = URL(string: "https://move-scooters.herokuapp.com/api")!
+    private let apiConfig: APIConfig = .init(baseUrlString: "https://move-scooters.herokuapp.com/api")
     let sessionManager: SessionManager
     
     init(sessionManager: SessionManager) {
@@ -26,7 +26,8 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = baseURL.appendingPathComponent("trips/start/\(scooterId)")
+        let url = apiConfig.getUrl(for: .startRide)
+            .appendingPathComponent("\(scooterId)")
         
         let request = AF.request(url,
                                  method: .post,
@@ -63,11 +64,9 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let queryParameters = [
-            "id": scooterId
-        ]
+        let url = apiConfig.getUrl(for: .endRide)
+            .appendingPathComponent("\(scooterId)")
         
-        let url = baseURL.appendingPathComponent("trips/end/\(scooterId)")
         let request = AF.request(url,
                                  method: .patch,
                                  parameters: bodyParameters,
@@ -76,7 +75,6 @@ class RideAPIService: RideService {
         
         request
             .validate(statusCode: 200..<300)
-        print(request.error)
 
             request.responseDecodable(of: EndTripResponse.self) { response in
                 switch response.result {
@@ -99,7 +97,9 @@ class RideAPIService: RideService {
         guard let sessionToken = sessionManager.getSessionToken() else { return }
         
         let headers = ["Authorization": "Bearer \(sessionToken)"]
-        let url = baseURL.appendingPathComponent("trips/current/\(scooterId)")
+        
+        let url = apiConfig.getUrl(for: .rideInformation)
+            .appendingPathComponent("\(scooterId)")
         
         let request = AF.request(url,
                                  method:.get,
@@ -136,7 +136,9 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = baseURL.appendingPathComponent("trips/lock/\(scooterId)")
+        let url = apiConfig.getUrl(for: .lockRide)
+            .appendingPathComponent("\(scooterId)")
+        
         let request = AF.request(url,
                                  method: .patch,
                                  parameters: parameters,
@@ -173,7 +175,9 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = baseURL.appendingPathComponent("trips/unlock/\(scooterId)")
+        let url = apiConfig.getUrl(for: .unlockRide)
+            .appendingPathComponent("\(scooterId)")
+        
         let request = AF.request(url,
                                  method: .patch,
                                  parameters: parameters,

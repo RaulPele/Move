@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class UserAPIService: UserService {
-    let baseURL = URL(string: "https://move-scooters.herokuapp.com/api")!
+    private let apiConfig: APIConfig = .init(baseUrlString: "https://move-scooters.herokuapp.com/api")
     let sessionManager: SessionManager
     
     init(sessionManager: SessionManager) {
@@ -21,7 +21,7 @@ class UserAPIService: UserService {
         
         let headers = ["Authorization": "Bearer \(sessionToken)"]
         
-        let request = AF.request(baseURL.appendingPathComponent("users/me"),
+        let request = AF.request(apiConfig.getUrl(for: .getUser),
                                  method: .get,
                                  headers: .init(headers))
         request

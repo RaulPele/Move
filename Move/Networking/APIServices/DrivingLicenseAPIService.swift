@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class DrivingLicenseAPIService: DrivingLicenseService {
-    private let url = URL(string: "https://move-scooters.herokuapp.com/api/users/addImage")!
+    private let apiConfig: APIConfig = .init(baseUrlString: "https://move-scooters.herokuapp.com/api")
     private let sessionManager: SessionManager
     
     init(sessionManager: SessionManager) {
@@ -28,7 +28,7 @@ class DrivingLicenseAPIService: DrivingLicenseService {
         
         let request = AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(imageData, withName: "productImage", fileName: "license.jpeg", mimeType: "image/jpeg")
-        }, to: url,
+        }, to: apiConfig.getUrl(for: .drivingLicenseVerification),
                   method: .put, headers: .init(headers))
         
         request

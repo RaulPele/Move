@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class AuthenticationAPIService: AuthenticationService {
-    var baseURL = URL(string: "https://move-scooters.herokuapp.com")!
+    private let apiConfig: APIConfig = .init(baseUrlString: "https://move-scooters.herokuapp.com/api")
     let sessionManager: SessionManager
     
     init(sessionManager: SessionManager) {
@@ -24,7 +24,7 @@ class AuthenticationAPIService: AuthenticationService {
         let parameters = ["mail": email, "password": password]
         let headers = ["Content-Type": "application/json"]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/auth/login"), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
+        let request = AF.request(apiConfig.getUrl(for: .login), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: .init(headers))
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: LoginResponse.self) { response in
@@ -57,8 +57,10 @@ class AuthenticationAPIService: AuthenticationService {
             "password": password
         ]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/auth/register"),
-                                 method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(apiConfig.getUrl(for: .register),
+                                 method: .post,
+                                 parameters: parameters,
+                                 encoding: JSONEncoding.default)
         request
             .validate(statusCode: 200..<300)
             .responseDecodable(of: RegisterResponse.self) { response in
@@ -84,7 +86,7 @@ class AuthenticationAPIService: AuthenticationService {
         
         let headers = ["Authorization" : "Bearer \(sessionToken)"]
         
-        let request = AF.request(baseURL.appendingPathComponent("api/auth/logout"),
+        let request = AF.request(apiConfig.getUrl(for: .logout),
                           method: .delete,
                           headers: .init(headers))
         
