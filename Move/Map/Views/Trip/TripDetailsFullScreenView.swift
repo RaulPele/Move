@@ -9,10 +9,12 @@ import SwiftUI
 
 struct TripDetailsFullScreenView: View {
     @ObservedObject var viewModel: TripDetailsViewModel
+    let onBackButtonPressed: () -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
             Color.neutralWhite
+                .ignoresSafeArea()
             VStack(spacing: 44) {
                 titleBarView
                 tripInformationView
@@ -27,7 +29,11 @@ struct TripDetailsFullScreenView: View {
 private extension TripDetailsFullScreenView {
     var titleBarView: some View {
         HStack(spacing: 0) {
-            Image("chevron-bottom")
+            Button {
+                onBackButtonPressed()
+            } label: {
+                Image("chevron-bottom")
+            }
             
             Spacer()
         
@@ -89,7 +95,6 @@ private extension TripDetailsFullScreenView {
             } label: {
                 HStack(spacing: 4) {
                     Image("lock-icon")
-//                        .frame(width: 24, height: 24)
                     Text("Lock")
                 }
                 .frame(maxWidth: .infinity)
@@ -160,7 +165,7 @@ struct TestSheet: View {
     }
     
     var body: some View {
-        return TripDetailsFullScreenView(viewModel: viewModel)
+        return TripDetailsFullScreenView(viewModel: viewModel, onBackButtonPressed: {})
     }
 }
 

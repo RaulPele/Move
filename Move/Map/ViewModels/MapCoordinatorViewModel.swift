@@ -18,6 +18,7 @@ extension MapCoordinatorView {
         @Published var showMenu = false
         @Published var currentTrip: Trip?
         @Published var showHistory = false
+        @Published var showTripDetailsScreen = false
         
         var currentScooter: Scooter? = nil
         var userLocation: CLLocation? = nil

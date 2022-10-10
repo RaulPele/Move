@@ -150,8 +150,15 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = apiConfig.getUrl(for: .lockRide)
-            .appendingPathComponent("\(scooterId)")
+        var url: URL
+        
+        if scooterId == "633e9ab1e8d624d753736101" {
+            url = apiConfig.getUrl(for: .lockPhysicalRide)
+                .appendingPathComponent("\(scooterId)")
+        } else {
+            url = apiConfig.getUrl(for: .lockRide)
+                .appendingPathComponent("\(scooterId)")
+        }
         
         let request = AF.request(url,
                                  method: .patch,
@@ -189,8 +196,15 @@ class RideAPIService: RideService {
             "longitude": userLocation.coordinate.longitude
         ]
         
-        let url = apiConfig.getUrl(for: .unlockRide)
-            .appendingPathComponent("\(scooterId)")
+        var url: URL
+        
+        if scooterId == "633e9ab1e8d624d753736101" {
+            url = apiConfig.getUrl(for: .unlockPhysicalRide)
+                .appendingPathComponent("\(scooterId)")
+        } else {
+            url = apiConfig.getUrl(for: .unlockRide)
+                .appendingPathComponent("\(scooterId)")
+        }
         
         let request = AF.request(url,
                                  method: .patch,

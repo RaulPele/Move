@@ -130,9 +130,28 @@ struct MapCoordinatorView: View {
                                         print("Ride ended")
                                     }
                                 }
+                                .onTapGesture {
+                                    mapCoordinatorViewModel.showTripDetailsSheet = false
+                                    mapCoordinatorViewModel.showTripDetailsScreen = true
+                                    
+                                }
                             }
                         }
                     }
+                    .overlay {
+                        if mapCoordinatorViewModel.showTripDetailsScreen {
+                            Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsScreen) {
+                                
+                                
+                                TripDetailsFullScreenView(viewModel: tripDetailsViewModel, onBackButtonPressed: {
+                                    mapCoordinatorViewModel.showTripDetailsScreen = false
+                                    mapCoordinatorViewModel.showTripDetailsSheet = true
+                                    
+                                })
+                            }
+                        }
+                    }
+                    
                     .overlay {
                         if mapCoordinatorViewModel.showMenu {
                             MenuView(errorHandler: errorHandler, userService: userService, authenticationService: authenticationService) {
