@@ -13,18 +13,25 @@ struct TransparentButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(isEnabled ? .button1() : .baiJamjureeMedium(size: 16))
-            .padding(16)
-            .background(isEnabled ?
-                        AnyView(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.accent, lineWidth: 1)
-                                .foregroundColor(.clear)
-                        ) :
-                        AnyView(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.neutralLightPurple, lineWidth: 1)
-                                .foregroundColor(.clear)
-                        ))
+//            .padding(16)
+            .frame(height: 56)
+//            .background(isEnabled ?
+//                        AnyView(
+//                            RoundedRectangle(cornerRadius: 16)
+//                                .stroke(Color.accent, lineWidth: 1)
+//                                .background(RoundedRectangle(cornerRadius: 16)
+//                                    .foregroundColor(.clear))
+//                        ) :
+//                        AnyView(
+//                            RoundedRectangle(cornerRadius: 16)
+//                                .stroke(Color.neutralLightPurple, lineWidth: 1)
+//                                .background(RoundedRectangle(cornerRadius: 16)
+//                                    .foregroundColor(.clear))
+//                        ))
+            .background(RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(.clear))
+            .overlay( RoundedRectangle(cornerRadius: 16)
+                .stroke(isEnabled ? Color.accent : Color.neutralLightPurple, lineWidth: 1))
             .foregroundColor(isEnabled ? Color.accent : .neutralLightPurple)
     }
 }
@@ -42,6 +49,7 @@ struct TransparentButton_Previews: PreviewProvider {
         } label: {
             Text("qweqwe")
         }
+        .disabled(false)
         .buttonStyle(.transparentButton)
     }
 }

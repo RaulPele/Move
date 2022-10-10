@@ -15,6 +15,7 @@ class TripDetailsViewModel: ObservableObject {
     @Published private var isRideInformationTimerRunning = false
     @Published var isLoading = false
     
+    
     var rideInformationTimer: Timer?
     
     var rideService: RideService?

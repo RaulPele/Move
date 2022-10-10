@@ -13,7 +13,8 @@ struct FilledButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(isEnabled ? .button1() : .baiJamjureeMedium(size: 16))
-            .padding(16)
+//            .padding(16)
+            .frame(height: 56)
             .background(isEnabled ?
                         AnyView(
                             RoundedRectangle(cornerRadius: 16)

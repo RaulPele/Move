@@ -61,7 +61,15 @@ class ScooterAPIService: ScooterService {
         ]
         let headers = ["Authorization" : "Bearer \(sessionToken)"]
         
-        let request = AF.request(apiConfig.getUrl(for: .scanScooter),
+        var url: URL
+        
+        if scooterPin == 9999 {
+            url = apiConfig.getUrl(for: .scanPhysicalScooter)
+        } else {
+            url = apiConfig.getUrl(for: .scanScooter)
+        }
+        
+        let request = AF.request(url,
                                  method: .patch,
                                  parameters: parameters,
                                  encoding: URLEncoding(destination: .queryString),
@@ -94,7 +102,15 @@ class ScooterAPIService: ScooterService {
             "id" : scooterPin
         ]
         
-        let request = AF.request(apiConfig.getUrl(for: .cancelScan),
+        var url: URL
+        
+        if scooterPin == 9999 {
+            url = apiConfig.getUrl(for: .cancelPhysicalScan)
+        } else {
+            url = apiConfig.getUrl(for: .cancelScan)
+        }
+        
+        let request = AF.request(url,
                                  method: .patch,
                                  parameters: parameters,
                                  encoding: URLEncoding(destination: .queryString),

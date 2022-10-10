@@ -136,14 +136,14 @@ private extension TripDetailsSheetView {
         }
     }
 }
-struct TripDetailsSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(devices) { device in
-            Sheet(showSheet: .constant(true)) {
-                TripDetailsSheetView(viewModel: .init(), errorHandler: SwiftMessagesErrorHandler(), onEndRide: {_, _ in })
-            }
-            .previewDevice(device)
-
-        }
-    }
-}
+//struct TripDetailsSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(devices) { device in
+//            Sheet(showSheet: .constant(true)) {
+//                TripDetailsSheetView(viewModel: .init(), errorHandler: SwiftMessagesErrorHandler(), onEndRide: {_, _ in })
+//            }
+//            .previewDevice(device)
+//
+//        }
+//    }
+//}
