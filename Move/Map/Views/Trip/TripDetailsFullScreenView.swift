@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct TripDetailsFullScreenView: View {
+    let errorHandler: ErrorHandler
+    
     @ObservedObject var viewModel: TripDetailsViewModel
     let onBackButtonPressed: () -> Void
+    let onEndRide: () -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -92,22 +95,48 @@ private extension TripDetailsFullScreenView {
         HStack(spacing: 21) {
             Button {
                 
+                if viewModel.scooter!.isLocked {
+                    viewModel.unlockRide {
+                        
+                    } onError: { error in
+                        errorHandler.handle(error: error, title: "Couldn't lock scooter!")
+                    }
+                } else {
+                    viewModel.lockRide {
+                        
+                    } onError: { error in
+                        errorHandler.handle(error: error, title: "Couldn't unlock scooter!")
+                    }
+
+                }
+
             } label: {
                 HStack(spacing: 4) {
-                    Image("lock-icon")
-                    Text("Lock")
+                    Image(viewModel.scooter!.isLocked ? "open-lock-icon" : "lock-icon")
+                    Text(viewModel.scooter!.isLocked ? "Unlock" : "Lock")
                 }
                 .frame(maxWidth: .infinity)
+                .opacity(viewModel.isWaitingForLock ? 0 : 1)
             }
             .buttonStyle(.transparentButton)
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isWaitingForLock, indicatorColor: .accent)
+            .disabled(viewModel.isWaiting)
+
             
             Button {
-                
+                viewModel.endRide {
+                    onEndRide()
+                } onError: { error in
+                    errorHandler.handle(error: error, title: "Couldn't end ride!")
+                }
             } label: {
                 Text("End ride")
                     .frame(maxWidth: .infinity)
+                    .opacity(viewModel.isWaitingForEndRide ? 0 : 1)
             }
             .buttonStyle(.filledButton)
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isWaitingForEndRide, indicatorColor: .accent)
+            .disabled(viewModel.isWaiting)
         }
     }
 }
@@ -165,7 +194,9 @@ struct TestSheet: View {
     }
     
     var body: some View {
-        return TripDetailsFullScreenView(viewModel: viewModel, onBackButtonPressed: {})
+        return TripDetailsFullScreenView(errorHandler: SwiftMessagesErrorHandler(),viewModel: viewModel, onBackButtonPressed: {}) {
+            
+        }
     }
 }
 

@@ -123,10 +123,9 @@ struct MapCoordinatorView: View {
                                 Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsSheet,
                                 isDismissableByTapGesture: false) {
                                     TripDetailsSheetView(viewModel: tripDetailsViewModel,
-                                                         errorHandler: errorHandler) { scooter, trip in
+                                                         errorHandler: errorHandler) {
                                         mapCoordinatorViewModel.showTripDetailsSheet = false
                                         mapScreenViewModel.exitRideMode()
-
                                         print("Ride ended")
                                     }
                                 }
@@ -142,11 +141,14 @@ struct MapCoordinatorView: View {
                         if mapCoordinatorViewModel.showTripDetailsScreen {
                             Sheet(showSheet: $mapCoordinatorViewModel.showTripDetailsScreen) {
                                 
-                                
-                                TripDetailsFullScreenView(viewModel: tripDetailsViewModel, onBackButtonPressed: {
+                                TripDetailsFullScreenView(errorHandler: errorHandler, viewModel: tripDetailsViewModel, onBackButtonPressed: {
                                     mapCoordinatorViewModel.showTripDetailsScreen = false
                                     mapCoordinatorViewModel.showTripDetailsSheet = true
                                     
+                                }, onEndRide: {
+                                    mapCoordinatorViewModel.showTripDetailsScreen = false
+                                    mapScreenViewModel.exitRideMode()
+                                    print("Ride ended")
                                 })
                             }
                         }

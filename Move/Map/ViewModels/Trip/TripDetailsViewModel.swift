@@ -13,7 +13,9 @@ class TripDetailsViewModel: ObservableObject {
     @Published var duration: Int = 0
     @Published private var isTravelTimerRunning = false
     @Published private var isRideInformationTimerRunning = false
-    @Published var isLoading = false
+    
+    @Published var isWaitingForLock = false
+    @Published var isWaitingForEndRide = false
     
     
     var rideInformationTimer: Timer?
@@ -21,18 +23,28 @@ class TripDetailsViewModel: ObservableObject {
     var rideService: RideService?
     var scooterMapViewModel: ScooterMapViewModel?
     
-    func endRide(onSuccess: @escaping (Scooter, Trip) -> Void, onError: @escaping (Error) -> Void) {
+    var isWaiting: Bool {
+        return isWaitingForLock || isWaitingForEndRide
+    }
+    
+    func endRide(onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
         guard let userLocation = scooterMapViewModel?.userLocation else { return }
+        self.isWaitingForEndRide = true
+        
         rideService?.endRide(scooterId: scooter!.id, userLocation: userLocation) {[weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let tripData):
                 self.stopMonitorizingRide()
-                onSuccess(tripData.scooter, tripData.trip)
+                self.trip = tripData.trip
+                self.scooter = tripData.scooter
+                onSuccess()
             case .failure(let error):
                 onError(error)
             }
+            
+            self.isWaitingForEndRide = false
         }
     }
     
@@ -93,6 +105,8 @@ class TripDetailsViewModel: ObservableObject {
         let userLocation = scooterMapViewModel?.userLocation,
         let scooter = scooter else { return }
         
+        self.isWaitingForLock = true
+        
         rideService.lockRide(scooterId: scooter.id, userLocation: userLocation) { [weak self] result in
             guard let self = self else { return }
             
@@ -106,6 +120,7 @@ class TripDetailsViewModel: ObservableObject {
             case .failure(let error):
                 onError(error)
             }
+            self.isWaitingForLock = false
         }
     }
     
@@ -113,7 +128,9 @@ class TripDetailsViewModel: ObservableObject {
         guard let rideService = rideService,
         let userLocation = scooterMapViewModel?.userLocation,
         let scooter = scooter else { return }
-        
+
+        self.isWaitingForLock = true
+
         rideService.unlockRide(scooterId: scooter.id, userLocation: userLocation) { [weak self] result in
             guard let self = self else { return }
             
@@ -127,6 +144,8 @@ class TripDetailsViewModel: ObservableObject {
             case .failure(let error):
                 onError(error)
             }
+            self.isWaitingForLock = false
+
         }
     }
     

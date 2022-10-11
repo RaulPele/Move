@@ -10,7 +10,7 @@ import SwiftUI
 struct TripDetailsSheetView: View {
     @ObservedObject var viewModel: TripDetailsViewModel
     let errorHandler: ErrorHandler
-    let onEndRide: (Scooter, Trip) -> Void
+    let onEndRide: () -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -92,17 +92,15 @@ private extension TripDetailsSheetView {
     var scooterButtonsView: some View {
         HStack(spacing: 21) {
             Button {
-                viewModel.isLoading = true
-                
                 if viewModel.scooter!.isLocked {
                     viewModel.unlockRide {
-                        viewModel.isLoading = false
+                        
                     } onError: { error in
                         errorHandler.handle(error: error, title: "Couldn't lock scooter!")
                     }
                 } else {
                     viewModel.lockRide {
-                        viewModel.isLoading = false
+                        
                     } onError: { error in
                         errorHandler.handle(error: error, title: "Couldn't unlock scooter!")
                     }
@@ -115,15 +113,16 @@ private extension TripDetailsSheetView {
                     Text(viewModel.scooter!.isLocked ? "Unlock" : "Lock")
                 }
                 .frame(maxWidth: .infinity)
-                .opacity(viewModel.isLoading ? 0 : 1)
+                .opacity(viewModel.isWaitingForLock ? 0 : 1)
 
             }
             .buttonStyle(.transparentButton)
-            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isLoading, indicatorColor: .accent)
-            
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isWaitingForLock, indicatorColor: .accent)
+            .disabled(viewModel.isWaiting)
+
             Button {
-                viewModel.endRide { scooter, trip in
-                    onEndRide(scooter, trip)
+                viewModel.endRide {
+                    onEndRide()
                 } onError: { error in
                     errorHandler.handle(error: error, title: "Couldn't end ride!")
                 }
@@ -131,8 +130,12 @@ private extension TripDetailsSheetView {
             } label: {
                 Text("End ride")
                     .frame(maxWidth: .infinity)
+                    .opacity(viewModel.isWaitingForEndRide ? 0 : 1)
+
             }
             .buttonStyle(.filledButton)
+            .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isWaitingForEndRide, indicatorColor: .accent)
+            .disabled(viewModel.isWaiting)
         }
     }
 }

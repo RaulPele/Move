@@ -38,8 +38,11 @@ struct StartRideSheetView: View {
                 } label: {
                     Text("Start ride")
                         .frame(maxWidth:.infinity)
+                        .opacity(viewModel.isWaitingForEndRide ? 0 : 1)
                 }
                 .buttonStyle(.filledButton)
+                .hasLoadingBehaviour(showLoadingIndicator: $viewModel.isWaitingForEndRide, indicatorColor: .accent)
+
             }
             .padding(.horizontal, 24)
             .padding(.top, 32)
