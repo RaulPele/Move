@@ -18,12 +18,12 @@ An application for eScooter riding.
 <img src="https://github.com/RaulPele/Move/assets/24495379/fea89e3a-6514-45cf-bf0e-406b44c9613e" width="390" height="800">
 <img src="https://github.com/RaulPele/Move/assets/24495379/dcf3a840-e093-4d1a-a32d-8beca3fc74a0" width="390" height="800">
 
-# Explore the nearby area
+## Explore the nearby area
 <img src="https://github.com/RaulPele/Move/assets/24495379/4697bb10-ecda-45ad-be38-d23570b52fef" width="390" height="800">
 
 
-# Scan a scooter when nearby and start riding
+## Scan a scooter when nearby and start riding
 <img src="https://github.com/RaulPele/Move/assets/24495379/262528dd-37d8-4844-b67b-bde246189d9c" width="390" height="800">
 
-# View your account
+## View your account
 <img src="https://github.com/RaulPele/Move/assets/24495379/fd4fefce-abc5-4322-bf12-9a956d2c05cf" width="390" height="800">
